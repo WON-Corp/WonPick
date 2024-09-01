@@ -49,5 +49,25 @@ public class MemberService {
 		
 		return result;
 	}
+	
+	public Member findMemberById(String userName, String email) {
+        Connection conn = getConnection();
+        
+        Member m = new MemberDao().findMemberById(conn, userName, email);
+        
+        close(conn);
+        
+        return m;
+    }
+
+    public Member findMemberByPassword(String userName, String email) {
+        Connection conn = getConnection();
+        
+        Member m = new MemberDao().findMemberByPassword(conn, userName, email);
+        
+        close(conn);
+        
+        return m;
+    }
 
 }

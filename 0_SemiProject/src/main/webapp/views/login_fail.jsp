@@ -33,7 +33,7 @@
 	
 	        #login > div {height: 100%; float: left;}
 	
-	        #userId, #password {
+	        #userId, #userPw {
 	            width: 60%;
 	            height: 40px;
 	            font-size: large;
@@ -67,23 +67,8 @@
 	</style>
 </head>
 <body>
-<%
-	String alertMsg = (String)session.getAttribute("errorMsg");
-	String joinMsg = (String)session.getAttribute("joinMsg");
-%>
-<% if (alertMsg != null) {%>
-		<script>
-			alert("<%= alertMsg %>");
-		</script>
-		<% session.removeAttribute("errorMsg"); %>
-	<% } %>
-<% if (joinMsg != null) {%>
-		<script>
-			alert("<%= joinMsg %>");
-		</script>
-		<% session.removeAttribute("joinMsg"); %>
-	<% } %>
-<form action="/wonPick/login.me" method="post">
+		
+<form action="main" method="post">
 	<div class="wrap">
         <div id="header">
             <img src="views/resources/logo.jpg" alt="" style="border-radius: 15px;"> <br>
@@ -91,15 +76,15 @@
         </div>
         <div id="login">
             <input type="text" id="userId" name="userId" placeholder="아이디"> <br>
-            <input type="password" id="password" name="password" placeholder="비밀번호"> <br>
+            <input type="password" id="userPw" name="userPw" placeholder="비밀번호"> <br>
             <input type="submit" value="로 그 인"> <br>
             
         </div>
         <div id="findUser">
-            <a href="/wonPick/findId.me">아이디</a> /
-            <a href="/wonPick/findPassword.me">비밀번호 찾기</a>
+            <a href="">아이디</a> /
+            <a href="">비밀번호 찾기</a>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="/wonPick/enrollForm.me">회원가입</a>
+            <a href="">회원가입</a>
             </div>
         <div id="footer">
             &copy; W.O.N Corp.
@@ -107,4 +92,7 @@
     </div>
 </form>
 </body>
+<script type="text/javascript">
+	alert("아이디/비밀번호를 확인하세요");
+</script>
 </html>

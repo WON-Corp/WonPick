@@ -10,4 +10,13 @@
 	<entry key="userIdCheck">
 		SELECT COUNT(*) COUNT FROM MEMBER WHERE USER_ID = ?
 	</entry>
+	<entry key="userIdCheck">
+        SELECT COUNT(*) COUNT FROM MEMBER WHERE USER_ID = ?
+    </entry>
+    <entry key="findMemberById">
+        SELECT USER_ID FROM MEMBER WHERE USER_NAME = ? AND EMAIL = ?
+    </entry>
+    <entry key="findMemberByPassword">
+        SELECT PASSWORD FROM MEMBER WHERE USER_NAME = ? AND EMAIL = ?
+    </entry>
 </properties>

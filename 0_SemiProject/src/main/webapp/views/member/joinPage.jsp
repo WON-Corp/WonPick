@@ -10,12 +10,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-  <script type="text/javascript" src="script.js"></script>
-  <script type="text/javascript"></script>
-  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript"></script>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     
     <style>
         body {
@@ -28,7 +26,6 @@
             justify-content: center;
             align-items: center;
             height: auto;
-
         }
 
         .main {
@@ -76,19 +73,16 @@
             box-sizing: border-box;
         }
 
-        .phone-input,
-        .gender-container {
+        .phone-input {
             display: flex;
             justify-content: space-between;
         }
 
-        .phone-input input,
-        .gender-container .gender {
+        .phone-input input {
             flex: 1;
         }
 
-        .phone-input button,
-        .phone-input input[type=text] + button {
+        .phone-input button {
             height: 42px;
             margin-top: 10px;
             margin-left: 10px;
@@ -103,6 +97,11 @@
             transition: background-color 0.3s ease;
         }
 
+        .gender-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
         .gender-container .gender {
             text-align: center;
             cursor: pointer;
@@ -112,6 +111,7 @@
             margin-right: 5px;
             transition: background-color 0.3s ease;
             border-radius: 5px;
+            flex: 1;
         }
 
         .gender-container .gender:last-child {
@@ -139,7 +139,7 @@
         .agree label {
             font-size: 0.9em;
             display: block;
-            margin:10px 0;
+            margin: 10px 0;
         }
 
         .agree input[type=checkbox] {
@@ -257,21 +257,24 @@
                     </div>
                 </div>
                 <div class="input-group">
+                    <input type="text" id="verificationCodeInput" name="verificationCode" placeholder="인증번호 입력" disabled>
+                </div>
+                <div class="input-group">
                     <div class="address-input">
                         <input type="text" id="address" name="address" placeholder="도로명, 지번, 건물명 검색" readonly onclick="searchAddress()" />
                         <img src="https://i.imgur.com/Cs7Y9G0.png" onclick="searchAddress()" />
                     </div>
                 </div>
                 <div class="input-group">
-                <div class="birth">
-                    <p>생년월일</p>
+                    <div class="birth">
+                        <p>생년월일</p>
                         <div>
-                        <select name="yy" id="year"></select> 년
-                        <select name="mm" id="month"></select> 월
-                        <select name="dd" id="day"></select> 일
+                            <select name="yy" id="year"></select> 년
+                            <select name="mm" id="month"></select> 월
+                            <select name="dd" id="day"></select> 일
                         </div>
                     </div>
-                  </div>
+                </div>
                 <div class="agree">
                     <label><input type="checkbox" id="check_all"> 전체 동의하기</label>
                     <label><input type="checkbox" id="check_first" class="normal"> Wonpick 이용약관 동의 (필수)</label>
@@ -284,7 +287,6 @@
 
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
-
         function ck_id() {
             const userId = document.getElementById("userId");
             const msgUserId = document.getElementById("msgUserId");
@@ -299,29 +301,25 @@
                 userId.focus();
                 $("#checkId").css('backgroundColor', '#888');
                 $("#checkId").hover(function(){
-                // mouseenter 인 경우
-                $(this).css('backgroundColor', '#888');
+                    $(this).css('backgroundColor', '#888');
                 }, function(){
-                // mouseout 인 경우
-                $(this).css('backgroundColor', '#888');
+                    $(this).css('backgroundColor', '#888');
                 });
-                
             } else {
                 msgUserId.className = 'valid';
                 msgUserId.innerHTML = "ok";
                 msgUserId.style.display = "block";
                 $("#checkId").css('backgroundColor', '#333');
                 $("#checkId").hover(function(){
-                $(this).css('backgroundColor', '#000');
+                    $(this).css('backgroundColor', '#000');
                 }, function(){
-                $(this).css('backgroundColor', '#333');
+                    $(this).css('backgroundColor', '#333');
                 });
-
             }   
         }
 
         function ck_email() {
-        	const email = document.getElementById("email");
+            const email = document.getElementById("email");
             const msgId = document.getElementById("msgId");
             const emailForm = /([\w\-]+\@[\w\-]+\.[\w\-]+)/;
 
@@ -359,7 +357,6 @@
             const pwd = document.getElementById("pwd").value;
             const msgPwck = document.getElementById("msgPwck");
 
-
             if (pwd_ck.value != pwd) {
                 msgPwck.className = 'error';
                 msgPwck.innerHTML = "비밀번호가 일치하지 않습니다.";
@@ -394,7 +391,6 @@
             const msgNickName = document.getElementById("msgNickName");
             const nickNameForm = /^[a-zA-Z가-힣0-9]{3,10}$/;  // 3글자 이상 10글자 이하, 영어, 한글, 숫자만 가능
 
-
             if (!nickNameForm.test(nickName.value)) {
                 msgNickName.className = 'error';
                 msgNickName.innerHTML = "3~10글자로 입력하세요. 특수문자는 불가합니다.";
@@ -408,36 +404,40 @@
         }
 
         function ck_phone() {
-
             if($("#phone").val() == ''){
                 $("#checkPhone").attr("disabled", true);
                 $("#checkPhone").css('backgroundColor', '#888');
                 $("#checkPhone").hover(function(){
-                $("#checkPhone").css('backgroundColor', '#888');
+                    $("#checkPhone").css('backgroundColor', '#888');
                 }, function(){
-                $("#checkPhone").css('backgroundColor', '#888');
+                    $("#checkPhone").css('backgroundColor', '#888');
                 });
             } else {
                 $("#checkPhone").removeAttr("disabled");
                 $("#checkPhone").css('backgroundColor', '#333');
                 $("#checkPhone").hover(function(){
-                $("#checkPhone").css('backgroundColor', '#000');
+                    $("#checkPhone").css('backgroundColor', '#000');
                 }, function(){
-                $("#checkPhone").css('backgroundColor', '#333');
+                    $("#checkPhone").css('backgroundColor', '#333');
                 });
             }
         }
 
         function selectGender(gender) {
+        	// 0901 Gender 속성 수정
             document.getElementById("wrap_man").classList.remove("active");
             document.getElementById("wrap_woman").classList.remove("active");
             document.getElementById("wrap_" + gender).classList.add("active");
+
+            document.getElementById("man").checked = false;
+            document.getElementById("woman").checked = false;
             document.getElementById(gender).checked = true;
         }
-
+        
         function sendVerificationCode() {
             alert("휴대전화 인증번호를 전송했습니다.");
             $("#phone").attr("readonly", true);
+            $("#verificationCodeInput").prop("disabled", false);
             // TODO:: 실제 인증번호 전송 로직 구현 예정
         }
 
@@ -449,33 +449,33 @@
             }).open();
         }
 
-    //birth
-    $(document).ready(function(){            
-        let now = new Date();
-        let year = now.getFullYear();
-        let mon = (now.getMonth() + 1) > 9 ? ''+(now.getMonth() + 1) : '0'+(now.getMonth() + 1); 
-        let day = (now.getDate()) > 9 ? ''+(now.getDate()) : '0'+(now.getDate());           
-    //년도 selectbox만들기               
-    for(let i = 1900 ; i <= year ; i++) {
-        $('#year').append('<option value="' + i + '">' + i + '</option>');    
-    }
+        $(document).ready(function(){            
+            let now = new Date();
+            let year = now.getFullYear();
+            let mon = (now.getMonth() + 1) > 9 ? ''+(now.getMonth() + 1) : '0'+(now.getMonth() + 1); 
+            let day = (now.getDate()) > 9 ? ''+(now.getDate()) : '0'+(now.getDate());           
+            
+            //년도 selectbox만들기               
+            for(let i = 1900 ; i <= year ; i++) {
+                $('#year').append('<option value="' + i + '">' + i + '</option>');    
+            }
 
-    // 월별 selectbox 만들기            
-    for(let i=1; i <= 12; i++) {
-        let mm = i > 9 ? i : "0"+i ;            
-        $('#month').append('<option value="' + mm + '">' + mm + '</option>');    
-    }
-    
-    // 일별 selectbox 만들기
-    for(let i=1; i <= 31; i++) {
-        let dd = i > 9 ? i : "0"+i ;            
-        $('#day').append('<option value="' + dd + '">' + dd+ '</option>');    
-    }
-    $("#year  > option[value="+year+"]").attr("selected", "true");        
-    $("#month  > option[value="+mon+"]").attr("selected", "true");    
-    $("#day  > option[value="+day+"]").attr("selected", "true");       
-  
-})
+            // 월별 selectbox 만들기            
+            for(let i=1; i <= 12; i++) {
+                let mm = i > 9 ? i : "0"+i ;            
+                $('#month').append('<option value="' + mm + '">' + mm + '</option>');    
+            }
+            
+            // 일별 selectbox 만들기
+            for(let i=1; i <= 31; i++) {
+                let dd = i > 9 ? i : "0"+i ;            
+                $('#day').append('<option value="' + dd + '">' + dd+ '</option>');    
+            }
+
+            $("#year  > option[value="+year+"]").attr("selected", "true");        
+            $("#month  > option[value="+mon+"]").attr("selected", "true");    
+            $("#day  > option[value="+day+"]").attr("selected", "true");       
+        });
 
         // 전체 선택/해제
         document.getElementById("check_all").addEventListener("click", function () {
@@ -495,140 +495,119 @@
             });
         });
 
-    // 아이디 중복체크
-    function idCheck() {
+        // 아이디 중복체크
+        function idCheck() {
+            const userId = $("#userId").val();
 
-		const userId = $("#userId").val();
-
-		$.ajax({
-			url:'/wonPick/idCheck.me',
-			type: 'get',
-			data: { userId: userId },
-			success: function(result) {
-				// 아이디를 입력하지 않았을 때
-				if(userId === "") {
-					alert("아이디를 입력하세요!")
-				} else {
-					// 아이디 형식 
-					const userIdForm = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
-					// 아이디 형식이 맞지 않을때
-					if (!userIdForm.test(userId)) {
-						alert("아이디 형식이 부적합합니다")
-					// 아이디 형식이 적합할 경우 중복 확인
-					} else { 
-						// result ==> 중복된 아이디가 있을 경우 ("NNN"), 없을 경우 ("NNY")
-						if(result == 'NNN'){
-							alert("사용중인 아이디입니다.");
-							$("#userId").val("");
-							$("#userId").focus();
-						} else if(result == 'NNY') {
-							const yn = confirm("사용 가능합니다. 사용하시겠습니까?");
-							if(yn){
-								$("#checkId").attr("disabled",true);
-                                $("#checkId").hover(function(){
-                                    $("#checkId").css('backgroundColor', '#888');
-                                }, function(){
-                                    $("#checkId").css('backgroundColor', '#888');
-                                });
-							} else {
-								$("#enroll-form input[name=userId]").focus();
-							};
-						};
-					};
-				};
-			},
-			error: function(err) {
-				console.log(err);
-			}
-		});	
-	}
-
-    // 회원가입 버튼 클릭시 각 입력창의 형식 확인
-    function joinCheck() {
-        
-        // 중복체크 완료 하였는지 확인
-        const userId = document.getElementById("userId");
-        const userIdForm = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
-        
-        if(!userIdForm.test(userId.value) || $("#checkId").attr("disabled") != 'disabled') {
-            alert("아이디 중복확인을 해야합니다.");
-            return false;
+            $.ajax({
+                url:'/wonPick/idCheck.me',
+                type: 'get',
+                data: { userId: userId },
+                success: function(result) {
+                    if(userId === "") {
+                        alert("아이디를 입력하세요!")
+                    } else {
+                        const userIdForm = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
+                        if (!userIdForm.test(userId)) {
+                            alert("아이디 형식이 부적합합니다")
+                        } else { 
+                            if(result == 'NNN'){
+                                alert("사용중인 아이디입니다.");
+                                $("#userId").val("");
+                                $("#userId").focus();
+                            } else if(result == 'NNY') {
+                                const yn = confirm("사용 가능합니다. 사용하시겠습니까?");
+                                if(yn){
+                                    $("#checkId").attr("disabled",true);
+                                    $("#checkId").hover(function(){
+                                        $("#checkId").css('backgroundColor', '#888');
+                                    }, function(){
+                                        $("#checkId").css('backgroundColor', '#888');
+                                    });
+                                } else {
+                                    $("#enroll-form input[name=userId]").focus();
+                                };
+                            };
+                        };
+                    };
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });	
         }
 
-        // email 형식 확인
-        const email = document.getElementById("email");
-        const msgId = document.getElementById("msgId");
-        const emailForm = /([\w\-]+\@[\w\-]+\.[\w\-]+)/;
-
-        if (!emailForm.test(email.value)) {
-            alert("이메일 형식을 확인하세요.");
-            return false;
-        }
-        
-        // 비밀번호 형식 확인
-        const pwd = document.getElementById("pwd");
-        const msgPw = document.getElementById("msgPw");
-        const pwdForm = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
-
-        if (!pwdForm.test(pwd.value)) {
-            alert("비밀번호 형식을 확인하세요.");
-            return false;
-        }
-
-        // 비밀번호확인 체크
-
-        if (pwd.value !== $("#pwd_ck").val() ) {
-            alert("비밀번호와 비밀번호 확인이 다릅니다.");
-            return false;
-        }
-
-        // 이름 형식 확인
-        const userName = document.getElementById("userName");
-        const msgName = document.getElementById("msgName");
-        const nameForm = /^[가-힣]{2,6}$/;  // 2글자 이상 6글자 이하 한글만
-
-        if (!nameForm.test(userName.value)) {
-            alert("이름 형식을 확인하세요.");
-            return false;
-        }
-        
-        // 닉네임 확인
-        const nickName = document.getElementById("nickName");
-        const msgNickName = document.getElementById("msgNickName");
-        const nickNameForm = /^[a-zA-Z가-힣0-9]{3,10}$/;  // 3글자 이상 10글자 이하, 영어, 한글, 숫자만 가능
-
-        if (!nickNameForm.test(nickName.value)) {
-            alert("닉네임 형식을 확인하세요.");
-            return false;
-        }
-
-        console.log($("input[name=gender]").val());
-
-        // 성별 결정 확인
-        if($("input[name=gender]").val() == undefined) {
+        function joinCheck() {
+        	console.log($("input[name=gender]").val());
+            const userId = document.getElementById("userId");
+            const userIdForm = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
             
-            alert("성별을 선택하세요.");
-            return false;
-        }
+            if(!userIdForm.test(userId.value) || $("#checkId").attr("disabled") != 'disabled') {
+                alert("아이디 중복확인을 해야합니다.");
+                return false;
+            }
 
-        // 인증번호 받았는지 확인
-        if($("#phone").attr("readonly") != 'readonly') {
-            alert("휴대폰 인증을 받으세요.");
-            return false;
-        }
+            const email = document.getElementById("email");
+            const msgId = document.getElementById("msgId");
+            const emailForm = /([\w\-]+\@[\w\-]+\.[\w\-]+)/;
 
-        if($("#address").val() == "") {
-            alert("주소를 입력하세요.");
-            return false;
-        }
-        
-        if(!$("#check_first").is(":checked") || !$("#check_second").is(":checked")){
-            alert("필수 약관에 동의해주세요.");
-            return false;
-        }
+            if (!emailForm.test(email.value)) {
+                alert("이메일 형식을 확인하세요.");
+                return false;
+            }
 
-    }
+            const pwd = document.getElementById("pwd");
+            const msgPw = document.getElementById("msgPw");
+            const pwdForm = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
 
+            if (!pwdForm.test(pwd.value)) {
+                alert("비밀번호 형식을 확인하세요.");
+                return false;
+            }
+
+            if (pwd.value !== $("#pwd_ck").val() ) {
+                alert("비밀번호와 비밀번호 확인이 다릅니다.");
+                return false;
+            }
+
+            const userName = document.getElementById("userName");
+            const msgName = document.getElementById("msgName");
+            const nameForm = /^[가-힣]{2,6}$/;
+
+            if (!nameForm.test(userName.value)) {
+                alert("이름 형식을 확인하세요.");
+                return false;
+            }
+            
+            const nickName = document.getElementById("nickName");
+            const msgNickName = document.getElementById("msgNickName");
+            const nickNameForm = /^[a-zA-Z가-힣0-9]{3,10}$/;
+
+            if (!nickNameForm.test(nickName.value)) {
+                alert("닉네임 형식을 확인하세요.");
+                return false;
+            }
+
+            if($("input[name=gender]").val() == undefined) {
+                alert("성별을 선택하세요.");
+                return false;
+            }
+
+            if($("#phone").attr("readonly") != 'readonly') {
+                alert("휴대폰 인증을 받으세요.");
+                return false;
+            }
+
+            if($("#address").val() == "") {
+                alert("주소를 입력하세요.");
+                return false;
+            }
+            
+            if(!$("#check_first").is(":checked") || !$("#check_second").is(":checked")){
+                alert("필수 약관에 동의해주세요.");
+                return false;
+            }
+        }
     </script>
 </body>
 </html>

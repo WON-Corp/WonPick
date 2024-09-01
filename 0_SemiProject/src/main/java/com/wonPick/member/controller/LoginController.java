@@ -53,14 +53,18 @@ public class LoginController extends HttpServlet {
 		 * [4] page : jsp페이지에서 생성하고 해당 페이지 내에서만 사용 가능.
 		 */
 		
+		// "noError" 파라미터가 있는지 확인
+        String noError = request.getParameter("noError");
+		
 		// 처리된 결과에 따라 사용자가 보게 될 응답화면을 지정하여 포워딩 또는 url 재요청
 		
 		
 		if(member == null) {
 			// 조회결과가 없는 경우 => 로그인 실패 (에러페이지? 에러메시지?)
+			if (noError == null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("errorMsg", "로그인 실패! 아이디와 비밀번호를 확인할 수 없습니다.");
-			
+			}
 			response.sendRedirect(request.getContextPath());
 			
 		} else {

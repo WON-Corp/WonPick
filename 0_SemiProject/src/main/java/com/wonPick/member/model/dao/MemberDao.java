@@ -84,8 +84,8 @@ public class MemberDao {
 			pstmt.setString(2, m.getPassword());
 			pstmt.setString(3, m.getUserName());
 			pstmt.setString(4, m.getNickName());
-			pstmt.setString(6, m.getEmail());
-			pstmt.setString(5, m.getPhone());
+			pstmt.setString(5, m.getEmail());
+			pstmt.setString(6, m.getPhone());
 			pstmt.setString(7, m.getGender());
 			pstmt.setDate(8, m.getBirth());
 			pstmt.setString(9, m.getIntroduce());
@@ -130,5 +130,57 @@ public class MemberDao {
 		}
 		return result;
 	}
+	
+	public Member findMemberById(Connection conn, String userName, String email) {
+        Member m = null;
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        String sql = prop.getProperty("findMemberById");
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, userName);
+            pstmt.setString(2, email);
+            rset = pstmt.executeQuery();
+
+            if (rset.next()) {
+                m = new Member();
+                m.setUserId(rset.getString("USER_ID"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(rset);
+            close(pstmt);
+        }
+
+        return m;
+    }
+
+    public Member findMemberByPassword(Connection conn, String userName, String email) {
+        Member m = null;
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        String sql = prop.getProperty("findMemberByPassword");
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, userName);
+            pstmt.setString(2, email);
+            rset = pstmt.executeQuery();
+
+            if (rset.next()) {
+                m = new Member();
+                m.setPassword(rset.getString("PASSWORD"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(rset);
+            close(pstmt);
+        }
+
+        return m;
+    }
 
 }
