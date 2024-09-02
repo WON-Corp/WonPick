@@ -729,7 +729,7 @@
     <div class="myprofile">
         <h4>내 프로필</h4>
         <div class="myprofile2">
-        <img src="resources/profile01.png" onerror="src='resources/logo.jpg'">
+        <img src="src='resources/logo.jpg" onerror="src='resources/logo.jpg'">
         <span class="myname">${ loginUser.nickName }</span>
         <span class="logout" onclick="userLogout()">로그아웃</span>
         </div>
