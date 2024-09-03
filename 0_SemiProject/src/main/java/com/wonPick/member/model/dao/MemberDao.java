@@ -183,4 +183,28 @@ public class MemberDao {
         return m;
     }
 
+	public int errorPost(Connection conn, String id, String epc) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("errorPost");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			pstmt.setString(2, epc);
+			
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 }
