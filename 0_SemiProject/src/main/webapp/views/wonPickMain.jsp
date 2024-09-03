@@ -653,7 +653,7 @@
             <li><ion-icon name="settings-outline"></ion-icon> 설정</li>
             <li><ion-icon name="images-outline"></ion-icon> 내 활동</li>
             <li><ion-icon name="moon-outline"></ion-icon> 모드 전환</li>
-            <button type="button" id="errorPost" data-toggle="modal" data-target="#errorPostPwdModal">
+            <button type="button" id="errorPost" data-toggle="modal" data-target="#errorPostModal">
                 <li><ion-icon name="warning-outline"></ion-icon>문제 신고</li>
             </button>
             <button type="button" onclick="userLogout()">
@@ -662,13 +662,13 @@
         </ul>
     </div>
     <!-- 문제신고 페이지 모달 -->
-    <div class="modal fade" id="errorPostPwdModal" tabindex="-1" aria-labelledby="errorPostPwdModalLabel" aria-hidden="true">
+    <div class="modal fade" id="errorPostModal" tabindex="-1" aria-labelledby="errorPostModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
            <!-- 모달 헤더 부분 -->
             <div class="modal-header">
               <img src="../resources/logo.jpg" alt="" style="border-radius: 15px; width: 45px;">
-              <h2 class="modal-title fs-5" id="errorPostPwdModalLabel">&nbsp;문제신고</h2>
+              <h2 class="modal-title fs-5" id="errorPostModalLabel">&nbsp;문제신고</h2>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
             </div>
             <!-- 모달 바디 부분 -->
@@ -682,6 +682,43 @@
 
                <button class="btn btn-danger">신고 보내기</button>
                <button type="button" class="btn btn-primary">파일 추가</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 문제신고 확인 페이지 모달 -->
+    <div class="modal fade" id="errorPostListModal" tabindex="-1" aria-labelledby="errorPostListModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+           <!-- 모달 헤더 부분 -->
+            <div class="modal-header">
+              <img src="../resources/logo.jpg" alt="" style="border-radius: 15px; width: 45px;">
+              <h2 class="modal-title fs-5" id="errorPostListModalLabel">&nbsp;문제신고목록</h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+            </div>
+            <!-- 모달 바디 부분 -->
+            <div class="modal-body">
+              <form action="errorPost" method="post">    <!-- 폼태그 액션속성 수정 필요-->
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>No.</th>
+                            <th>작성자</th>
+                            <th>작성일</th>
+                            <th>내용</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>keydown</td>
+                            <td>2024-08-01</td>
+                            <td>내용 삽입....이거길어지면 어디까지 길어질수 있는지 봐야하넨</td>
+                        </tr>                             
+                    </tbody>
+                </table>
               </form>
             </div>
           </div>
@@ -833,6 +870,37 @@
                 </div>
             </li>
             <!-- 메시지 목록 표시됨 -->
+
+            <!-- 문제신고 목록 버튼 및 스크립트 여기서부터 -->
+            <li><button type="button" id="errorPostList" data-toggle="modal" data-target="#errorPostListModal">
+                급한대로 잠깐 여기다가 만들었습니다. 추후 꼭 수정</button></li>
+            <script>
+                $(function(){
+                    // 비동기식 통신
+                    $.ajax({
+                        url: '/wonPick/errorPostList.do',
+                        type: 'post', // 기본값
+                        data: { data: data }, 
+                        success: function(result) {
+                            // 통신 성공 시 실행될 함수. 결과(응답데이터)가 result변수에 담겨져 있을 것임!
+                            console.log("통신성공!");
+                            console.log(result);
+
+                            $("#result1").text(result);
+                        },
+                        error: function(error) {
+                            // 통신 실패 시 실행될 함수. 오류 결과가 error변수에 담겨져 있을 것임.
+                            console.log("통신 실패!");
+                            console.log(error);
+                        },
+                        complete: function() {
+                            // 통신 성공여부 상관없이 실행될 함수
+                            console.log("통신 성공 여부 상관없이 실행!");
+                        }
+                    });
+                })
+            </script>
+
     </div>
 </body>
 
