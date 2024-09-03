@@ -16,6 +16,18 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
     <title>WonPick</title>
     <style>
         * {
@@ -486,8 +498,7 @@
             width: 200px;
             background-color: #fff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            padding: 10px;
+            border-radius: 8px;           
             z-index: 100;
         }
 
@@ -516,6 +527,12 @@
 
         .more-popup ul li ion-icon {
             margin-right: 10px;
+        }
+
+        .more-popup button {
+            width: 100%;
+            border: none;
+            background-color: #fff;
         }
 
         @media all and (min-width:0px) and (max-width:1100px) {
@@ -622,10 +639,38 @@
             <li><ion-icon name="settings-outline"></ion-icon> 설정</li>
             <li><ion-icon name="images-outline"></ion-icon> 내 활동</li>
             <li><ion-icon name="moon-outline"></ion-icon> 모드 전환</li>
-            <li><ion-icon name="warning-outline"></ion-icon> 문제 신고</li>
-            <li><ion-icon name="log-out-outline"></ion-icon> 로그아웃</li>
+            <button type="button" id="errorPost" data-toggle="modal" data-target="#errorPostPwdModal">
+                <li><ion-icon name="warning-outline"></ion-icon>문제 신고</li>
+            </button>
+            <button type="button" onclick="userLogout()">
+                <li><ion-icon name="log-out-outline"></ion-icon> 로그아웃</li>
+            </button>
         </ul>
     </div>
+    <!-- 문제신고 페이지 모달 -->
+    <div class="modal fade" id="errorPostPwdModal" tabindex="-1" aria-labelledby="errorPostPwdModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+           <!-- 모달 헤더 부분 -->
+            <div class="modal-header">
+              <h2 class="modal-title fs-5" id="errorPostPwdModalLabel">문제신고</h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+            </div>
+            <!-- 모달 바디 부분 -->
+            <div class="modal-body">
+              <form action="####" method="post">    <!-- 폼태그 액션속성 수정 필요-->
+                <div class="mb-3">
+                  <label for="errorPostContent" class="col-form-label">내용 </label>
+                  <textarea type="password" class="form-control" id="errorPostContent" name="errorPostContent" placeholder="최대한 자세히 입력해주세요..."></textarea>
+                </div>
+
+               <button class="btn btn-danger" onclick="return errorPost();">신고 보내기</button>
+               <button type="button" class="btn btn-primary">파일 추가</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
 
     <!-- .navigation script 시작 -->
     <script>
@@ -652,8 +697,12 @@
                 }
             }
         }
+        // <!-- .navigation script 끝~~ -->
+
+        function errorPost() {
+            return false;
+        }
     </script>
-    <!-- .navigation script 끝~~ -->
 
     <div class="content">
         <header>
@@ -731,7 +780,6 @@
         <div class="myprofile2">
         <img src="src='resources/logo.jpg" onerror="src='resources/logo.jpg'">
         <span class="myname">${ loginUser.nickName }</span>
-        <span class="logout" onclick="userLogout()">로그아웃</span>
         </div>
     </div>
     <script>
