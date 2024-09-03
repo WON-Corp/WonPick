@@ -19,4 +19,7 @@
     <entry key="findMemberByPassword">
         SELECT PASSWORD FROM MEMBER WHERE USER_NAME = ? AND EMAIL = ?
     </entry>
+    <entry key="errorPost">
+        INSERT INTO ERROR_POST VALUES (SEQ_ERR_POST_NO.NEXTVAL,?,SYSDATE,?)
+    </entry>
 </properties>

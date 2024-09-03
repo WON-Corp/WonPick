@@ -551,10 +551,24 @@
 <% if (session.getAttribute("loginUser") == null) {%>
 		<script>
 			onload() = function() {
-				location.href = "/wonPick"
+				location.href = "/wonPick/views/wonPickLogin.jsp"
 			}
 		</script>
 	<% } %>
+
+    <%
+	String contextPath = request.getContextPath();		// => /jsp
+	
+	String alertMsg = (String)session.getAttribute("alertMsg");
+    %>
+
+	<% if (alertMsg != null) {%>
+		<script>
+			alert("<%= alertMsg%>");
+		</script>
+		<% session.removeAttribute("alertMsg"); %>
+	<% } %>
+    
     <div class="navigation">
         <div class="menuToggle"></div>
 
@@ -653,18 +667,20 @@
           <div class="modal-content">
            <!-- 모달 헤더 부분 -->
             <div class="modal-header">
-              <h2 class="modal-title fs-5" id="errorPostPwdModalLabel">문제신고</h2>
+              <img src="../resources/logo.jpg" alt="" style="border-radius: 15px; width: 45px;">
+              <h2 class="modal-title fs-5" id="errorPostPwdModalLabel">&nbsp;문제신고</h2>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
             </div>
             <!-- 모달 바디 부분 -->
             <div class="modal-body">
-              <form action="####" method="post">    <!-- 폼태그 액션속성 수정 필요-->
+              <form action="errorPost" method="post">    <!-- 폼태그 액션속성 수정 필요-->
                 <div class="mb-3">
                   <label for="errorPostContent" class="col-form-label">내용 </label>
-                  <textarea type="password" class="form-control" id="errorPostContent" name="errorPostContent" placeholder="최대한 자세히 입력해주세요..."></textarea>
+                  <textarea type="password" class="form-control" id="errorPostContent" name="errorPostContent" placeholder="최대한 자세히 입력해주세요..." required></textarea>
+                  <input type="hidden" name="userId" value="${ loginUser.userId }">
                 </div>
 
-               <button class="btn btn-danger" onclick="return errorPost();">신고 보내기</button>
+               <button class="btn btn-danger">신고 보내기</button>
                <button type="button" class="btn btn-primary">파일 추가</button>
               </form>
             </div>

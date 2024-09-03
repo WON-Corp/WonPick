@@ -70,4 +70,14 @@ public class MemberService {
         return m;
     }
 
+	public int errorPost(String id, String epc) {
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().errorPost(conn, id, epc);
+		
+		close(conn);
+		
+		return result;
+	}
+
 }
