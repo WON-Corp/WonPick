@@ -14,6 +14,8 @@
     <!-- 아이콘 링크 -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- jQuery 라이브러리 연결 (온라인,CDN 방식) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <title>WonPick</title>
     <style>
@@ -44,11 +46,12 @@
             justify-content: center;
             align-items: center;
             height: 100%;
+            min-height: 800px;
         }
 
         .navigation.open {
             width: 250px;
-            height: 850px;
+            min-height: 800px;
         }
 
         .navigation .menuToggle {
@@ -196,7 +199,6 @@
         }
 
         .content {
-            
             flex: 1;
             margin-left: 120px;
             margin-right: 330px;
@@ -212,8 +214,8 @@
         /* 푸터 영역 */
         .footer {
             position: absolute;
-            bottom: 15px;
-            left: 12px;
+            bottom: 20px;
+            left: 10px;
             opacity: 0;
             transition: opacity 1s ease-in;
             font-size: 12px;
@@ -476,37 +478,82 @@
             .sidebar-message {
                 display: none;
             }
+
+            .content{
+                margin-right: 20px;
+            }
         }
 
         .search {
             width: 100%;
             margin: 10px;
+            
         }
 
         .search-box{
             min-width: 300px;
-            width: 70%;
+            width: 100%;
             height: 50px;
             padding: 0px 10px;
             border: 0px;
             border-top-left-radius: 5px;
             border-bottom-left-radius: 5px;
             margin-top: 15px;
+            margin: 40px;
+            margin-right: 0px;
             position: relative;
-            background-color: rgb(233, 232, 232);
+            background-color: #f0f0f0;
+            border-radius: 15px;
+            border-bottom-right-radius: 0px;
+            border-top-right-radius: 0px;
         }
         
         .search-button {
-            margin-left: -5px;
-            margin-top: 15px;
+            margin: 40px;
+            margin-left: 0px;
+            background-color: #f0f0f0;
+            width: 150px; 
+            height: 50px; 
+            border: none; 
+            border-top-right-radius: 5px; 
+            border-bottom-right-radius: 5px; 
+            cursor: pointer;
+            border-radius: 15px;
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+            
         }
         .search-button > span  { 
             background: url(https://e7.pngegg.com/pngimages/827/272/png-clipart-computer-icons-search-box-others-miscellaneous-magnifier-thumbnail.png) 
-                    no-repeat 99% center rgb(233, 232, 232);
+                    no-repeat 99% center #f0f0f0;
             background-size: 27px;
             display: inline-block;
             width: 30px;
             height: 30px;
+        }
+
+        .searchrecord {
+            background-color: #f0f0f0;
+            width: calc(100% - 100px);
+            height: 70%;
+            margin-left: 50px;
+            border-radius: 15px;
+            display: none;
+            padding: 50px;
+        }
+
+        .autoSearch {
+            background-color: #f0f0f0;
+            width: calc(100% - 100px);
+            height: 70%;
+            margin-left: 50px;
+            border-radius: 15px;
+            display: none;
+            padding: 50px;
+        }
+
+        .searchrecord li {
+            margin: 50px;
         }
 
     </style>
@@ -639,17 +686,64 @@
             <h2>검색</h2>
             <div style="display: flex;">
                 <input type="text" placeholder="검색" class="search-box" >
-                <button type="submit" class="search-button" style="background-color: rgb(233, 232, 232); width: 10%; height: 50px; border: none; border-top-right-radius: 5px; border-bottom-right-radius: 5px; cursor: pointer;">
+                <button type="submit" class="search-button">
                     <span> </span>
                 </button>
             </div>
             <!-- https://e7.pngegg.com/pngimages/827/272/png-clipart-computer-icons-search-box-others-miscellaneous-magnifier-thumbnail.png -->
             </div>
-            
         </header>
+
+        <div class="searchrecord">
+            <h3>검색기록</h3> <br />
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+            </ul>
+        </div>
+
+        <div class="autoSearch">
+            <h3>탐색목록</h3>
+        </div>
         
     </div>
+    <script>
+        $(function(){
 
+            $('.autoSearch').css('display','block');
+
+            $('.search-box').click(function(){
+                const $s = $('.searchrecord');
+                const $a = $('.autoSearch');
+                // $를 변수명 앞에 붙이게 되면 보통 jQuery방식으로 선택된 요소를 의미함!
+                // .next() : 선택된 요소의 뒤에 오는 요소(현재 코드 기준 p요소)
+                if($s.css('display') == 'none') {
+
+                    $s.siblings('.searchrecord').slideUp();
+
+                    $a.slideUp();
+                    $s.slideDown();
+
+                } 
+            });
+
+            $('.search-button').click(function(){
+                const $s = $('.searchrecord');
+                const $a = $('.autoSearch');
+
+                if($s.css('display') != 'none') {
+                    $s.slideUp();
+
+                    $a.siblings('.autoSearch').slideDown();
+                    $a.slideDown();
+                }
+            });
+
+        })
+    </script>
     <!-- 화면 우측 메시지 창 div -->
     <div class="sidebar-message">
     
