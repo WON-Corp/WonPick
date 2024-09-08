@@ -489,12 +489,24 @@
             height: 50px;
             padding: 0px 10px;
             border: 0px;
-            border-radius: 5px;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
             margin-top: 15px;
             position: relative;
+            background-color: rgb(233, 232, 232);
+        }
+        
+        .search-button {
+            margin-left: -5px;
+            margin-top: 15px;
+        }
+        .search-button > span  { 
             background: url(https://e7.pngegg.com/pngimages/827/272/png-clipart-computer-icons-search-box-others-miscellaneous-magnifier-thumbnail.png) 
                     no-repeat 99% center rgb(233, 232, 232);
             background-size: 27px;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
         }
 
     </style>
@@ -625,8 +637,12 @@
             
             <div class="search" >
             <h2>검색</h2>
-            <i class="fas fa-search"></i>
-            <input type="text" placeholder="검색" class="search-box" >
+            <div style="display: flex;">
+                <input type="text" placeholder="검색" class="search-box" >
+                <button type="submit" class="search-button" style="background-color: rgb(233, 232, 232); width: 10%; height: 50px; border: none; border-top-right-radius: 5px; border-bottom-right-radius: 5px; cursor: pointer;">
+                    <span> </span>
+                </button>
+            </div>
             <!-- https://e7.pngegg.com/pngimages/827/272/png-clipart-computer-icons-search-box-others-miscellaneous-magnifier-thumbnail.png -->
             </div>
             
