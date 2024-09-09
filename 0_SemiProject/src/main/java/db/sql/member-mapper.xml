@@ -22,4 +22,7 @@
     <entry key="errorPost">
         INSERT INTO ERROR_POST VALUES (SEQ_ERR_POST_NO.NEXTVAL,?,SYSDATE,?)
     </entry>
+    <entry key="insertMessage">
+        INSERT INTO MESSAGES (USER_ID, CONTENT, SEND_DATE) VALUES (?, ?, SYSDATE)
+    </entry>
 </properties>
