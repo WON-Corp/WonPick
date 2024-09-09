@@ -207,4 +207,25 @@ public class MemberDao {
 		return result;
 	}
 
+	public int insertMessage(Connection conn, String userId, String messageContent) {
+        int result = 0;
+        PreparedStatement pstmt = null;
+        
+        String sql = prop.getProperty("insertMessage");
+        
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, userId);
+            pstmt.setString(2, messageContent);
+            
+            result = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(pstmt);
+        }
+        
+        return result;
+    }
+
 }

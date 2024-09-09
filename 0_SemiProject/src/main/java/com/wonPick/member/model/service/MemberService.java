@@ -80,4 +80,20 @@ public class MemberService {
 		return result;
 	}
 
+	public int sendMessage(String userId, String messageContent) {
+        Connection conn = getConnection();
+        
+        int result = new MemberDao().insertMessage(conn, userId, messageContent);
+        
+        if (result > 0) {
+            commit(conn);
+        } else {
+            rollback(conn);
+        }
+        
+        close(conn);
+        return result;
+    }
+
+
 }
