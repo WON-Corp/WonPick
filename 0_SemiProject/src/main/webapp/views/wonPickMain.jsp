@@ -535,7 +535,7 @@
             background-color: #fff;
         }
 
-        @media all and (min-width:0px) and (max-width:1100px) {
+        @media all and (min-width:0px) and (max-width:1150px) {
             .sidebar-message {
                 display: none;
             }
@@ -544,6 +544,94 @@
                 display: none;
             }
         }
+        
+        /* 게시글 만들기 모듈창 css 추가 09/08 */
+        .upload-container {
+            width: 700px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .upload-header {
+            background-color: #f8f8f8;
+            padding: 10px 15px;
+            font-weight: bold;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .upload-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .image-preview {
+            width: 100%;
+            height: 400px;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .image-preview img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+
+        .image-preview input[type="file"] {
+            display: none;
+        }
+
+        .image-preview.dragover {
+            background-color: #444;
+        }
+
+        .caption-input {
+            width: 100%;
+            height: 100px;
+            border: none;
+            resize: none;
+            outline: none;
+            font-size: 16px;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .upload-footer {
+            padding: 10px;
+            text-align: right;
+        }
+
+        .upload-footer button {
+            background-color: #888888;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        #deleteImg{
+            background-color: rgb(35, 59, 59);
+        }
+        
+        /* 게시글 만들기 모듈창 css 끝 */
     </style>
 </head>
 
@@ -608,14 +696,13 @@
                     <span class="text">릴스</span>
                 </a>
             </li>
-            <li class="list">
-                <a href="#">
-                    <span class="icon">
-                        <ion-icon name="chatbubble-outline"></ion-icon>
-                    </span>
-                    <span class="text">메시지</span>
-                </a>
-            </li>
+			<li class="list">
+			<a href="<%=request.getContextPath()%>/message.me"> 
+			<span class="icon"> <ion-icon name="chatbubble-outline"></ion-icon>
+				</span> <span class="text">메시지</span>
+			</a>
+			</li>
+			</li>
             <li class="list">
                 <a href="#">
                     <span class="icon">
@@ -625,7 +712,7 @@
                 </a>
             </li>
             <li class="list">
-                <a href="#">
+                <a href="<%=request.getContextPath()%>/upload.me">
                     <span class="icon">
                         <ion-icon name="color-wand-outline"></ion-icon>
                     </span>
@@ -828,7 +915,7 @@
     </div>
 
     <!-- 내 프로필 -->
-    <div class="myprofile">
+    <div class="myprofile" onclick="location.href='<%=request.getContextPath()%>/myProfile.me'">
         <h4>내 프로필</h4>
         <div class="myprofile2">
         <img src="src='resources/logo.jpg" onerror="src='resources/logo.jpg'">
