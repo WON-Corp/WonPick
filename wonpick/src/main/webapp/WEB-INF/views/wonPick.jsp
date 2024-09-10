@@ -803,10 +803,6 @@
                     <img src="resources/img/profile07.jpg" onerror="src='resources/img/logo.jpg'">
                     <span>username7</span>
                 </div>
-                <div class="story">
-                    <img src="resources/img/profile08.jpg" onerror="src='resources/img/logo.jpg'">
-                    <span>username8</span>
-                </div>
                 <!-- 필요에 따라 더 많은 프로필 추가 !! -->
             </div>
         </header>
