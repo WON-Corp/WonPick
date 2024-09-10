@@ -881,26 +881,19 @@
 
             <script>
                 $(function(){
-                    // 비동기식 통신
                     $.ajax({
                         url: '/wonpick/errorPostList.do',
-                        type: 'post', // 기본값
+                        type: 'post', 
                         data: { data: data }, 
                         success: function(result) {
-                            // 통신 성공 시 실행될 함수. 결과(응답데이터)가 result변수에 담겨져 있을 것임!
-                            console.log("통신성공!");
-                            console.log(result);
 
                             $("#result1").text(result);
                         },
                         error: function(error) {
-                            // 통신 실패 시 실행될 함수. 오류 결과가 error변수에 담겨져 있을 것임.
-                            console.log("통신 실패!");
-                            console.log(error);
+
                         },
                         complete: function() {
-                            // 통신 성공여부 상관없이 실행될 함수
-                            console.log("통신 성공 여부 상관없이 실행!");
+
                         }
                     });
                 })
