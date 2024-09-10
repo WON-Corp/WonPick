@@ -7,7 +7,8 @@ INSERT INTO MEMBER
 INSERT INTO MEMBER
     VALUES ('Zeus', '$2a$10$2tCswpo3FsoN3PJYjPtCvegTdKG8JOY2DTfnY2Hp6d1P0w/kXBqmW', '양준혁', 'Zeus', 'zeus@gmail.com', '010-4xxx-xxxx', '남성', '00/01/01', '평택', null, null, 'A');
 INSERT INTO MEMBER
-    VALUES ('Rocomi1', '$2a$10$2tCswpo3FsoN3PJYjPtCvegTdKG8JOY2DTfnY2Hp6d1P0w/kXBqmW', '테스트', 'Rocomi1', 'rocomi@gmai.com', '010-12xx-xxxx', '남성', '00/01/01', '역삼', null, null, 'A');
+    VALUES ('test1', '$2a$10$pIT93yaR.3zuCtEBbZPlvubC.zlNdfSUJTvl7IvU4WpPlV8nBrdrm', '테스트', 'Rocomi1', 'rocomi@gmai.com', '010-12xx-xxxx', '남성', '00/01/01', '역삼', null, null, 'Y');
+
 SELECT * FROM MEMBER;
 
 COMMIT;
