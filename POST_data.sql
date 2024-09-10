@@ -8,9 +8,7 @@ INSERT INTO POST
 VALUES (SEQ_POST_NO.NEXTVAL, 'Zeus', '자바 너무어렵다...', 
         '자바좀 알려 주실분ㅠㅠㅠㅠ', SYSDATE, 0, '', DEFAULT);
 INSERT INTO POST
-VALUES (SEQ_POST_NO.NEXTVAL, 'Rocomi', '진짜 죽을거 같음', 
-        '살려주세요.....', SYSDATE, 0, '', DEFAULT);
+VALUES (SEQ_POST_NO.NEXTVAL, 'Rocomi', '진짜 죽을거 같음', '살려주세요.....', SYSDATE, 0, 'help.jpg', DEFAULT);
 INSERT INTO POST
-VALUES (SEQ_POST_NO.NEXTVAL, 'Hailey', '시험 조졌다....', 
-        '스프링 왜케 어려움... 내일 시험 어떡해... 진짜 재시험 치면 어떡하지 해놓고 100점 받을꺼임ㅎ.ㅎ', SYSDATE, 0, '', DEFAULT);
+VALUES (SEQ_POST_NO.NEXTVAL, 'Hailey', '시험 조졌다....', '스프링 왜케 어려움... 내일 시험 어떡해... 진짜 재시험 치면 어떡하지 해놓고 100점 받을꺼임ㅎ.ㅎ', SYSDATE, 0, '', DEFAULT);
 COMMIT;
