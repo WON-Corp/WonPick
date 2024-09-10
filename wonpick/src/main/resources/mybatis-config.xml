@@ -10,6 +10,7 @@
 	
 	<typeAliases>
 	  <typeAlias alias="Member" type="com.won.wonpick.member.model.vo.Member"/>
+	  <typeAlias alias="Post" type="com.won.wonpick.post.model.vo.Post"/>
 	</typeAliases>
 	
 	<!-- 
@@ -22,6 +23,7 @@
 	 
 	<mappers>
   		<mapper resource="/mappers/member-mapper.xml"/>
+  		<mapper resource="/mappers/post-mapper.xml"/>
 	</mappers>
 	
 </configuration>

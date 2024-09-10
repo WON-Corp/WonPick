@@ -554,6 +554,7 @@
 	String contextPath = request.getContextPath();
 	
 	String alertMsg = (String)session.getAttribute("alertMsg");
+	
     %>
 
 	<% if (alertMsg != null) {%>
@@ -562,6 +563,11 @@
 		</script>
 		<% session.removeAttribute("alertMsg"); %>
 	<% } %>
+	<c:if test="${ empty list }">
+		<script>
+			location.href = "post/list";
+		</script>
+	</c:if>
 
 
     
@@ -805,31 +811,36 @@
             </div>
         </header>
 
-        <div class="feed">
-            <!-- 게시물 -->
-            <div class="post">
-                <div class="post-header">
-                    <div class="post-info">
-                        <h3>SMTOWN</h3>
-                        <span class="post-time">20시간 전</span>
+        <!-- 게시물 -->
+        <c:forEach var="list" items="${ list }">
+                <div class="feed">
+                    <div class="post">
+                        <div class="post-header">
+                            <div class="post-info">
+                                <h3>${ list.userId }</h3>
+                                <span class="post-time">${ list.postingTime }</span>
+                            </div>
+                            <ion-icon name="ellipsis-horizontal-outline" class="post-options"></ion-icon>
+                        </div>
+                        <c:if test="${ not empty list.imgFile }">
+                        	<img src="resources/img/${ list.imgFile }" alt="게시물 이미지" class="post-image">
+                        </c:if>
+                        <img src="resources/img/sizing_space.jpg" alt="공백" class="post-image">
+                        <div class="post-content">
+                            <p><strong>${ list.postTitle }</strong></p>
+                        </div>
+                        <div class="post-comments">
+                            <p>&nbsp; ${ list.postContent }</p>
+                            <div class="post-actions">
+                                <ion-icon name="heart-outline"></ion-icon>
+                                <ion-icon name="chatbubble-outline"></ion-icon>
+                                <ion-icon name="share-social-outline"></ion-icon>
+                            </div>
+                            <p class="view-comments">댓글모두 보기</p>
+                        </div>
                     </div>
-                    <ion-icon name="ellipsis-horizontal-outline" class="post-options"></ion-icon>
                 </div>
-                <img src="resources/img/feed01.jpg" alt="게시물 이미지" class="post-image">
-                <div class="post-content">
-                    <div class="post-actions">
-                        <ion-icon name="heart-outline"></ion-icon>
-                        <ion-icon name="chatbubble-outline"></ion-icon>
-                        <ion-icon name="share-social-outline"></ion-icon>
-                    </div>
-                    <p><strong>SMTOWN</strong> aespa 에스파 ‘Hot Mess’ MV Teaser - Behind Film Image...</p>
-                </div>
-                <div class="post-comments">
-                    <p>imnotningning 이번 뮤비도 너무 기대중!...더보기</p>
-                    <p class="view-comments">댓글 520개 모두 보기</p>
-                </div>
-            </div>
-        </div>
+            </c:forEach>
 
         <!-- 추가할 게시물 작성 가능합니당 -->
     </div>
@@ -898,7 +909,7 @@
                     });
                 })
             </script>
-
+	<% session.removeAttribute("list"); %>
     </div>
 </body>
 
