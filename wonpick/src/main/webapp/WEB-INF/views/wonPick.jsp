@@ -689,9 +689,11 @@
             <div class="modal-body">
               <form action="errorPost" method="post">    <!-- 폼태그 액션속성 수정 필요-->
                 <div class="mb-3">
-                  <label for="errorPostContent" class="col-form-label">내용 </label>
-                  <textarea type="password" class="form-control" id="errorPostContent" name="errorPostContent" placeholder="최대한 자세히 입력해주세요..." required></textarea>
-                  <input type="hidden" name="userId" value="${ loginUser.userId }">
+                	<label for="errorPostTitle" class="col-form-label">제목 </label>
+                  	<input type="text" class="form-control" id="errorPostTitle" name="errorPostTitle" placeholder="제목을 입력해주세요..." required> <br>
+                  	<label for="errorPostContent" class="col-form-label">내용 </label>
+                  	<textarea class="form-control" id="errorPostContent" name="errorPostContent" placeholder="최대한 자세히 입력해주세요..." required></textarea>
+                  	<input type="hidden" name="userId" value="${ loginUser.userId }">
                 </div>
 
                <button class="btn btn-danger">신고 보내기</button>
