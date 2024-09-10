@@ -649,9 +649,21 @@
             <li><ion-icon name="settings-outline"></ion-icon> 설정</li>
             <li><ion-icon name="images-outline"></ion-icon> 내 활동</li>
             <li><ion-icon name="moon-outline"></ion-icon> 모드 전환</li>
-            <button type="button" id="errorPost" data-toggle="modal" data-target="#errorPostModal">
-                <li><ion-icon name="warning-outline"></ion-icon>문제 신고</li>
-            </button>
+            <c:choose>
+	            <c:when test="${ loginUser.status == 'A'}">
+		            <button type="button" id="errorPostList" data-toggle="modal" data-target="#errorPostListModal">
+		           		<li><ion-icon name="warning-outline"></ion-icon>문제 신고 목록</li>
+		            </button>
+		            <button type="button" id="#" data-toggle="modal" data-target="#">
+		           		<li><ion-icon name="warning-outline"></ion-icon>관리자 페이지</li>
+		            </button>
+	            </c:when>
+	            <c:otherwise>
+	                <button type="button" id="errorPost" data-toggle="modal" data-target="#errorPostModal">
+	                    <li><ion-icon name="warning-outline"></ion-icon>문제 신고</li>
+	                </button>
+	            </c:otherwise>
+            </c:choose>
             <button type="button" onclick="userLogout()">
                 <li><ion-icon name="log-out-outline"></ion-icon> 로그아웃</li>
             </button>
@@ -867,9 +879,6 @@
             </li>
             <!-- 메시지 목록 표시됨 -->
 
-            <!-- 문제신고 목록 버튼 및 스크립트 여기서부터 -->
-            <li><button type="button" id="errorPostList" data-toggle="modal" data-target="#errorPostListModal">
-                급한대로 잠깐 여기다가 만들었습니다. 추후 꼭 수정</button></li>
             <script>
                 $(function(){
                     // 비동기식 통신
