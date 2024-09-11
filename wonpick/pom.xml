@@ -192,6 +192,23 @@ https://maven.apache.org/xsd/maven-4.0.0.xsd">
 		    <version>5.8.11</version>
 		</dependency>
 		
+		<!-- json레포지토리 관련 설정 파일 -->
+		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+		<dependency>
+		    <groupId>com.googlecode.json-simple</groupId>
+		    <artifactId>json-simple</artifactId>
+		    <version>1.1.1</version>
+		</dependency>
+		
+		<!-- gson레포지토리 관련 설정 파일 -->
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		    <version>2.8.9</version>
+		</dependency>
+		
+		
 	</dependencies>
 	<build>
 		<plugins>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="errorPostMapper">
+	<resultMap id="ErrorPostResultMap"  type="ErrorPost">
+		<result column="error_post_id" property="errorPostId"/>
+		<result column="error_post_title" property="errorPostTitle"/>
+		<result column="user_id" property="userId"/>
+		<result column="posting_date" property="postingDate"/>
+		<result column="error_content" property="errorContent"/>
+		<result column="responsed" property="responsed"/>
+	</resultMap>
+	
+	<insert id="insertErrorPost">
+		INSERT INTO ERROR_POST VALUES ( SEQ_ERR_POST_NO.NEXTVAL, #{errorPostTitle}, #{userId}, SYSDATE, #{errorContent}, default )
+	</insert>
+	
+	<select id="selectErrorPostList" resultMap="ErrorPostResultMap">
+		SELECT * FROM ERROR_POST WHERE RESPONSED = 'N'
+	</select>
+
+</mapper>
