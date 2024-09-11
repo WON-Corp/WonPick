@@ -570,7 +570,7 @@
 		</script>
 		<% session.removeAttribute("alertMsg"); %>
 	<% } %>
-	<c:if test="${ empty list or empty epArr }">
+	<c:if test="${ empty list }">
 		<script>
 			location.href = "post/list";
 			location.href = "errorPost/selectErrorList";
