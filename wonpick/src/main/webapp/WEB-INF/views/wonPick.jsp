@@ -308,9 +308,10 @@
         }
 
         .post-profile-img {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
+            object-fit: cover;
         }
 
         .post-info h3 {
@@ -578,7 +579,7 @@
         <ul>
             <!--  로고 및 텍스트 -->
             <li class="list">
-                <a href="Main.html">
+                <a href="/wonpick">
                     <div class="logo-container">
                         <img src="resources/img/logo.jpg" alt="WonPick 로고" class="logo">
                         <p class="logo-text">WonPick</p>
@@ -587,7 +588,7 @@
                 <!-- list 로고 끝 -->
             </li>
             <li class="list">
-                <a href="Main.html">
+                <a href="/wonpick">
                     <span class="icon">
                         <ion-icon name="home-outline"></ion-icon>
                     </span>
@@ -815,10 +816,11 @@
                     <div class="post">
                         <div class="post-header">
                             <div class="post-info">
+                            	<br>
                                 <h3>${ list.userId }</h3>
                                 <span class="post-time">${ list.postingTime }</span>
                             </div>
-                            <ion-icon name="ellipsis-horizontal-outline" class="post-options"></ion-icon>
+                            <img src="resources/img/${ list.userPfImg }" onerror="src='resources/img/logo.jpg'" class="post-profile-img">
                         </div>
                         <c:if test="${ not empty list.imgFile }">
                         	<img src="resources/img/${ list.imgFile }" alt="게시물 이미지" class="post-image">
@@ -848,7 +850,7 @@
     <div class="myprofile">
         <h4>내 프로필</h4>
         <div class="myprofile2">
-        <img src="resources/img/logo.jpg" onerror="src='resources/img/logo.jpg'">
+        <img src="resources/img/${ loginUser.pfImg }" onerror="src='resources/img/logo.jpg'">
         <span class="myname">${ loginUser.nickName }</span>
         </div>
     </div>

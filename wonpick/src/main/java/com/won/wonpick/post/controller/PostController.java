@@ -24,6 +24,7 @@ public class PostController {
 	public String boardList(HttpSession session) {
 		
 		ArrayList<Post> bLIst = pService.selectList();
+		// 데이터베이스 들어가서 각 포스팅의 id값 출력 --> 그 아이디에 따른 img파일 출력
 		
 		session.setAttribute("list", bLIst);
 		
