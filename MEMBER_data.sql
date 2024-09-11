@@ -1,5 +1,5 @@
 INSERT INTO MEMBER
-    VALUES ('Rocomi', '$2a$10$2tCswpo3FsoN3PJYjPtCvegTdKG8JOY2DTfnY2Hp6d1P0w/kXBqmW', '决锐辣', 'Rocomi', 'rocomi@gmail.com', '010-1xxx-xxxx', '巢己', '00/01/01', '开伙', null, null, 'A');
+    VALUES ('Rocomi', '$2a$10$2tCswpo3FsoN3PJYjPtCvegTdKG8JOY2DTfnY2Hp6d1P0w/kXBqmW', '决锐辣', 'Rocomi', 'rocomi@gmail.com', '010-1xxx-xxxx', '巢己', '00/01/01', '开伙', null, 'hyeom.jpg', 'A');
 INSERT INTO MEMBER
     VALUES ('Download', '$2a$10$2tCswpo3FsoN3PJYjPtCvegTdKG8JOY2DTfnY2Hp6d1P0w/kXBqmW', '扁促款', 'Download', 'download@gmail.com', '010-2xxx-xxxx', '巢己', '00/01/01', '备肺', null, null, 'A');
 INSERT INTO MEMBER

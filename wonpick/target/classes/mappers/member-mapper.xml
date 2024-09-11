@@ -15,7 +15,7 @@
 		<result column="BIRTH" property="birth"/>
 		<result column="ADDRESS" property="address"/>
 		<result column="INTRODUCE" property="introduce"/>
-		<result column="P_IMG" property="pfIMG"/>
+		<result column="P_IMG" property="pfImg"/>
 		<result column="status" property="status"/>
 	</resultMap>
 	

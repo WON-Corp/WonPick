@@ -15,6 +15,7 @@ public class Post {
 	
 	private int postId;
 	private String userId;
+	private String userPfImg;
 	private String postTitle;
 	private String postContent;
 	private String postingTime;
