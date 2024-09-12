@@ -241,264 +241,10 @@
         }
 
 
-        /* 헤더 시작*/
-        header {
-            padding: 20px 0;
-            display: flex;
-            justify-content: center;
-        }
-
-        .stories {
-            display: flex;
-
-            gap: 15px;
-            overflow-x: auto;
-            padding: 20px 0;
-            padding-left: 30px;
-        }
-
-        .story {
-            display: flex;
-
-            flex-direction: column;
-            align-items: center;
-            width: 70px;
-            text-align: center;
-        }
-
-        .story img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            border: 2px solid #356060;
-            /* ToDo - 그라데이션 입혀서 새 스토리 확인 */
-            object-fit: cover;
-        }
-
-        .story span {
-            margin-top: 5px;
-            font-size: 12px;
-            color: #333;
-        }
-
-        .feed {
-            background-color: #fff;
-
-            padding: 10px;
-            margin-top: 20px;
-            padding: 0 10%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .post {
-            background-color: #fff;
-
-            padding: 20px 100px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-            max-width: 750px;
-        }
-
-        .post-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .post-profile-img {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .post-info h3 {
-            margin: 0;
-
-            font-size: 14px;
-            font-weight: bold;
-
-        }
-
-        .post-time {
-            font-size: 12px;
-
-            color: #888;
-        }
-
-        .post-options {
-            font-size: 20px;
-
-            cursor: pointer;
-        }
-
-        .post-image {
-            width: 100%;
-            margin-top: 15px;
-            border-radius: 10px;
-        }
-
-        .post-content {
-            margin-top: 10px;
-
-        }
-
-        .post-actions ion-icon {
-            font-size: 20px;
-
-            margin-right: 10px;
-            cursor: pointer;
-        }
-
-        .view-comments {
-            color: #888;
-
-            font-size: 12px;
-            cursor: pointer;
-        }
-        
-        /* 문제 신고 창 */
-        .errorPostList {
-        	font-size: small;
-        }
-        
-
-        /* my profile 창 */
-        .myprofile {
-            width: 300px;
-            height: 129px;
-            box-sizing: border-box;
-            position: fixed;
-            right: 0;
-            top: 0;
-            border-left: 1px solid #ddd;
-            border-bottom: 1px solid #ddd;
-            overflow: hidden;
-            
-        }
-
-        .myprofile h4{
-            margin-top: 10px;
-            margin-left: 10px;
-            margin-bottom: 5px;
-        }
-
-        .myprofile img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: #ddd;
-            margin: 10px 15px;
-            object-fit: cover;
-        }
-
-        .myprofile .myname {
-            position: absolute;
-            top: 65px;
-
-        }
-        
-        .logout {
-            cursor: pointer;
-            font-size: x-small;
-            color: #aaa;
-            margin-top: 0px;
-        }
-        /* my profile 창 끝 */
-
-        /* 오른쪽 WM창 */
-
-        .sidebar-message {
-            width: 300px;
-            background-color: #fff;
-            max-height: 1000px;
-            padding: 10px 15px;
-            box-sizing: border-box;
-            position: fixed;
-            right: 0;
-            /* Todo --수정 */
-            top: 130px;
-            bottom: 0;
-            border-left: 1px solid #ddd;
-            overflow-y: auto;
-        }
-
-        .sidebar-message h3 {
-            margin-bottom: 15px;
-
-            font-size: 16px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .message-list {
-            list-style: none;
-
-            padding: 0;
-            margin: 0;
-        }
-
-        .message-list li {
-            display: flex;
-
-            align-items: center;
-            padding: 8px 5px;
-            border-bottom: 1px solid #ddd;
-            cursor: pointer;
-        }
-
-        .message-list li:hover {
-            background-color: #f0f0f0;
-
-            transition: 0.4s ease-in-out;
-        }
-
-        .message-list img {
-            width: 50px;
-
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 10px;
-            object-fit: cover;
-        }
-
-        .message-list .message-info {
-            display: flex;
-
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .message-list .message-info .name {
-            font-weight: bold;
-
-            color: #333;
-        }
-
-        .message-list .message-info .message-text {
-            font-size: 14px;
-
-            color: #888;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .message-list .message-info .time {
-            font-size: 11px;
-
-            color: #aaa;
-            margin-top: 2px;
-        }
-
-        /* 오른쪽 WM창 끝 */
-
         /* 더보기 팝업 메뉴 */
 
         .more-popup {
-            position: fixed;
+            position: absolute;
             display: none;
             bottom: 50px;
             left: 170px;
@@ -561,7 +307,6 @@
 	String contextPath = request.getContextPath();
 	
 	String alertMsg = (String)session.getAttribute("alertMsg");
-	
     %>
 
 	<% if (alertMsg != null) {%>
@@ -570,12 +315,6 @@
 		</script>
 		<% session.removeAttribute("alertMsg"); %>
 	<% } %>
-	<c:if test="${ empty list }">
-		<script>
-			location.href = "post/list";
-			location.href = "errorPost/selectErrorList";
-		</script>
-	</c:if>
 
 
     
@@ -586,7 +325,7 @@
         <ul>
             <!--  로고 및 텍스트 -->
             <li class="list">
-                <a href="/wonpick">
+                <a href="Main.html">
                     <div class="logo-container">
                         <img src="resources/img/logo.jpg" alt="WonPick 로고" class="logo">
                         <p class="logo-text">WonPick</p>
@@ -595,7 +334,7 @@
                 <!-- list 로고 끝 -->
             </li>
             <li class="list">
-                <a href="/wonpick">
+                <a href="Main.html">
                     <span class="icon">
                         <ion-icon name="home-outline"></ion-icon>
                     </span>
@@ -662,21 +401,10 @@
         <ul>
             <li><ion-icon name="settings-outline"></ion-icon> 설정</li>
             <li><ion-icon name="images-outline"></ion-icon> 내 활동</li>
-            <c:choose>
-	            <c:when test="${ loginUser.status == 'A'}">
-		            <button type="button" id="errorPostList" data-toggle="modal" data-target="#errorPostListModal">
-		           		<li><ion-icon name="warning-outline"></ion-icon>문제 신고 목록</li>
-		            </button>
-		            <button type="button" id="#" data-toggle="modal" data-target="#">
-		           		<li><ion-icon name="warning-outline"></ion-icon>관리자 페이지</li>
-		            </button>
-	            </c:when>
-	            <c:otherwise>
-	                <button type="button" id="errorPost" data-toggle="modal" data-target="#errorPostModal">
-	                    <li><ion-icon name="warning-outline"></ion-icon>문제 신고</li>
-	                </button>
-	            </c:otherwise>
-            </c:choose>
+            <li><ion-icon name="moon-outline"></ion-icon> 모드 전환</li>
+            <button type="button" id="errorPost" data-toggle="modal" data-target="#errorPostModal">
+                <li><ion-icon name="warning-outline"></ion-icon>문제 신고</li>
+            </button>
             <button type="button" onclick="userLogout()">
                 <li><ion-icon name="log-out-outline"></ion-icon> 로그아웃</li>
             </button>
@@ -694,13 +422,11 @@
             </div>
             <!-- 모달 바디 부분 -->
             <div class="modal-body">
-              <form action="<%= contextPath %>/errorPost/insertError" method="post">    <!-- 폼태그 액션속성 수정 필요-->
+              <form action="errorPost" method="post">    <!-- 폼태그 액션속성 수정 필요-->
                 <div class="mb-3">
-                	<label for="errorPostTitle" class="col-form-label">제목 </label>
-                  	<input type="text" class="form-control" id="errorPostTitle" name="errorPostTitle" placeholder="제목을 입력해주세요..." required> <br>
-                  	<label for="errorPostContent" class="col-form-label">내용 </label>
-                  	<textarea class="form-control" id="errorPostContent" name="errorContent" placeholder="최대한 자세히 입력해주세요..." required></textarea>
-                  	<input type="hidden" name="userId" value="${ loginUser.userId }">
+                  <label for="errorPostContent" class="col-form-label">내용 </label>
+                  <textarea type="password" class="form-control" id="errorPostContent" name="errorPostContent" placeholder="최대한 자세히 입력해주세요..." required></textarea>
+                  <input type="hidden" name="userId" value="${ loginUser.userId }">
                 </div>
 
                <button class="btn btn-danger">신고 보내기</button>
@@ -723,27 +449,23 @@
             </div>
             <!-- 모달 바디 부분 -->
             <div class="modal-body">
-              <form action="#" method="post">    <!-- 폼태그 액션속성 수정 필요-->
+              <form action="errorPost" method="post">    <!-- 폼태그 액션속성 수정 필요-->
                 <table class="table table-striped">
                     <thead class="thead-dark">
                         <tr>
                             <th>No.</th>
-                            <th>제목</th>
                             <th>작성자</th>
                             <th>작성일</th>
                             <th>내용</th>
                         </tr>
                     </thead>
-                    <tbody class="errorPostList">
-	                    <c:forEach var="list" items="${ epArr }">
-	                        <tr>
-	                            <td>${ list.errorPostId }</td>
-	                            <td>${ list.errorPostTitle }</td>
-	                            <td>${ list.userId }</td>
-	                            <td>${ list.postingDate }</td>
-	                            <td>${ list.errorContent }</td>
-	                        </tr>
-                        </c:forEach>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>keydown</td>
+                            <td>2024-08-01</td>
+                            <td>내용 삽입....이거길어지면 어디까지 길어질수 있는지 봐야하넨</td>
+                        </tr>                             
                     </tbody>
                 </table>
               </form>
@@ -779,95 +501,11 @@
         }
         // <!-- .navigation script 끝~~ -->
 
-    </script>
-
-    <div class="content">
-        <header>
-            <!-- 프로필 스토리 섹션 -->
-       	<jsp:include page="common/storybar.jsp"/>
-        </header>
-
-        <!-- 게시물 -->
-        <c:forEach var="list" items="${ list }">
-                <div class="feed">
-                    <div class="post">
-                        <div class="post-header">
-                            <div class="post-info">
-                            	<br>
-                                <h3>${ list.userId }</h3>
-                                <span class="post-time">${ list.postingTime }</span>
-                            </div>
-                            <img src="resources/img/${ list.userPfImg }" onerror="src='resources/img/logo.jpg'" class="post-profile-img">
-                        </div>
-                        <c:if test="${ not empty list.imgFile }">
-                        	<img src="resources/img/${ list.imgFile }" alt="게시물 이미지" class="post-image">
-                        </c:if>
-                        <img src="resources/img/sizing_space.jpg" alt="공백" class="post-image">
-                        <div class="post-content">
-                            <p><strong>${ list.postTitle }</strong></p>
-                        </div>
-                        <div class="post-comments">
-                            <p>&nbsp; ${ list.postContent }</p>
-                            <div class="post-actions">
-                                <ion-icon name="heart-outline"></ion-icon>
-                                <ion-icon name="chatbubble-outline"></ion-icon>
-                                <ion-icon name="share-social-outline"></ion-icon>
-                            </div>
-                            <p class="view-comments">댓글모두 보기</p>
-                        </div>
-                    </div>
-                </div>
-            </c:forEach>
-
-        <!-- 추가할 게시물 작성 가능합니당 -->
-    </div>
-    </div>
-
-    <!-- 내 프로필 -->
-    <div class="myprofile">
-        <h4>내 프로필</h4>
-        <div class="myprofile2">
-        <img src="resources/img/${ loginUser.pfImg }" onerror="src='resources/img/logo.jpg'">
-        <span class="myname">${ loginUser.nickName }</span>
-        </div>
-    </div>
-    <script>
-        function userLogout() {
-            location.href = "member/logout";
+        function errorPost() {
+            return false;
         }
     </script>
 
-
-    <div class="sidebar-message">
-        <h3>메시지</h3>
-        <ul class="message-list">
-            <li>
-                <img src="resources/img/profile01.png" onerror="src='resources/img/logo.jpg'">
-                <div class="message-info">
-                    <span class="name">이지은</span>
-                    <span class="message-text">얏호</span>
-                    <span class="time">1분</span>
-                </div>
-            </li>
-            <li>
-                <img src="resources/img/profile02.jpg" onerror="src='resources/img/logo.jpg'">
-                <div class="message-info">
-                    <span class="name">유지민</span>
-                    <span class="message-text">저녁 뭐먹지?</span>
-                    <span class="time">20분</span>
-                </div>
-            </li>
-            <li>
-                <img src="resources/img/profile03.jpg" onerror="src='resources/img/logo.jpg'">
-                <div class="message-info">
-                    <span class="name">김민정</span>
-                    <span class="message-text">3분 전에 활동</span>
-                    <span class="time"></span>
-                </div>
-            </li>
-            <!-- 메시지 목록 표시됨 -->
-
-    </div>
 </body>
 
 </html>
