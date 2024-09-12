@@ -23,4 +23,10 @@
 		ORDER BY POST_ID DESC
 	</select>
 	
+	<insert id="insertBoard">
+		INSERT INTO POST
+			VALUES (SEQ_POST_NO.NEXTVAL, #{userId}, #{userPfImg}, #{postTitle}, #{postContent}, SYSDATE, DEFAULT, #{imgFile}, DEFAULT)
+	</insert>
+
+	
 </mapper>

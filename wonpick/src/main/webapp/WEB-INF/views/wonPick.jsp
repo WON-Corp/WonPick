@@ -84,7 +84,6 @@
     
 		<c:if test="${ empty list}">
 		<script>
-			location.href = "post/list";
 			location.href = "errorPost/selectErrorList";
 		</script>
 		</c:if>
@@ -94,7 +93,8 @@
     
     
     <div class="content">
-       	<%@ include file="common/storybar.jsp" %>
+
+    <%@ include file="common/storyBar.jsp" %>
 
         <!-- 게시물 -->
         <c:forEach var="list" items="${ list }">
@@ -106,10 +106,15 @@
                                 <h3>${ list.userId }</h3>
                                 <span class="post-time">${ list.postingTime }</span>
                             </div>
-                            <img src="resources/img/${ list.userPfImg }" onerror="src='resources/img/logo.jpg'" class="post-profile-img">
+                            <img src="${ list.userPfImg }" onerror="src='resources/img/logo.jpg'" class="post-profile-img">
                         </div>
                         <c:if test="${ not empty list.imgFile }">
-                        	<img src="resources/img/${ list.imgFile }" alt="게시물 이미지" class="post-image">
+                        	<c:if test="${ not fn:contains( list.imgFile, '.mp4') && not fn:contains( list.imgFile, '.avi')}">
+                        		<img src="${ list.imgFile }" alt="게시물 이미지" class="post-image">
+                        	</c:if>
+                        	<c:if test="${ fn:contains( list.imgFile, '.mp4') || fn:contains( list.imgFile, '.avi')}">
+                        		<video src="${ list.imgFile }" class="post-image" controls autoplay loop></video>
+                        	</c:if>
                         </c:if>
                         <img src="resources/img/sizing_space.jpg" alt="공백" class="post-image">
                         <div class="post-content">
@@ -134,6 +139,8 @@
 		<%@ include file="common/sideBar.jsp" %>
    	
     </div>
+    
+    <% session.removeAttribute("list"); %>
 </body>
 
 </html>
