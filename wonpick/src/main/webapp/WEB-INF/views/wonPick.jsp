@@ -107,7 +107,7 @@
                             <img src="${ list.userPfImg }" onerror="src='resources/img/logo.jpg'" class="post-profile-img">
                         </div>
                         <c:if test="${ not empty list.imgFile }">
-                        	<c:if test="${ not fn:contains( list.imgFile, '.mp4') }">
+                        	<c:if test="${ not fn:contains( list.imgFile, '.mp4') && not fn:contains( list.imgFile, '.avi')}">
                         		<img src="${ list.imgFile }" alt="게시물 이미지" class="post-image">
                         	</c:if>
                         	<c:if test="${ fn:contains( list.imgFile, '.mp4') || fn:contains( list.imgFile, '.avi')}">
