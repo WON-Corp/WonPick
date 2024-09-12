@@ -82,18 +82,19 @@
 <body>
 
     
-	<c:if test="${ empty list }">
+		<c:if test="${ empty list}">
 		<script>
 			location.href = "post/list";
 			location.href = "errorPost/selectErrorList";
 		</script>
-	</c:if>
+		</c:if>
+			
 
 	<%@ include file="common/menuBar.jsp" %>
     
     
     <div class="content">
-       	<%@ include file="common/storyBar.jsp" %>
+       	<%@ include file="common/storybar.jsp" %>
 
         <!-- 게시물 -->
         <c:forEach var="list" items="${ list }">
@@ -129,7 +130,7 @@
 
         <!-- 추가할 게시물 작성 가능합니당 -->
     </div>
-  
+  	
 		<%@ include file="common/sideBar.jsp" %>
    	
     </div>

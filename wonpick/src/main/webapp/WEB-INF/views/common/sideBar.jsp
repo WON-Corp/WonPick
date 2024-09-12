@@ -146,11 +146,7 @@
         <span class="myname">${ loginUser.nickName }</span>
         </div>
     </div>
-    <script>
-        function userLogout() {
-            location.href = "member/logout";
-        }
-    </script>
+
 
 
     <div class="sidebar-message">
