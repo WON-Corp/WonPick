@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 폰트 링크 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,8 +28,9 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <title>WonPick</title>
-    <style>
+<title>Insert title here</title>
+
+<style>
         * {
             margin: 0;
             padding: 0;
@@ -241,10 +241,21 @@
         }
 
 
+       
+
+        
+        
+        /* 문제 신고 창 */
+        .errorPostList {
+        	font-size: small;
+        }
+        
+
+      
         /* 더보기 팝업 메뉴 */
 
         .more-popup {
-            position: absolute;
+            position: fixed;
             display: none;
             bottom: 50px;
             left: 170px;
@@ -299,14 +310,15 @@
             }
         }
     </style>
+    
+    
 </head>
-
 <body>
-
-    <%
+<%
 	String contextPath = request.getContextPath();
 	
 	String alertMsg = (String)session.getAttribute("alertMsg");
+	
     %>
 
 	<% if (alertMsg != null) {%>
@@ -315,17 +327,14 @@
 		</script>
 		<% session.removeAttribute("alertMsg"); %>
 	<% } %>
-
-
-    
-    <div class="navigation">
+	<div class="navigation">
         <div class="menuToggle"></div>
 
         <!-- navigation 아이콘은 https://ionic.io/ionicons 사이트 접속 후 사용함!! -->
         <ul>
             <!--  로고 및 텍스트 -->
             <li class="list">
-                <a href="Main.html">
+                <a href="/wonpick">
                     <div class="logo-container">
                         <img src="resources/img/logo.jpg" alt="WonPick 로고" class="logo">
                         <p class="logo-text">WonPick</p>
@@ -334,7 +343,7 @@
                 <!-- list 로고 끝 -->
             </li>
             <li class="list">
-                <a href="Main.html">
+                <a href="/wonpick">
                     <span class="icon">
                         <ion-icon name="home-outline"></ion-icon>
                     </span>
@@ -401,10 +410,21 @@
         <ul>
             <li><ion-icon name="settings-outline"></ion-icon> 설정</li>
             <li><ion-icon name="images-outline"></ion-icon> 내 활동</li>
-            <li><ion-icon name="moon-outline"></ion-icon> 모드 전환</li>
-            <button type="button" id="errorPost" data-toggle="modal" data-target="#errorPostModal">
-                <li><ion-icon name="warning-outline"></ion-icon>문제 신고</li>
-            </button>
+            <c:choose>
+	            <c:when test="${ loginUser.status == 'A'}">
+		            <button type="button" id="errorPostList" data-toggle="modal" data-target="#errorPostListModal">
+		           		<li><ion-icon name="warning-outline"></ion-icon>문제 신고 목록</li>
+		            </button>
+		            <button type="button" id="#" data-toggle="modal" data-target="#">
+		           		<li><ion-icon name="warning-outline"></ion-icon>관리자 페이지</li>
+		            </button>
+	            </c:when>
+	            <c:otherwise>
+	                <button type="button" id="errorPost" data-toggle="modal" data-target="#errorPostModal">
+	                    <li><ion-icon name="warning-outline"></ion-icon>문제 신고</li>
+	                </button>
+	            </c:otherwise>
+            </c:choose>
             <button type="button" onclick="userLogout()">
                 <li><ion-icon name="log-out-outline"></ion-icon> 로그아웃</li>
             </button>
@@ -422,11 +442,13 @@
             </div>
             <!-- 모달 바디 부분 -->
             <div class="modal-body">
-              <form action="errorPost" method="post">    <!-- 폼태그 액션속성 수정 필요-->
+              <form action="<%= contextPath %>/errorPost/insertError" method="post">    <!-- 폼태그 액션속성 수정 필요-->
                 <div class="mb-3">
-                  <label for="errorPostContent" class="col-form-label">내용 </label>
-                  <textarea type="password" class="form-control" id="errorPostContent" name="errorPostContent" placeholder="최대한 자세히 입력해주세요..." required></textarea>
-                  <input type="hidden" name="userId" value="${ loginUser.userId }">
+                	<label for="errorPostTitle" class="col-form-label">제목 </label>
+                  	<input type="text" class="form-control" id="errorPostTitle" name="errorPostTitle" placeholder="제목을 입력해주세요..." required> <br>
+                  	<label for="errorPostContent" class="col-form-label">내용 </label>
+                  	<textarea class="form-control" id="errorPostContent" name="errorContent" placeholder="최대한 자세히 입력해주세요..." required></textarea>
+                  	<input type="hidden" name="userId" value="${ loginUser.userId }">
                 </div>
 
                <button class="btn btn-danger">신고 보내기</button>
@@ -449,23 +471,27 @@
             </div>
             <!-- 모달 바디 부분 -->
             <div class="modal-body">
-              <form action="errorPost" method="post">    <!-- 폼태그 액션속성 수정 필요-->
+              <form action="#" method="post">    <!-- 폼태그 액션속성 수정 필요-->
                 <table class="table table-striped">
                     <thead class="thead-dark">
                         <tr>
                             <th>No.</th>
+                            <th>제목</th>
                             <th>작성자</th>
                             <th>작성일</th>
                             <th>내용</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>keydown</td>
-                            <td>2024-08-01</td>
-                            <td>내용 삽입....이거길어지면 어디까지 길어질수 있는지 봐야하넨</td>
-                        </tr>                             
+                    <tbody class="errorPostList">
+	                    <c:forEach var="list" items="${ epArr }">
+	                        <tr>
+	                            <td>${ list.errorPostId }</td>
+	                            <td>${ list.errorPostTitle }</td>
+	                            <td>${ list.userId }</td>
+	                            <td>${ list.postingDate }</td>
+	                            <td>${ list.errorContent }</td>
+	                        </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
               </form>
@@ -501,11 +527,7 @@
         }
         // <!-- .navigation script 끝~~ -->
 
-        function errorPost() {
-            return false;
-        }
     </script>
-
+	
 </body>
-
 </html>
