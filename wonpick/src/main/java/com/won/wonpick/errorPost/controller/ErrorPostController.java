@@ -40,13 +40,10 @@ public class ErrorPostController {
 	public String selectErrorPostList(ErrorPost ep, HttpServletResponse response, HttpSession session) {
 		
 		ArrayList<ErrorPost> epArr = epService.selectErrorPostList(ep);
-		for(ErrorPost h: epArr) {
-			System.out.println(h.getErrorPostTitle());
-		}
 		
 		session.setAttribute("epArr", epArr);
 		
-		return "redirect:/";
+		return "redirect:/post/list";
 	}
 	
 	
