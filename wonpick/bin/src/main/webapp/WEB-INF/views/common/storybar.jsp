@@ -128,7 +128,8 @@
 		<% session.removeAttribute("alertMsg"); %>
 	<% } %>
 
-   
+    <div class="content">
+        <header>
             <!-- 프로필 스토리 섹션 -->
             <div class="stories">
                 <div class="story">
@@ -164,7 +165,8 @@
                     <span>username8</span>
                 </div>
                 <!-- 필요에 따라 더 많은 프로필 추가 !! -->
-    
+            </div>
+        </header>
 
             <script>
                 $(function(){
