@@ -142,7 +142,7 @@
     <div class="myprofile">
         <h4>내 프로필</h4>
         <div class="myprofile2">
-        <img src="resources/img/${ loginUser.pfImg }" onerror="src='resources/img/logo.jpg'">
+        <img src="${ loginUser.pfImg }" onerror="src='resources/img/logo.jpg'">
         <span class="myname">${ loginUser.nickName }</span>
         </div>
     </div>

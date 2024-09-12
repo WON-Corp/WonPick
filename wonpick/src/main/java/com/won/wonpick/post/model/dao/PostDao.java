@@ -14,4 +14,8 @@ public class PostDao {
 		return (ArrayList)sqlSession.selectList("postMapper.selectList");
 	}
 
+	public int insertBoard(SqlSessionTemplate sqlSession, Post p) {
+		return sqlSession.insert("postMapper.insertBoard", p);
+	}
+
 }

@@ -23,4 +23,10 @@ public class PostServiceImpl implements PostService {
 		return pDao.selectList(sqlSession);
 	}
 
+
+	@Override
+	public int insertBoard(Post p) {
+		return pDao.insertBoard(sqlSession, p);
+	}
+
 }

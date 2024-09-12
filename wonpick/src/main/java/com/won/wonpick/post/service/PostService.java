@@ -7,4 +7,6 @@ import com.won.wonpick.post.model.vo.Post;
 public interface PostService {
 
 	ArrayList<Post> selectList();
+
+	int insertBoard(Post p);
 }
