@@ -425,6 +425,11 @@
 		</script>
 		<% session.removeAttribute("alertMsg"); %>
 	<% } %>
+
+	
+
+	
+	
 	<div class="navigation">
         <div class="menuToggle"></div>
 
@@ -528,8 +533,15 @@
             </button>
         </ul>
     </div>
-    
-    
+
+    	<!-- 로그아웃, 설정페이지 이동 스크립트영역 -->
+        <script>
+        function userLogout() {
+            location.href = "member/logout";
+        }
+     
+    </script>
+
     <!-- 문제신고 페이지 모달 -->
     <div class="modal fade" id="errorPostModal" tabindex="-1" aria-labelledby="errorPostModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -584,7 +596,9 @@
                             <th>내용</th>
                         </tr>
                     </thead>
+                   <c:if test="${not empty epArr}">
                     <tbody class="errorPostList">
+                    
 	                    <c:forEach var="list" items="${ epArr }">
 	                        <tr>
 	                            <td>${ list.errorPostId }</td>
@@ -594,7 +608,9 @@
 	                            <td>${ list.errorContent }</td>
 	                        </tr>
                         </c:forEach>
+                        
                     </tbody>
+                   </c:if>
                 </table>
               </form>
             </div>

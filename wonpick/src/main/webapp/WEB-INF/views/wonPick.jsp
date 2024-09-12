@@ -82,16 +82,18 @@
 <body>
 
     
-	<c:if test="${ empty list }">
+		<c:if test="${ empty list}">
 		<script>
 			location.href = "errorPost/selectErrorList";
 		</script>
-	</c:if>
+		</c:if>
+			
 
 	<%@ include file="common/menuBar.jsp" %>
     
     
     <div class="content">
+
     <%@ include file="common/storyBar.jsp" %>
 
         <!-- 게시물 -->
@@ -133,7 +135,7 @@
 
         <!-- 추가할 게시물 작성 가능합니당 -->
     </div>
-  
+  	
 		<%@ include file="common/sideBar.jsp" %>
    	
     </div>

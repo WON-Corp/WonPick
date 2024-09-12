@@ -154,5 +154,9 @@ public class MemberController {
 	         return "member/changePasswordResult";
 	     }
 	}
+	@RequestMapping("/editprofile")
+	public String myprofile() {
+		return "option/editProfile";
+	}
 
 }
