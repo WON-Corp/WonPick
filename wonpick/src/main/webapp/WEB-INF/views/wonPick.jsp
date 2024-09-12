@@ -358,12 +358,6 @@
             font-size: 12px;
             cursor: pointer;
         }
-        
-        /* 문제 신고 창 */
-        .errorPostList {
-        	font-size: small;
-        }
-        
 
         /* my profile 창 */
         .myprofile {
@@ -498,7 +492,7 @@
         /* 더보기 팝업 메뉴 */
 
         .more-popup {
-            position: fixed;
+            position: absolute;
             display: none;
             bottom: 50px;
             left: 170px;
@@ -573,7 +567,6 @@
 	<c:if test="${ empty list }">
 		<script>
 			location.href = "post/list";
-			location.href = "errorPost/selectErrorList";
 		</script>
 	</c:if>
 
@@ -662,6 +655,7 @@
         <ul>
             <li><ion-icon name="settings-outline"></ion-icon> 설정</li>
             <li><ion-icon name="images-outline"></ion-icon> 내 활동</li>
+            <li><ion-icon name="moon-outline"></ion-icon> 모드 전환</li>
             <c:choose>
 	            <c:when test="${ loginUser.status == 'A'}">
 		            <button type="button" id="errorPostList" data-toggle="modal" data-target="#errorPostListModal">
@@ -694,12 +688,12 @@
             </div>
             <!-- 모달 바디 부분 -->
             <div class="modal-body">
-              <form action="<%= contextPath %>/errorPost/insertError" method="post">    <!-- 폼태그 액션속성 수정 필요-->
+              <form action="errorPost" method="post">    <!-- 폼태그 액션속성 수정 필요-->
                 <div class="mb-3">
                 	<label for="errorPostTitle" class="col-form-label">제목 </label>
                   	<input type="text" class="form-control" id="errorPostTitle" name="errorPostTitle" placeholder="제목을 입력해주세요..." required> <br>
                   	<label for="errorPostContent" class="col-form-label">내용 </label>
-                  	<textarea class="form-control" id="errorPostContent" name="errorContent" placeholder="최대한 자세히 입력해주세요..." required></textarea>
+                  	<textarea class="form-control" id="errorPostContent" name="errorPostContent" placeholder="최대한 자세히 입력해주세요..." required></textarea>
                   	<input type="hidden" name="userId" value="${ loginUser.userId }">
                 </div>
 
@@ -723,27 +717,23 @@
             </div>
             <!-- 모달 바디 부분 -->
             <div class="modal-body">
-              <form action="#" method="post">    <!-- 폼태그 액션속성 수정 필요-->
+              <form action="errorPost" method="post">    <!-- 폼태그 액션속성 수정 필요-->
                 <table class="table table-striped">
                     <thead class="thead-dark">
                         <tr>
                             <th>No.</th>
-                            <th>제목</th>
                             <th>작성자</th>
                             <th>작성일</th>
                             <th>내용</th>
                         </tr>
                     </thead>
-                    <tbody class="errorPostList">
-	                    <c:forEach var="list" items="${ epArr }">
-	                        <tr>
-	                            <td>${ list.errorPostId }</td>
-	                            <td>${ list.errorPostTitle }</td>
-	                            <td>${ list.userId }</td>
-	                            <td>${ list.postingDate }</td>
-	                            <td>${ list.errorContent }</td>
-	                        </tr>
-                        </c:forEach>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>keydown</td>
+                            <td>2024-08-01</td>
+                            <td>내용 삽입....이거길어지면 어디까지 길어질수 있는지 봐야하넨</td>
+                        </tr>                             
                     </tbody>
                 </table>
               </form>
@@ -779,6 +769,9 @@
         }
         // <!-- .navigation script 끝~~ -->
 
+        function errorPost() {
+            return false;
+        }
     </script>
 
     <div class="content">
@@ -897,6 +890,26 @@
             </li>
             <!-- 메시지 목록 표시됨 -->
 
+            <script>
+                $(function(){
+                    $.ajax({
+                        url: '/wonpick/errorPostList.do',
+                        type: 'post', 
+                        data: { data: data }, 
+                        success: function(result) {
+
+                            $("#result1").text(result);
+                        },
+                        error: function(error) {
+
+                        },
+                        complete: function() {
+
+                        }
+                    });
+                })
+            </script>
+	<% session.removeAttribute("list"); %>
     </div>
 </body>
 
