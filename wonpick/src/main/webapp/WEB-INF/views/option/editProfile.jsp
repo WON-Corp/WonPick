@@ -37,7 +37,19 @@
 <title>WonPick</title>
 <style>
 
-
+@media all and (min-width:0px) and (max-width:1100px) {
+	.sidebar-message {
+		display: none;
+	}
+	.myprofile {
+		display: none;
+	}
+	.right-menubar {
+		display: none;
+	}
+	.content {
+		margin-right: 0px;
+	}
 
 	/* 내 프로필 수정 스타일 */
 }
@@ -156,6 +168,7 @@ textarea {
 	cursor: pointer;
 }
 
+
 </style>
 </head>
 
@@ -180,8 +193,8 @@ textarea {
 
 				<div class="upload-img">
 					<button type="button" class="profile-edit">
-						<img src="resources/profile01.png"
-							onerror="src='resources/logo.jpg'" class="chat-profile">
+						<img src="resources/uploadImgs/wonpick-20240913174846899.jpg"
+							onerror="src='resources/uploadImgs/wonpick-20240913174846899.jpg" class="chat-profile">
 					</button>
 				</div>
 				<div class="frofile-middle">
@@ -211,7 +224,7 @@ textarea {
 			</div>
 		</div>
 	</div>
-
+	<%--<%@ include file="../common/optionSideBar.jsp" %> --%>
 	<jsp:include page="../common/optionSideBar.jsp"/>
 
 
