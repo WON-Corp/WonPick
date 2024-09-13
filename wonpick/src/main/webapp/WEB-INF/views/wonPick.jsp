@@ -118,7 +118,7 @@
                         </div>
                         <c:if test="${ not empty list.imgFile }">
                         	<c:if test="${ not fn:contains( list.imgFile, '.mp4') && not fn:contains( list.imgFile, '.avi')}">
-                        		<img src="${ list.imgFile }" alt="게시물 이미지" class="post-image">
+                        		<img src="${ list.imgFile }" alt="삭제된 파일입니다" class="post-image">
                         	</c:if>
                         	<c:if test="${ fn:contains( list.imgFile, '.mp4') || fn:contains( list.imgFile, '.avi')}">
                         		<video src="${ list.imgFile }" class="post-image" controls autoplay loop></video>
@@ -145,8 +145,7 @@
     </div>
   	
 		<%@ include file="common/sideBar.jsp" %>
-   	
-    </div>
+   	`
     
     <% session.removeAttribute("list"); %>
 </body>
