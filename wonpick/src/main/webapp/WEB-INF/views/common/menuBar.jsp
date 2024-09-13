@@ -513,7 +513,7 @@ body {
 	<!-- 로그아웃, 설정페이지 이동 스크립트영역 -->
 	<script>
         function userLogout() {
-            location.href = "member/logout";
+            location.href = "<%= contextPath %>/member/logout";
         }
      
     </script>
