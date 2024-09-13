@@ -47,6 +47,7 @@
 }
 .right-div ul li a{
  text-decoration: none;
+ width: 100%
  }
 </style>
 </head>
