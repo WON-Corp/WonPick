@@ -37,19 +37,7 @@
 <title>WonPick</title>
 <style>
 
-@media all and (min-width:0px) and (max-width:1100px) {
-	.sidebar-message {
-		display: none;
-	}
-	.myprofile {
-		display: none;
-	}
-	.right-menubar {
-		display: none;
-	}
-	.content {
-		margin-right: 0px;
-	}
+
 
 	/* 내 프로필 수정 스타일 */
 }
@@ -168,45 +156,6 @@ textarea {
 	cursor: pointer;
 }
 
-/* 오른쪽 메뉴바 스타일 */
-.right-div {
-	width: 14%;
-	display: flex;
-	justify-content: flex-start;
-}
-
-.right-menubar {
-	width: 100%;
-	margin-top: 70px;
-	list-style: none;
-	padding: 0;
-}
-
-.right-menubar li {
-	padding: 15px 20px;
-	margin-bottom: 15px;
-	border-radius: 10px;
-	font-size: 18px;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-}
-
-.right-menubar li:hover {
-	background-color: #e0e0e0;
-	transition: all 0.4s;
-}
-
-.right-menubar li ion-icon {
-	font-size: 28px;
-	margin-right: 15px;
-	color: #333;
-}
-
-.right-menubar li .text {
-	font-size: 16px;
-	color: #333;
-}
 </style>
 </head>
 
@@ -262,18 +211,8 @@ textarea {
 			</div>
 		</div>
 	</div>
-	<div class="right-div">
-		<ul class="right-menubar">
-			<li><a  href="<%= contextPath %>/member/editprofile"><ion-icon name="person-outline"></ion-icon> 
-			<span class="text">프로필 편집</span></a></li>
-			<li><a href="<%= contextPath %>/setAlert.me"><ion-icon name="notifications-outline"></ion-icon> 
-			<span class="text">알림 설정</span></a></li>
-			<li><a href="<%= contextPath %>/setAlert.me"><ion-icon name="bookmark-outline"></ion-icon> 
-			<span class="text">저장목록</span></a></li>
-			<li><a href="<%= contextPath %>/setAlert.me"><ion-icon name="lock-closed-outline"></ion-icon>
-			<span class="text">개인정보</span></a></li>
-		</ul>
-	</div>
+
+	<jsp:include page="../common/optionSideBar.jsp"/>
 
 
 
