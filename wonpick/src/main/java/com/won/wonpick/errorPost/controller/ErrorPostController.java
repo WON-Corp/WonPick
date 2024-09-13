@@ -44,8 +44,6 @@ public class ErrorPostController {
 		session.setAttribute("epArr", epArr);
 		
 		return "redirect:/post/list";
-	}
-	
-	
+	}	
 
 }

@@ -142,7 +142,7 @@
     <div class="myprofile">
         <h4>내 프로필</h4>
         <div class="myprofile2">
-        <img src="${ loginUser.pfImg }" onerror="src='resources/img/logo.jpg'">
+        <img src="${ loginUser.pfImg }" onerror="src='/wonpick/resources/img/logo.jpg'">
         <span class="myname">${ loginUser.nickName }</span>
         </div>
     </div>
@@ -153,7 +153,7 @@
         <h3>메시지</h3>
         <ul class="message-list">
             <li>
-                <img src="resources/img/profile01.png" onerror="src='resources/img/logo.jpg'">
+                <img src="/wonpick/resources/img/profile01.png" onerror="src='resources/img/logo.jpg'">
                 <div class="message-info">
                     <span class="name">이지은</span>
                     <span class="message-text">얏호</span>
@@ -161,7 +161,7 @@
                 </div>
             </li>
             <li>
-                <img src="resources/img/profile02.jpg" onerror="src='resources/img/logo.jpg'">
+                <img src="/wonpick/resources/img/profile02.jpg" onerror="src='resources/img/logo.jpg'">
                 <div class="message-info">
                     <span class="name">유지민</span>
                     <span class="message-text">저녁 뭐먹지?</span>
@@ -169,7 +169,7 @@
                 </div>
             </li>
             <li>
-                <img src="resources/img/profile03.jpg" onerror="src='resources/img/logo.jpg'">
+                <img src="/wonpick/resources/img/profile03.jpg" onerror="src='resources/img/logo.jpg'">
                 <div class="message-info">
                     <span class="name">김민정</span>
                     <span class="message-text">3분 전에 활동</span>
