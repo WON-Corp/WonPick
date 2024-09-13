@@ -36,6 +36,14 @@ public class PostController {
 		return "redirect:/";
 	}
 	
+	@RequestMapping("/selectVideoList")
+	public String videoLlist(HttpSession session) {
+		ArrayList<Post> bLIst = pService.selectList();
+		session.setAttribute("list", bLIst);
+		
+		return "redirect:/post/videoPostList";
+	}
+	
 	@RequestMapping("/insert")
 	public String insertPost(Post p, MultipartFile uploadImg, HttpSession session) {
 		
@@ -75,5 +83,10 @@ public class PostController {
 			return "redirect:/";
 		}
 
+	}
+	
+	@RequestMapping("/videoPostList")
+	public String videoPostList() {
+		return "board/videoList";
 	}
 }

@@ -434,7 +434,7 @@ body {
 			<!--  로고 및 텍스트 -->
 			<li class="list"><a href="/wonpick">
 					<div class="logo-container">
-						<img src="resources/img/logo.jpg" alt="WonPick 로고" class="logo">
+						<img src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고" class="logo">
 						<p class="logo-text">WonPick</p>
 					</div>
 			</a> <!-- list 로고 끝 --></li>
@@ -446,7 +446,7 @@ body {
 							name="search-outline"></ion-icon>
 				</span> <span class="text">검색</span>
 			</a></li>
-			<li class="list"><a href="#"> <span class="icon"> <ion-icon
+			<li class="list"><a href="/wonpick/post/videoPostList"> <span class="icon"> <ion-icon
 							name="caret-forward-circle-outline"></ion-icon>
 				</span> <span class="text">영상</span>
 			</a></li>
@@ -519,7 +519,7 @@ body {
 			<div class="modal-content">
 				<!-- 모달 헤더 부분 -->
 				<div class="modal-header">
-					<img src="resources/img/logo.jpg" alt=""
+					<img src="/wonpick/resources/img/logo.jpg" alt=""
 						style="border-radius: 15px; width: 45px;">
 					<h2 class="modal-title fs-5" id="errorPostModalLabel">&nbsp;문제신고</h2>
 					<button type="button" class="close" data-dismiss="modal"
@@ -558,7 +558,7 @@ body {
 			<div class="modal-content">
 				<!-- 모달 헤더 부분 -->
 				<div class="modal-header">
-					<img src="resources/img/logo.jpg" alt=""
+					<img src="/wonpick/resources/img/logo.jpg" alt=""
 						style="border-radius: 15px; width: 45px;">
 					<h2 class="modal-title fs-5" id="errorPostListModalLabel">&nbsp;문제신고목록</h2>
 					<button type="button" class="close" data-dismiss="modal"
@@ -606,7 +606,7 @@ body {
 			<div class="modal-content">
 				<!-- 모달 헤더 부분 -->
 				<div class="modal-header">
-					<img src="resources/img/logo.jpg" alt=""
+					<img src="/wonpick/resources/img/logo.jpg" alt=""
 						style="border-radius: 15px; width: 45px;">
 					<h2 class="modal-title fs-5" id="boardPostModalLabel">&nbsp;새
 						게시물 만들기</h2>

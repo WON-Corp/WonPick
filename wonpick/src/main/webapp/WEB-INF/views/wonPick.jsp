@@ -145,7 +145,7 @@
     </div>
   	
 		<%@ include file="common/sideBar.jsp" %>
-   	`
+   	
     
     <% session.removeAttribute("list"); %>
 </body>
