@@ -684,7 +684,7 @@
         // <!-- .navigation script 끝~~ -->
         
         <!-- 게시글 작성을 위한 스크립트 -->
-         const fileInput = document.getElementById('file-input');
+        const fileInput = document.getElementById('file-input');
         const imagePreview = document.getElementById('image-preview');
         const previewImg = document.getElementById('preview-img');
         const form = document.getElementById('upload-form');
