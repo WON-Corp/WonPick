@@ -10,7 +10,6 @@
     <style>
     .post {
             background-color: #fff;
-
             padding: 20px 100px;
             margin-bottom: 15px;
             border-radius: 5px;
@@ -68,6 +67,15 @@
             margin-right: 10px;
             cursor: pointer;
         }
+        
+         .heart {
+            width:21px;
+            height:22px;
+            margin-right: 10px;
+            cursor: pointer;
+            margin-bottom:11px;
+        }
+        
 
         .view-comments {
             color: #888;
@@ -82,7 +90,7 @@
 <body>
 
     
-		<c:if test="${ empty list}">
+		<c:if test="${ empty list }">
 		<script>
 			location.href = "errorPost/selectErrorList";
 		</script>
@@ -94,7 +102,7 @@
     
     <div class="content">
 
-    <%@ include file="common/storyBar.jsp" %>
+    <%@ include file="common/storybar.jsp" %>
 
         <!-- 게시물 -->
         <c:forEach var="list" items="${ list }">
@@ -123,9 +131,9 @@
                         <div class="post-comments">
                             <p>&nbsp; ${ list.postContent }</p>
                             <div class="post-actions">
-                                <ion-icon name="heart-outline"></ion-icon>
+                                <img src="resources/img/logo.jpg" alt="WonPick 로고" class="heart">
                                 <ion-icon name="chatbubble-outline"></ion-icon>
-                                <ion-icon name="share-social-outline"></ion-icon>
+                                <ion-icon name="bookmark-outline"></ion-icon>
                             </div>
                             <p class="view-comments">댓글모두 보기</p>
                         </div>

@@ -466,7 +466,7 @@
                     <span class="icon">
                         <ion-icon name="caret-forward-circle-outline"></ion-icon>
                     </span>
-                    <span class="text">릴스</span>
+                    <span class="text">영상</span>
                 </a>
             </li>
             <li class="list">
@@ -480,7 +480,7 @@
             <li class="list">
                 <a href="#">
                     <span class="icon">
-                        <ion-icon name="heart-outline"></ion-icon>
+                        <ion-icon name="notifications-outline"></ion-icon>
                     </span>
                     <span class="text">알림</span>
                 </a>
