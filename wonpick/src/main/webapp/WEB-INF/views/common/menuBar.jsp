@@ -32,6 +32,9 @@
 <title>Insert title here</title>
 
 <style>
+		a{
+			text-decoration: none;
+		}
         * {
             margin: 0;
             padding: 0;
@@ -44,6 +47,7 @@
             display: flex;
             height: 100vh;
             overflow-y: auto;
+            
         }
 
         /*navigation 스타일 시작*/
@@ -180,7 +184,7 @@
             text-align: center;
             text-decoration: none;
         }
-
+		
         .navigation ul li a .icon {
             position: relative;
             display: block;
@@ -254,7 +258,10 @@
 
       
         /* 더보기 팝업 메뉴 */
-
+		.more-popup li a {
+			text-decoration : none;
+			color : black;
+		}
         .more-popup {
             position: fixed;
             display: none;
@@ -511,7 +518,7 @@
 
     <div class="more-popup" id="more-popup">
         <ul>
-            <li><ion-icon name="settings-outline"></ion-icon> 설정</li>
+            <li><a href="<%= contextPath %>/profile/myprofile"><ion-icon name="settings-outline"></ion-icon> 설정</a></li>
             <li><ion-icon name="images-outline"></ion-icon> 내 활동</li>
             <c:choose>
 	            <c:when test="${ loginUser.status == 'A'}">
