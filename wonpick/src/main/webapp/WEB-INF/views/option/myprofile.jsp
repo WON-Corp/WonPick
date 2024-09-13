@@ -122,7 +122,7 @@ strong {
 	height: 100%;
 }
 
-.frofile-middle {
+.profile-middle {
 	width: 100%;
 	height: 100%;
 	padding-top: 45px;
@@ -176,7 +176,7 @@ textarea {
 	<% if (session.getAttribute("loginUser") == null) {%>
 	<script>
 			onload() = function() {
-				location.href = "/wonPick/views/wonPickLogin.jsp"
+				location.href = "/wonpick"
 			}
 		</script>
 	<% } %>
@@ -193,11 +193,10 @@ textarea {
 
 				<div class="upload-img">
 					<button type="button" class="profile-edit">
-						<img src="resources/profile01.png"
-							onerror="src='resources/logo.jpg'" class="chat-profile">
+						<img src="${ loginUser.pfImg }" onerror="src='/wonpick/resources/img/logo.jpg'">
 					</button>
 				</div>
-				<div class="frofile-middle">
+				<div class="profile-middle">
 					<c:if test="${loginUser.nickName == null }">
 					<c:when>
 					<b></b><br>

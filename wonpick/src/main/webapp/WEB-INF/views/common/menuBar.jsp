@@ -403,6 +403,12 @@ body {
 #deleteImg {
 	background-color: rgb(35, 59, 59);
 }
+
+#more-popup > ul > li > a {
+	width: 100%;
+	color: #000;
+	text-decoration: none;
+}
 </style>
 
 
@@ -478,8 +484,8 @@ body {
 	<div class="more-popup" id="more-popup">
 		<ul>
 			<li><a href="<%= contextPath %>/myprofile/profile"><ion-icon
-						name="settings-outline"></ion-icon>내 정보</li>
-			</a>
+						name="settings-outline"></ion-icon>내 정보</a></li>
+			
 			<li><ion-icon name="images-outline"></ion-icon> 내 활동</li>
 			<c:choose>
 				<c:when test="${ loginUser.status == 'A'}">
