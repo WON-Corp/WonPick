@@ -102,7 +102,7 @@
     
     <div class="content">
 
-    <%@ include file="common/storybar.jsp" %>
+    <%@ include file="common/storyBar.jsp" %>
 
         <!-- 게시물 -->
         <c:forEach var="list" items="${ list }">
