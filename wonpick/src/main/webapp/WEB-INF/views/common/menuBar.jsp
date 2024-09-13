@@ -511,7 +511,7 @@
 
     <div class="more-popup" id="more-popup">
         <ul>
-            <li><ion-icon name="settings-outline"></ion-icon> 설정</li>
+            <li><a href="<%= contextPath %>/myprofile/profile"><ion-icon name="settings-outline"></ion-icon>내 정보</li></a>
             <li><ion-icon name="images-outline"></ion-icon> 내 활동</li>
             <c:choose>
 	            <c:when test="${ loginUser.status == 'A'}">
