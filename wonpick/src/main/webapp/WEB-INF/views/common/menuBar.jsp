@@ -635,9 +635,9 @@ body {
 						</div>
 
 						<input type="text" class="title-input" name="postTitle"
-							placeholder="제목">
+							placeholder="제목" required>
 						<textarea class="caption-input" name="postContent"
-							placeholder="내용 입력"></textarea>
+							placeholder="내용 입력" required></textarea>
 						<input type="hidden" name="userId" value="${ loginUser.userId }">
 						<input type="hidden" name="userPfImg" value="${ loginUser.pfImg }">
 

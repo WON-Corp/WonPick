@@ -176,7 +176,7 @@ textarea {
 	<% if (session.getAttribute("loginUser") == null) {%>
 	<script>
 			onload() = function() {
-				location.href = "/wonPick/views/wonPickLogin.jsp"
+				location.href = "/wonpick/views/wonPickLogin.jsp"
 			}
 		</script>
 	<% } %>

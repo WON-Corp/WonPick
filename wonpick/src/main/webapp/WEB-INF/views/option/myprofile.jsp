@@ -189,7 +189,7 @@ transition: margin-left 0.4s;
 	<% if (session.getAttribute("loginUser") == null) {%>
 	<script>
 			onload() = function() {
-				location.href = "/wonPick/views/wonPickLogin.jsp"
+				location.href = "/wonpick/views/wonPickLogin.jsp"
 			}
 		</script>
 	<% } %>
