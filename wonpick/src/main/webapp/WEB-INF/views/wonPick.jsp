@@ -111,7 +111,8 @@
 							<span class="post-time">${ list.postingTime }</span>
 						</div>
 						<img src="${ list.userPfImg }"
-							onerror="src='/wonpick/resources/img/logo.jpg'" class="post-profile-img">
+							onerror="src='/wonpick/resources/img/logo.jpg'"
+							class="post-profile-img">
 					</div>
 					<c:if test="${ not empty list.imgFile }">
 						<c:if
@@ -128,7 +129,8 @@
 						class="post-image">
 					<div class="post-content">
 						<button type="button" id="detailPost" data-toggle="modal"
-							data-target="#detailPostModal" onclick="getDetailPost(${ list.postId });">
+							data-target="#detailPostModal"
+							onclick="getDetailPost(${ list.postId });">
 							<p>
 								<strong>${ list.postTitle }</strong>
 							</p>
@@ -136,21 +138,52 @@
 					</div>
 					<div class="post-comments">
 						<button type="button" id="detailPost" data-toggle="modal"
-							data-target="#detailPostModal" onclick="getDetailPost(${ list.postId });">
+							data-target="#detailPostModal"
+							onclick="getDetailPost(${ list.postId });">
 							<p>&nbsp; ${ list.postContent }</p>
 						</button>
 						<div class="post-actions">
-							<img src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고" class="heart">
+							<img src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고"
+								class="heart">
 							<ion-icon name="chatbubble-outline"></ion-icon>
 							<ion-icon name="bookmark-outline"></ion-icon>
 						</div>
 						<button type="button" id="detailPost" data-toggle="modal"
-							data-target="#detailPostModal" onclick="getDetailPost(${ list.postId });">
-							<p class="view-comments">댓글 -개</p>
+							data-target="#detailPostModal"
+							onclick="getDetailPost(${ list.postId });">
+							<p class="view-comments" id="commentCount${ list.postId }">댓글보기</p>
+							<script>
+									$(function() {
+										$.ajax({
+								            url: "/wonpick/postComment/postCommentCount",
+								            type: 'post',
+								            data: { postId: ${ list.postId } },
+								            success: function(result) {
+												
+												if(result == 0) {
+												$("#commentCount${ list.postId }").text("댓글 0개")
+											}
+												else {
+								                $("#commentCount${ list.postId }").text("댓글 "+result+"개")
+											}
+								            },
+								            error: function(err) {
+								                	
+								            }
+								        });
+									});
+								</script>
 						</button>
 					</div>
 				</div>
 			</div>
+
+			<!-- 게시물 댓글 갯수 확인 스크립트 -->
+			<script>
+				$(function() {
+					
+				});
+			</script>
 
 			<!-- 게시물 페이지 모달 -->
 			<div class="modal fade" id="detailPostModal" tabindex="-1"
@@ -164,41 +197,55 @@
 								<h3 id="userId"></h3>
 								<span class="post-time" id="postingTime"></span>
 							</div>
-							<img src=""
-								onerror="src='/wonpick/resources/img/logo.jpg'" class="post-profile-img" id="userPfImg">
+							<img src="" onerror="src='/wonpick/resources/img/logo.jpg'"
+								class="post-profile-img" id="userPfImg">
 						</div>
+							<img src="" alt="삭제된 파일입니다" class="post-image" id="imgFile"
+								hidden>
 
-						<!-- 모달 바디 부분 -->
-						<div class="modal-body">
+							<video src="" class="post-image" controls autoplay loop muted
+								id="videoFile" hidden></video>
 
-							
-							<img src="" alt="삭제된 파일입니다" class="post-image" id="imgFile" hidden>
-									
-							<video src="" class="post-image" controls
-										autoplay loop muted id="videoFile" hidden></video>
-								
 							<img src="/wonpick/resources/img/sizing_space.jpg" alt="공백"
 								class="post-image">
 							<div class="post-content">
-								
-									<p>
-										<strong id="postTitle"></strong>
-									</p>
-								
+
+								<p>
+									<strong id="postTitle"></strong>
+								</p>
+
 							</div>
 							<div class="post-comments">
-								
-									<p id="postContent"></p>
-								
+
+								<p id="postContent"></p>
+
 								<div class="post-actions">
 									<img src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고"
 										class="heart">
 									<ion-icon name="chatbubble-outline"></ion-icon>
 									<ion-icon name="bookmark-outline"></ion-icon>
 								</div>
-								
-									<p class="view-comments">댓글 -개</p>
-								
+
+								<!-- 여기부터 댓글 리스트 ajax사용 -->
+								<div id="postCommentList"></div>
+								<!-- 여기까지 -->
+
+						<!-- 모달 바디 부분 -->
+						<div class="modal-body">
+								<form class="post-info"	action="#" method="post">
+									<h3 id="userId">${ loginUser.userId }</h3>
+									<div class="mb-3">
+										<textarea class="form-control" id="errorPostContent"
+											name="errorContent" placeholder="댓글작성" required style="resize:none"></textarea>
+										<input type="hidden" name="userId"
+											value="${ loginUser.userId }">
+
+									</div>
+
+
+									<button class="btn btn-primary">댓글작성</button>
+								</form>
+
 							</div>
 						</div>
 					</div>
@@ -249,6 +296,30 @@
 					$("#videoFile").attr("hidden", true);
                 }
                 
+            },
+            error: function(err) {
+                
+                    
+            }
+        });
+ 		
+ 		// 댓글 ajax
+ 		$.ajax({
+            url: "/wonpick/postComment/postCommentList",
+            type: 'post',
+            data: { postId: postId },
+            success: function(result) {
+            	$("#postCommentList").text("");
+                for(let item of result){
+                	$("#postCommentList").append(
+                			'<div class="post-header"><div class="post-info"><br><h3 id="commentUserId">'+item.userId+'</h3>'+
+							'<span class="post-time" id="postingTime">'+item.commentTime+'</span></div>'+
+							'<img src="'+item.userPfImg+'" onerror="src='+'/wonpick/resources/img/logo.jpg'+'"class="post-profile-img" id="commentUserPfImg" style="width:30px; height:30px">'+
+							'</div>'+
+							'<div class="post-comments">'+
+							'<p id="postCommentContent">'+item.postComment+'</p></div></div>'
+                	);
+                } 
             },
             error: function(err) {
                 

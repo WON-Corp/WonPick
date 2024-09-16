@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="postCommentMapper">
+
+	<resultMap id="postCommentResultSet"  type="PostComment">
+		<result column="post_comment_id" property="postCommentId"/>
+		<result column="user_id" property="userId"/>
+		<result column="user_p_img" property="userPfImg"/>
+		<result column="post_id" property="postId"/>
+		<result column="post_comment" property="postComment"/>
+		<result column="comment_time" property="commentTime"/>
+		<result column="status" property="status"/>
+	</resultMap>
+	
+	<select id="postCommentCount" resultType="_int">
+		SELECT COUNT(*)FROM POST_COMMENT WHERE POST_ID = #{postId}
+	</select>
+
+	<select id="postCommentList" resultMap="postCommentResultSet">
+		SELECT POST_COMMENT_ID, P.USER_ID USER_ID, M.P_IMG USER_P_IMG, POST_ID, POST_COMMENT, TO_CHAR(COMMENT_TIME, 'RR/MM/DD HH24:MI') "COMMENT_TIME", P.STATUS STATUS
+			FROM POST_COMMENT P, MEMBER M
+			WHERE P.USER_ID = M.USER_ID AND POST_ID = #{postId} AND P.STATUS = 'Y'
+			ORDER BY POST_ID DESC
+	</select>
+	
+</mapper>

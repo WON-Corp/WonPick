@@ -68,7 +68,10 @@ INSERT INTO POST
 VALUES (SEQ_POST_NO.NEXTVAL, '05popo', '', 'Overview of the Spring Framework', 'The Spring Framework consists of features organized into about 20 modules. These modules are grouped into Core Container, Data Access/Integration, Web, AOP (Aspect Oriented Programming), Instrumentation, and Test, as shown in the following diagram.', SYSDATE, 0, '/wonpick/resources/uploadImgs/wonpick-20240913163106258.png', DEFAULT);
 
 
-
+insert into post_comment
+values (SEQ_POST_COMMENT_NO.NEXTVAL, 'Rocomi', 30, '테스트입니다', SYSDATE, DEFAULT);
+insert into post_comment
+values (SEQ_POST_COMMENT_NO.NEXTVAL, 'Rocomi', 30, '테스트2입니다', SYSDATE, DEFAULT);
 
 COMMIT;
 

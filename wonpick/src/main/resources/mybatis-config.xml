@@ -12,6 +12,7 @@
 	  <typeAlias alias="Member" type="com.won.wonpick.member.model.vo.Member"/>
 	  <typeAlias alias="Post" type="com.won.wonpick.post.model.vo.Post"/>
 	  <typeAlias alias="ErrorPost" type="com.won.wonpick.errorPost.model.vo.ErrorPost"/>
+	  <typeAlias alias="PostComment" type="com.won.wonpick.postComment.model.vo.PostComment"/>
 	</typeAliases>
 	
 	<!-- 
@@ -26,6 +27,7 @@
   		<mapper resource="/mappers/member-mapper.xml"/>
   		<mapper resource="/mappers/post-mapper.xml"/>
   		<mapper resource="/mappers/errorPost-mapper.xml"/>
+  		<mapper resource="/mappers/postComment-mapper.xml"/>
 	</mappers>
 	
 </configuration>
