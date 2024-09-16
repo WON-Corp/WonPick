@@ -173,7 +173,7 @@ input[type='radio']:checked {
 	%>
 	<script>
 			onload() = function() {
-				location.href = "/wonPick/views/wonPickLogin.jsp"
+				location.href = "/wonpick/views/wonPickLogin.jsp"
 			}
 		</script>
 	<%

@@ -29,4 +29,16 @@ public class PostServiceImpl implements PostService {
 		return pDao.insertBoard(sqlSession, p);
 	}
 
+	@Override
+	public int updateCount(int postId) {
+		return pDao.updateCount(sqlSession, postId);
+	}
+
+	@Override
+	public Post postDetail(int postId) {
+		return  pDao.postDetail(sqlSession, postId);
+	}
+
+
+
 }

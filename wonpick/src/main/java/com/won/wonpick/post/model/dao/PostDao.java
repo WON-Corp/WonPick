@@ -18,4 +18,12 @@ public class PostDao {
 		return sqlSession.insert("postMapper.insertBoard", p);
 	}
 
+	public Post postDetail(SqlSessionTemplate sqlSession, int postId) {
+		return sqlSession.selectOne("postMapper.postDetail", postId);
+	}
+
+	public int updateCount(SqlSessionTemplate sqlSession, int postId) {
+		return sqlSession.update("postMapper.updateCount", postId);
+	}
+
 }

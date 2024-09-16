@@ -27,6 +27,16 @@
 		INSERT INTO POST
 			VALUES (SEQ_POST_NO.NEXTVAL, #{userId}, #{userPfImg}, #{postTitle}, #{postContent}, SYSDATE, DEFAULT, #{imgFile}, DEFAULT)
 	</insert>
+	
+	<select id="postDetail" resultMap="postResultSet">
+		SELECT POST_ID, P.USER_ID USER_ID, M.P_IMG USER_P_IMG, POST_TITLE, POST_CONTENT, TO_CHAR(POSTING_TIME, 'RR/MM/DD HH24:MI') "POSTING_TIME", IMG_FILE, P.STATUS STATUS
+		FROM POST P, MEMBER M
+		WHERE P.USER_ID = M.USER_ID AND POST_ID = #{postId} AND P.STATUS = 'Y'
+	</select>
+	
+	<update id="updateCount">
+		UPDATE POST SET COUNT = COUNT + 1 WHERE POST_ID = #{postId} AND STATUS = 'Y'
+	</update>
 
 	
 </mapper>

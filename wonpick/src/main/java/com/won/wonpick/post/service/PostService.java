@@ -9,4 +9,8 @@ public interface PostService {
 	ArrayList<Post> selectList();
 
 	int insertBoard(Post p);
+
+	Post postDetail(int postId);
+
+	int updateCount(int postId);
 }

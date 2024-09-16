@@ -26,7 +26,7 @@ VALUES (SEQ_POST_NO.NEXTVAL, '05popo', '', '공오년생입니다.', 'kdw 님의 작품입니
 INSERT INTO POST
 VALUES (SEQ_POST_NO.NEXTVAL, 'whdrns456', '', '임수진 강사님 존경합니다. ', '임수진 강사님 존경합니다. ', SYSDATE, 0, '', DEFAULT);
 INSERT INTO POST
-VALUES (SEQ_POST_NO.NEXTVAL, 'whdrns456', '', '종군이형 저 국가권력급이에요', '', SYSDATE, 0, '/wonpick/resources/uploadImgs/wonpick-20240913153950246.jpg', DEFAULT);
+VALUES (SEQ_POST_NO.NEXTVAL, 'whdrns456', '', '종군이형 저 국가권력급이에요', '  ', SYSDATE, 0, '/wonpick/resources/uploadImgs/wonpick-20240913153950246.jpg', DEFAULT);
 INSERT INTO POST
 VALUES (SEQ_POST_NO.NEXTVAL, 'jgw990928', '', '종군이형 직캠', 'ㅎㄷㄷ', SYSDATE, 0, '/wonpick/resources/uploadImgs/wonpick-20240913154107855.jfif', DEFAULT);
 
@@ -51,11 +51,11 @@ VALUES (SEQ_POST_NO.NEXTVAL, 'imij0126', '', '에잇', '잘가라~', SYSDATE, 0, '/wo
 INSERT INTO POST
 VALUES (SEQ_POST_NO.NEXTVAL, '05popo', '', '붕어빵 사주세요', '먹을래요', SYSDATE, 0, '/wonpick/resources/uploadImgs/wonpick-2024091316020725.jpg', DEFAULT);
 INSERT INTO POST
-VALUES (SEQ_POST_NO.NEXTVAL, 'whdrns456', '', '안녕하세요 최종군 본인입니다 DM 받습니다', '', SYSDATE, 0, '/wonpick/resources/uploadImgs/wonpick-20240913160219334.jfif', DEFAULT);
+VALUES (SEQ_POST_NO.NEXTVAL, 'whdrns456', '', '안녕하세요 최종군 본인입니다 DM 받습니다', '  ', SYSDATE, 0, '/wonpick/resources/uploadImgs/wonpick-20240913160219334.jfif', DEFAULT);
 INSERT INTO POST
-VALUES (SEQ_POST_NO.NEXTVAL, 'whdrns456', '', '안녕하세요 조건웅입니다 DM주세요 ', '', SYSDATE, 0, '/wonpick/resources/uploadImgs/wonpick-20240913160253277.jpg', DEFAULT);
+VALUES (SEQ_POST_NO.NEXTVAL, 'whdrns456', '', '안녕하세요 조건웅입니다 DM주세요 ', '  ', SYSDATE, 0, '/wonpick/resources/uploadImgs/wonpick-20240913160253277.jpg', DEFAULT);
 INSERT INTO POST
-VALUES (SEQ_POST_NO.NEXTVAL, 'whdrns456', '', '조건웅 수업 중 코드 틀렸을 때 모습 ', '', SYSDATE, 0, '/wonpick/resources/uploadImgs/wonpick-2024091316100553.jpg', DEFAULT);
+VALUES (SEQ_POST_NO.NEXTVAL, 'whdrns456', '', '조건웅 수업 중 코드 틀렸을 때 모습 ', '  ', SYSDATE, 0, '/wonpick/resources/uploadImgs/wonpick-2024091316100553.jpg', DEFAULT);
 INSERT INTO POST
 VALUES (SEQ_POST_NO.NEXTVAL, 'sjlim.iei', '', '스프링을 깨달아버린 조건웅', '(  !  )o  Д   o', SYSDATE, 0, '/wonpick/resources/uploadImgs/wonpick-20240913161517782.png', DEFAULT);
 INSERT INTO POST

@@ -74,19 +74,19 @@
                     <span>username3</span>
                 </div>
                 <div class="story">
-                    <img src="/wonpick/resources/img/profile04.jpg" onerror="src='/wonpick/resources/img/logo.jpg'">
+                    <img src="#" onerror="src='/wonpick/resources/img/logo.jpg'">
                     <span>username4</span>
                 </div>
                 <div class="story">
-                    <img src="/wonpick/resources/img/profile05.jpg" onerror="src='/wonpick/resources/img/logo.jpg'">
+                    <img src="#" onerror="src='/wonpick/resources/img/logo.jpg'">
                     <span>username5</span>
                 </div>
                 <div class="story">
-                    <img src="/wonpick/resources/img/profile06.jpg" onerror="src='/wonpick/resources/img/logo.jpg'">
+                    <img src="#" onerror="src='/wonpick/resources/img/logo.jpg'">
                     <span>username6</span>
                 </div>
                 <div class="story">
-                    <img src="/wonpick/resources/img/profile07.jpg" onerror="src='/wonpick/resources/img/logo.jpg'">
+                    <img src="#" onerror="src='/wonpick/resources/img/logo.jpg'">
                     <span>username7</span>
                 </div>
                 <!-- 필요에 따라 더 많은 프로필 추가 !! -->
