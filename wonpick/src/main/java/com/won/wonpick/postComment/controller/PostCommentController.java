@@ -58,7 +58,7 @@ public class PostCommentController {
 	
 	@RequestMapping("/insertComment")
 	public String insertComment(PostComment pc, HttpSession session) {
-		
+		System.out.println(pc.getPostComment());
 		int result = pcService.insertComment(pc);
 		
 		if(result > 0) {
