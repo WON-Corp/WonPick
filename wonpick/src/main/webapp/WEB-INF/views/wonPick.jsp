@@ -278,7 +278,7 @@
                 $("#postTitle").text(result.postTitle);
                 $("#postContent").text(result.postContent);
                 
-                if (result.imgFile == undefined) {
+                if (result.imgFile == '#') {
                 	
                 	$("#imgFile").attr("hidden", true);
                 	$("#videoFile").attr("hidden", true);

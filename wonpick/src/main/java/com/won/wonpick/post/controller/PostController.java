@@ -43,7 +43,11 @@ public class PostController {
 	public void postDetail(int postId, HttpServletResponse response, HttpSession session) {
 
 		Post postDetail = pService.postDetail(postId);
-
+		
+		if(postDetail.getUserPfImg() == null) postDetail.setUserPfImg("#");
+		
+		if(postDetail.getImgFile() == null) postDetail.setImgFile("#");	
+		
 		Gson gson = new Gson();
 
 		response.setContentType("application/json; charset=UTF-8");
@@ -56,7 +60,7 @@ public class PostController {
 			e.printStackTrace();
 		}
 
-//		pService.updateCount(postId);  --> 현재 이 코드 추가시 31번 게시글 불러오기가 안됨.........살려주세요
+		pService.updateCount(postId); // 조회수 업데이트
 
 	}
 
