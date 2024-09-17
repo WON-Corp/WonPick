@@ -539,11 +539,11 @@ body {
 						<div class="mb-3">
 							<label for="errorPostTitle" class="col-form-label">제목 </label> <input
 								type="text" class="form-control" id="errorPostTitle"
-								name="errorPostTitle" placeholder="제목을 입력해주세요..." required>
+								name="errorPostTitle" placeholder="제목을 입력해주세요..." maxlength="33" required>
 							<br> <label for="errorPostContent" class="col-form-label">내용
 							</label>
 							<textarea class="form-control" id="errorPostContent"
-								name="errorContent" placeholder="최대한 자세히 입력해주세요..." required></textarea>
+								name="errorContent" placeholder="최대한 자세히 입력해주세요..." maxlength="200" required></textarea>
 							<input type="hidden" name="userId" value="${ loginUser.userId }">
 						</div>
 
@@ -635,9 +635,9 @@ body {
 						</div>
 
 						<input type="text" class="title-input" name="postTitle"
-							placeholder="제목" required>
+							placeholder="제목" maxlength="33"required>
 						<textarea class="caption-input" name="postContent"
-							placeholder="내용 입력" required></textarea>
+							placeholder="내용 입력" maxlength="666" required></textarea>
 						<input type="hidden" name="userId" value="${ loginUser.userId }">
 						<input type="hidden" name="userPfImg" value="${ loginUser.pfImg }">
 

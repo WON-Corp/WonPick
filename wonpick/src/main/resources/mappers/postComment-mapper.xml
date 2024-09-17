@@ -25,4 +25,8 @@
 			ORDER BY POST_ID DESC
 	</select>
 	
+	<insert id="insertComment">
+		INSERT INTO POST_COMMENT VALUES (SEQ_POST_COMMENT_NO.NEXTVAL, #{userId}, #{postId}, #{postComment}, SYSDATE, DEFAULT)
+	</insert>
+	
 </mapper>

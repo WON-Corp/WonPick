@@ -66,9 +66,10 @@ COMMIT;
 
 
 insert into post_comment
-values (SEQ_POST_COMMENT_NO.NEXTVAL, 'Rocomi', 28, '테스트입니다', SYSDATE, DEFAULT);
+values (SEQ_POST_COMMENT_NO.NEXTVAL, 'Rocomi', 29, '테스트입니다', SYSDATE, DEFAULT);
 insert into post_comment
-values (SEQ_POST_COMMENT_NO.NEXTVAL, 'Rocomi', 28, '테스트2입니다', SYSDATE, DEFAULT);
+values (SEQ_POST_COMMENT_NO.NEXTVAL, 'Rocomi', 29, '테스트2입니다', SYSDATE, DEFAULT);
+
 
 COMMIT;
 
