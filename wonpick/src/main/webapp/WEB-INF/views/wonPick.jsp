@@ -144,15 +144,14 @@
 							<p>&nbsp; ${ list.postContent }</p>
 						</button>
 						<div class="post-actions">
-							<img src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고"
-								class="heart">
+							<button onclick="postPick(${ list.postId })"><img src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고" class="heart"></button>
 							<ion-icon name="chatbubble-outline"></ion-icon>
 							<ion-icon name="bookmark-outline"></ion-icon>
 						</div>
 						<button type="button" id="detailPost" data-toggle="modal"
 							data-target="#detailPostModal"
 							onclick="getDetailPost(${ list.postId });">
-							<p class="view-comments" id="commentCount${ list.postId }">댓글보기</p>
+							<p class="view-comments"><span id="postLike${ list.postId }">댓글보기</span> &nbsp;<span id="commentCount${ list.postId }">댓글보기</span></p>
 							<script>
 									$(function() {
 										$.ajax({
@@ -173,6 +172,29 @@
 								            }
 								        });
 									});
+									
+									// 좋아요 갯수 가져오기
+									$(function() {
+										$.ajax({
+								            url: "/wonpick/postLike/postLikeCount",
+								            type: 'post',
+								            data: { postId: ${ list.postId } },
+								            success: function(result) {
+												
+												if(result == 0) {
+												$("#postLike${ list.postId }").text("Pick 0개")
+											}
+												else {
+								                $("#postLike${ list.postId }").text("Pick "+result+"개")
+											}
+								            },
+								            error: function(err) {
+								                	
+								            }
+								        });
+									});
+
+									
 								</script>
 						</button>
 					</div>
@@ -310,7 +332,7 @@
                 	$("#postCommentList").append(
                 			'<div class="post-header"><div class="post-info"><br><h3 id="commentUserId">'+item.userId+'</h3>'+
 							'<span class="post-time" id="postingTime">'+item.commentTime+'</span></div><div class="post-actions">'+
-							'<img src="'+item.userPfImg+'" onerror="src='+'/wonpick/resources/img/logo.jpg'+'"class="post-profile-img" id="commentUserPfImg" style="width:30px; height:30px">'+
+							'<img src="'+item.userPfImg+'" onerror="src='+"'/wonpick/resources/img/logo.jpg'"+'" class="post-profile-img" id="commentUserPfImg" style="width:30px; height:30px">'+
 							'<img src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고" class="heart" style="margin:5px"></div></div>'+
 							'<div class="post-comments">'+
 							'<p id="postCommentContent">'+item.postComment+'</p></div></div>'
@@ -325,6 +347,21 @@
  		
  	}
  	
+ 	// 좋아요 추가, 삭제
+	function postPick( postId ) {
+		$.ajax({
+            url: "/wonpick/postLike/insertPostLike",
+            type: 'post',
+            data: { postId: postId , userId: "${ loginUser.userId }" },
+            success: function(result) {
+            	console.log("되냐");
+            },
+            error: function(err) {
+                	
+            }
+        });
+		
+	}
 </script>
 
 </html>
