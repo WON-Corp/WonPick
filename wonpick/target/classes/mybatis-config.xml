@@ -13,6 +13,7 @@
 	  <typeAlias alias="Post" type="com.won.wonpick.post.model.vo.Post"/>
 	  <typeAlias alias="ErrorPost" type="com.won.wonpick.errorPost.model.vo.ErrorPost"/>
 	  <typeAlias alias="PostComment" type="com.won.wonpick.postComment.model.vo.PostComment"/>
+	  <typeAlias alias="PostLike" type="com.won.wonpick.postLike.model.vo.PostLike"/>
 	</typeAliases>
 	
 	<!-- 
@@ -28,6 +29,7 @@
   		<mapper resource="/mappers/post-mapper.xml"/>
   		<mapper resource="/mappers/errorPost-mapper.xml"/>
   		<mapper resource="/mappers/postComment-mapper.xml"/>
+  		<mapper resource="/mappers/postLike-mapper.xml"/>
 	</mappers>
 	
 </configuration>
