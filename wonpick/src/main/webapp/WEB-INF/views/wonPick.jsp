@@ -145,7 +145,6 @@
 						</button>
 						<div class="post-actions">
 							<button onclick="postPick(${ list.postId })"><img src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고" class="heart"></button>
-							<ion-icon name="chatbubble-outline"></ion-icon>
 							<ion-icon name="bookmark-outline"></ion-icon>
 						</div>
 						<button type="button" id="detailPost" data-toggle="modal"
@@ -237,7 +236,6 @@
 							<div class="post-actions">
 								<img src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고"
 									class="heart">
-								<ion-icon name="chatbubble-outline"></ion-icon>
 								<ion-icon name="bookmark-outline"></ion-icon>
 							</div>
 
