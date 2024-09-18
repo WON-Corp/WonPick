@@ -232,9 +232,8 @@
 										<textarea class="form-control" id="errorPostContent"
 											name="postComment" placeholder="댓글작성" required
 											style="resize: none" maxlength="100"></textarea>
-										<input type="hidden" name="userId"
-											value="${ loginUser.userId }"> <input type="hidden"
-											name="postId" value="">
+										<input type="hidden" name="userId" value="${ loginUser.userId }"> 
+										<input type="hidden" name="postId" value="">
 
 									</div>
 
@@ -310,9 +309,9 @@
                 for(let item of result){
                 	$("#postCommentList").append(
                 			'<div class="post-header"><div class="post-info"><br><h3 id="commentUserId">'+item.userId+'</h3>'+
-							'<span class="post-time" id="postingTime">'+item.commentTime+'</span></div>'+
+							'<span class="post-time" id="postingTime">'+item.commentTime+'</span></div><div class="post-actions">'+
 							'<img src="'+item.userPfImg+'" onerror="src='+'/wonpick/resources/img/logo.jpg'+'"class="post-profile-img" id="commentUserPfImg" style="width:30px; height:30px">'+
-							'</div>'+
+							'<img src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고" class="heart" style="margin:5px"></div></div>'+
 							'<div class="post-comments">'+
 							'<p id="postCommentContent">'+item.postComment+'</p></div></div>'
                 	);
