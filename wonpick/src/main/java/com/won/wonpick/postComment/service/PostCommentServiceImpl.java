@@ -27,4 +27,9 @@ public class PostCommentServiceImpl implements PostCommentService {
 		return pcDao.postCommentList(sqlSession, postId);
 	}
 
+	@Override
+	public int insertComment(PostComment pc) {
+		return pcDao.insertComment(sqlSession, pc);
+	}
+
 }

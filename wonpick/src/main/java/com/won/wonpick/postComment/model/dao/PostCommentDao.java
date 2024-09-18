@@ -17,6 +17,10 @@ public class PostCommentDao {
 	public ArrayList<PostComment> postCommentList(SqlSessionTemplate sqlSession, int postId) {
 		return (ArrayList)sqlSession.selectList("postCommentMapper.postCommentList", postId);
 	}
+
+	public int insertComment(SqlSessionTemplate sqlSession, PostComment pc) {
+		return sqlSession.insert("postCommentMapper.insertComment", pc);
+	}
 	
 	
 

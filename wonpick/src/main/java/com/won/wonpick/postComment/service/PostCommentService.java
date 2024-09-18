@@ -10,4 +10,6 @@ public interface PostCommentService {
 
 	ArrayList<PostComment> postCommentList(int postId);
 
+	int insertComment(PostComment pc);
+
 }

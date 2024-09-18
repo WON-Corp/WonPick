@@ -93,6 +93,7 @@
 	</c:if>
 
 
+
 	<%@ include file="common/menuBar.jsp"%>
 
 
@@ -178,18 +179,11 @@
 				</div>
 			</div>
 
-			<!-- 게시물 댓글 갯수 확인 스크립트 -->
-			<script>
-				$(function() {
-					
-				});
-			</script>
-
 			<!-- 게시물 페이지 모달 -->
 			<div class="modal fade" id="detailPostModal" tabindex="-1"
 				aria-labelledby="detailPostModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-lg">
-					<div class="post">
+					<div class="modal-content post">
 						<!-- 모달 헤더 부분 -->
 						<div class="post-header">
 							<div class="post-info">
@@ -200,45 +194,47 @@
 							<img src="" onerror="src='/wonpick/resources/img/logo.jpg'"
 								class="post-profile-img" id="userPfImg">
 						</div>
-							<img src="" alt="삭제된 파일입니다" class="post-image" id="imgFile"
-								hidden>
+						<img src="" alt="삭제된 파일입니다" class="post-image" id="imgFile" hidden>
 
-							<video src="" class="post-image" controls autoplay loop muted
-								id="videoFile" hidden></video>
+						<video src="" class="post-image" controls autoplay loop muted
+							id="videoFile" hidden></video>
 
-							<img src="/wonpick/resources/img/sizing_space.jpg" alt="공백"
-								class="post-image">
-							<div class="post-content">
+						<img src="/wonpick/resources/img/sizing_space.jpg" alt="공백"
+							class="post-image">
+						<div class="post-content">
 
-								<p>
-									<strong id="postTitle"></strong>
-								</p>
+							<p>
+								<strong id="postTitle"></strong>
+							</p>
 
+						</div>
+						<div class="post-comments">
+
+							<p id="postContent"></p>
+
+							<div class="post-actions">
+								<img src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고"
+									class="heart">
+								<ion-icon name="chatbubble-outline"></ion-icon>
+								<ion-icon name="bookmark-outline"></ion-icon>
 							</div>
-							<div class="post-comments">
 
-								<p id="postContent"></p>
+							<!-- 여기부터 댓글 리스트 ajax사용 -->
+							<div id="postCommentList"></div>
+							<!-- 여기까지 -->
 
-								<div class="post-actions">
-									<img src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고"
-										class="heart">
-									<ion-icon name="chatbubble-outline"></ion-icon>
-									<ion-icon name="bookmark-outline"></ion-icon>
-								</div>
-
-								<!-- 여기부터 댓글 리스트 ajax사용 -->
-								<div id="postCommentList"></div>
-								<!-- 여기까지 -->
-
-						<!-- 모달 바디 부분 -->
-						<div class="modal-body">
-								<form class="post-info"	action="#" method="post">
+							<!-- 모달 바디 부분 -->
+							<div class="modal-body">
+								<form class="post-info"
+									action="/wonpick/postComment/insertComment" method="post">
 									<h3 id="userId">${ loginUser.userId }</h3>
 									<div class="mb-3">
 										<textarea class="form-control" id="errorPostContent"
-											name="errorContent" placeholder="댓글작성" required style="resize:none"></textarea>
+											name="postComment" placeholder="댓글작성" required
+											style="resize: none" maxlength="100"></textarea>
 										<input type="hidden" name="userId"
-											value="${ loginUser.userId }">
+											value="${ loginUser.userId }"> <input type="hidden"
+											name="postId" value="">
 
 									</div>
 
@@ -277,8 +273,9 @@
                 document.getElementById("userPfImg").src = result.userPfImg;
                 $("#postTitle").text(result.postTitle);
                 $("#postContent").text(result.postContent);
+                $("input[name=postId]").val(result.postId)
                 
-                if (result.imgFile == undefined) {
+                if (result.imgFile == '#') {
                 	
                 	$("#imgFile").attr("hidden", true);
                 	$("#videoFile").attr("hidden", true);
@@ -328,6 +325,7 @@
         });
  		
  	}
+ 	
 </script>
 
 </html>

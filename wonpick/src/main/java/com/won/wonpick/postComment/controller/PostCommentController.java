@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
@@ -53,6 +54,20 @@ public class PostCommentController {
 			e.printStackTrace();
 		}
 
+	}
+	
+	@RequestMapping("/insertComment")
+	public String insertComment(PostComment pc, HttpSession session) {
+
+		int result = pcService.insertComment(pc);
+		
+		if(result > 0) {
+			session.setAttribute("redirectModalPostId", pc.getPostId());
+			return "redirect:/";
+		} else {
+			session.setAttribute("alertMsg", "댓글작성에 실패했습니다.");
+			return "redirect:/";
+		}
 	}
 
 }
