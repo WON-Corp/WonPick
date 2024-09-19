@@ -9,5 +9,7 @@ public interface SaveListService {
 
 	int selectSaveList(SaveList sList);
 
+	int deleteSaveList(SaveList sList);
+
 	
 }

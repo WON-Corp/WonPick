@@ -22,11 +22,17 @@ public class SaveListServiceImpl implements SaveListService{
 	@Override
 	public int insertSaveList(SaveList s) {
 		// TODO Auto-generated method stub
-		System.out.println("service부분");
+	
 		return sDao.insertSaveList(sqlSession,s);
 	}
+	
 	public int selectSaveList(SaveList s) {
 		return sDao.selectSaveList(sqlSession,s);
+	}
+	
+	@Override
+	public int deleteSaveList(SaveList s) {
+		return sDao.deleteSaveList(sqlSession,s);
 	}
 	
 }

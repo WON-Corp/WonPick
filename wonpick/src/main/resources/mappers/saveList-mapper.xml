@@ -18,5 +18,8 @@
 		from save_list
 		where user_id = #{userId} and saved_post_id = #{savePostId}
 	</select>
-
+	
+	<delete id="deleteSaveList">
+		DELETE FROM save_list WHERE SAVED_POST_ID = #{savePostId} AND USER_ID = #{userId}
+	</delete>
 </mapper>
