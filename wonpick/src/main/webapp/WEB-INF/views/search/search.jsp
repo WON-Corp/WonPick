@@ -36,477 +36,140 @@
 
 <title>WonPick</title>
 <style>
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: 'Poppins', sans-serif;
-	scroll-behavior: smooth;
-}
-
-body {
-	display: flex;
-	height: 100vh;
-	overflow-y: auto;
-}
-
-/*navigation 스타일 시작*/
-.navigation {
-	position: fixed;
-	width: 75px;
-	background-color: #fff;
-	padding: 20px;
-	transition: width 0.5s;
-	border-right: 1px solid #ddd;
-	z-index: 99;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
-	min-height: 800px;
-}
-
-.navigation.open {
-	width: 250px;
-	min-height: 800px;
-}
-
-.navigation .menuToggle {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 60px;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-	padding: 0 23px;
-	box-sizing: border-box;
-}
-
-.navigation .menuToggle::before {
-	content: '';
-	position: absolute;
-	width: 30px;
-	height: 2px;
-	background-color: #333;
-	transform: translateY(-8px);
-	transition: all 0.5s;
-}
-
-.navigation.open .menuToggle::before {
-	transform: translateY(0px) rotate(45deg);
-}
-
-.navigation .menuToggle::after {
-	content: '';
-	position: absolute;
-	width: 30px;
-	height: 2px;
-	background-color: #333;
-	transform: translateY(8px);
-	transition: all 0.5s;
-	box-shadow: 0 -8px 0 #333;
-}
-
-.navigation.open .menuToggle::after {
-	transform: translateY(0px) rotate(-45deg);
-	box-shadow: 0 0 0 #333;
-}
-
-.navigation .logo {
-	width: 55px;
-	height: 55px;
-	border-radius: 50%;
-	transition: all 0.5s ease-in-out;
-}
-
-.navigation .logo-text {
-	font-size: 14px;
-	/* 텍스트 크기 조정 */
-	color: #333;
-	text-align: center;
-	font-family: "Ubuntu", sans-serif;
-	font-style: italic;
-}
-
-/* 네비게이션이 열릴 때 로고와 텍스트 표시 */
-.navigation .logo-container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	opacity: 0;
-	visibility: hidden;
-	transition: opacity 1s ease-in,
-}
-
-.navigation.open .logo {
-	width: 80px;
-	height: auto;
-}
-
-.navigation.open .logo-container {
-	opacity: 1;
-	visibility: visible;
-	margin-left: 60px;
-	margin-bottom: 100px;
-	transition-delay: 0.3s;
-	/* 로고와 텍스트 표시 0.3 초 딜레이 */
-}
-
-.navigation ul {
-	display: flex;
-	flex-direction: column;
-	margin-top: 10px;
-	gap: 10px;
-	width: 100%;
-}
-
-.navigation ul li {
-	list-style: none;
-	position: relative;
-	width: 100%;
-	padding: 0 5px;
-	transition: all 0.4s;
-}
-
-.navigation ul li.active {
-	transform: translateX(30px);
-}
-
-.navigation ul li a {
-	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-	text-align: center;
-	text-decoration: none;
-}
-
-.navigation ul li a .icon {
-	position: relative;
-	display: block;
-	width: 55px;
-	height: 55px;
-	line-height: 55px;
-	transition: all .4s;
-	border-radius: 10px;
-	font-size: 30px;
-	color: #222;
-}
-
-/* navigation의 텍스트를 가렸다가 */
-.navigation ul li a .text {
-	position: relative;
-	padding: 0 px;
-	display: flex;
-	align-items: center;
-	color: #333;
-	opacity: 0;
-	visibility: hidden;
-	transition: 0.4s;
-}
-
-/* navigation의 텍스트 보이게 함 */
-.navigation.open ul li a .text {
-	opacity: 1;
-	visibility: visible;
-}
-
-.content {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	flex: 1;
-	margin-left: 120px;
-	margin-right: 330px;
-	padding: 20px;
-	box-sizing: border-box;
-}
-
-/* nav가 열릴 때 좌우 여백도 같이 줄어들음 */
-.navigation.open ~.content {
-	margin-left: 250px;
-	transition: ease-in-out 0.4s;
-}
-
-/* 푸터 영역 */
-.footer {
-	position: absolute;
-	bottom: 20px;
-	left: 10px;
-	opacity: 0;
-	transition: opacity 1s ease-in;
-	font-size: 12px;
-	color: #666;
-}
-
-/* navigation이 열렸을 때 푸터가 보이게 함 */
-.navigation.open .footer {
-	opacity: 1;
-	visibility: visible;
-}
-
 .search {
-            width: 100%;
-            margin: 10px;
-            
-        }
-
-        .search-box{
-            min-width: 300px;
-            width: 100%;
-            height: 50px;
-            padding: 0px 10px;
-            border: 0px;
-            border-top-left-radius: 5px;
-            border-bottom-left-radius: 5px;
-            margin-top: 15px;
-            margin: 40px;
-            margin-right: 0px;
-            position: relative;
-            background-color: #f0f0f0;
-            border-radius: 15px;
-            border-bottom-right-radius: 0px;
-            border-top-right-radius: 0px;
-        }
-        
-        .search-button {
-            margin: 40px;
-            margin-left: 0px;
-            background-color: #f0f0f0;
-            width: 150px; 
-            height: 50px; 
-            border: none; 
-            border-top-right-radius: 5px; 
-            border-bottom-right-radius: 5px; 
-            cursor: pointer;
-            border-radius: 15px;
-            border-top-left-radius: 0px;
-            border-bottom-left-radius: 0px;
-            
-        }
-        .search-button > span  { 
-            background: url(https://e7.pngegg.com/pngimages/827/272/png-clipart-computer-icons-search-box-others-miscellaneous-magnifier-thumbnail.png) 
-                    no-repeat 99% center #f0f0f0;
-            background-size: 27px;
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-        }
-
-        .searchrecord {
-            background-color: #f0f0f0;
-            width: calc(100% - 100px);
-            height: 70%;
-            margin-left: 50px;
-            border-radius: 15px;
-            display: none;
-            padding: 50px;
-        }
-
-        .autoSearch {
-            background-color: #f0f0f0;
-            width: calc(100% - 100px);
-            height: 70%;
-            margin-left: 50px;
-            border-radius: 15px;
-            display: none;
-            padding: 50px;
-        }
-
-        .searchrecord li {
-            margin: 50px;
-        }
-
-@media all and (max-width: 1100px) {
-	.content {
-		margin-right: 50px;
-	}
-	.message {
-		width: calc(100% - 20px);
-	}
-}
-
-/* my profile 창 */
-.myprofile {
-	width: 300px;
-	height: 129px;
-	box-sizing: border-box;
-	position: fixed;
-	right: 0;
-	top: 0;
-	border-left: 1px solid #ddd;
-	border-bottom: 1px solid #ddd;
-	overflow: hidden;
-}
-
-.myprofile h4 {
-	margin-top: 10px;
-	margin-left: 10px;
-	margin-bottom: 5px;
-}
-
-.myprofile img {
-	width: 60px;
-	height: 60px;
-	border-radius: 50%;
-	background-color: #ddd;
-	margin: 10px 15px;
-	object-fit: cover;
-}
-
-.myprofile .myname {
-	position: absolute;
-	top: 65px;
-}
-
-.logout {
-	cursor: pointer;
-	font-size: x-small;
-	color: #aaa;
-	margin-top: 0px;
-}
-
-/* my profile 창 끝 */
-
-/* 오른쪽 WM창 */
-.sidebar-message {
-	width: 300px;
-	background-color: #fff;
-	max-height: 1000px;
-	padding: 10px 15px;
-	box-sizing: border-box;
-	position: fixed;
-	right: 0;
-	/* Todo --수정 */
-	top: 130px;
-	bottom: 0;
-	border-left: 1px solid #ddd;
-	overflow-y: auto;
-}
-
-.sidebar-message h3 {
-	margin-bottom: 15px;
-	font-size: 16px;
-	font-weight: bold;
-	color: #333;
-}
-
-.message-list {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-}
-
-.message-list li {
-	display: flex;
-	align-items: center;
-	padding: 8px 5px;
-	border-bottom: 1px solid #ddd;
-	cursor: pointer;
-}
-
-.message-list li:hover {
-	background-color: #f0f0f0;
-	transition: 0.4s ease-in-out;
-}
-
-.message-list img {
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	margin-right: 10px;
-	object-fit: cover;
-}
-
-.message-list .message-info {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-
-.message-list .message-info .name {
-	font-weight: bold;
-	color: #333;
-}
-
-.message-list .message-info .message-text {
-	font-size: 14px;
-	color: #888;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-.message-list .message-info .time {
-	font-size: 11px;
-	color: #aaa;
-	margin-top: 2px;
-}
-
-/* 오른쪽 WM창 끝 */
-
-/* 더보기 팝업 메뉴 */
-.more-popup {
-	position: absolute;
-	display: none;
-	bottom: 50px;
-	left: 170px;
-	transform: translateX(-50%);
-	width: 200px;
-	background-color: #fff;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	border-radius: 8px;
-	z-index: 100;
-}
-
-.more-popup.active {
-	display: block;
-}
-
-.more-popup ul {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-}
-
-.more-popup ul li {
-	padding: 10px;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-}
-
-.more-popup ul li:hover {
-	background-color: #f0f0f0;
-}
-
-.more-popup ul li ion-icon {
-	margin-right: 10px;
-}
-
-.more-popup button {
 	width: 100%;
-	border: none;
-	background-color: #fff;
 }
 
-@media all and (min-width:0px) and (max-width:1100px) {
-	.sidebar-message {
-		display: none;
-	}
-	.myprofile {
-		display: none;
-	}
-	.content {
-		margin-right: 50px;
-	}
-	.chat-header {
-		width: 100%;
-	}
+.search-box {
+	width: 70%;
+	height: 50px;
+	padding: 0px 10px;
+	border: 0px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	margin-top: 40px;
+	margin-bottom: 40px;
+	margin-right: 0px;
+	margin-left: 80px;
+	position: relative;
+	background-color: #f0f0f0;
+	border-radius: 15px;
+	border-bottom-right-radius: 0px;
+	border-top-right-radius: 0px;
+}
+
+.search-button {
+	margin-top: 40px;
+	margin-left: 0px;
+	background-color: #f0f0f0;
+	width: 150px;
+	height: 50px;
+	border: none;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	cursor: pointer;
+	border-radius: 15px;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+.search-button>div {
+	background:
+		url(https://e7.pngegg.com/pngimages/827/272/png-clipart-computer-icons-search-box-others-miscellaneous-magnifier-thumbnail.png)
+		no-repeat 99% center #f0f0f0;
+	background-size: 27px;
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+}
+
+.searchrecord {
+	background-color: #fff;
+	width: calc(70% + 150px);;
+	height: 700px;
+	margin-left: 50px;
+	border-radius: 15px;
+	display: none;
+	padding: 50px;
+}
+
+
+.searchrecord li {
+	margin: 50px;
+}
+
+<!-- 검색 리스트 -->
+.post {
+	border:1px solid #000;
+	padding: 20px 100px;
+	margin-bottom: 15px;
+	border-radius: 5px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	max-width: 750px;
+}
+
+.post-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.post-profile-img {
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.post-info h3 {
+	margin: 0;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.post-time {
+	font-size: 12px;
+	color: #888;
+}
+
+.post-options {
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.post-image {
+	width: 100%;
+	margin-top: 15px;
+	border-radius: 10px;
+}
+
+.post-content {
+	margin-top: 10px;
+}
+
+.post-actions ion-icon {
+	font-size: 20px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.heart {
+	width: 21px;
+	height: 22px;
+	margin-right: 10px;
+	cursor: pointer;
+	margin-bottom: 11px;
+}
+
+.view-comments {
+	color: #888;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+#detailPost {
+	background-color: #fff;
+	border: none;
 }
 </style>
 </head>
@@ -515,89 +178,404 @@ body {
 
 	<%@ include file="/WEB-INF/views/common/menuBar.jsp"%>
 
-    <!-- 기다운 : 검색창 기능 추가 -->
-    <div class="content">
-	
-	<%@ include file="/WEB-INF/views/common/storyBar.jsp"%>
-        <header>
-            
-            <div class="search" >
-            <h2>검색</h2>
-            <div style="display: flex;">
-                <input type="text" placeholder="검색" class="search-box" >
-                <button type="submit" class="search-button">
-                    <span> </span>
-                </button>
-            </div>
-            <!-- https://e7.pngegg.com/pngimages/827/272/png-clipart-computer-icons-search-box-others-miscellaneous-magnifier-thumbnail.png -->
-            </div>
-        </header>
+	<!-- 기다운 : 검색창 기능 추가 -->
+	<div class="content">
 
-        <div class="searchrecord">
-            <h3>검색기록</h3> <br />
-            <ul>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-                <li>4</li>
-                <li>5</li>
-            </ul>
-        </div>
+		<%@ include file="/WEB-INF/views/common/storyBar.jsp"%>
+		<header>
 
-        <div class="autoSearch">
-            <h3>탐색목록</h3>
-        </div>
-        
-    </div>
-    <script>
-        $(function(){
+			<div class="search">
+					<form action="/wonpick/post/searchPostList" method="post">
+				<div style="display: flex;">
+					<input type="text" placeholder="검색" name="keyword" class="search-box">
+					<button type="submit" class="search-button">
+						<div></div>
+					</button>
+				</div>
+					</form>
+				<!-- https://e7.pngegg.com/pngimages/827/272/png-clipart-computer-icons-search-box-others-miscellaneous-magnifier-thumbnail.png -->
+				<div>
+					<div class="searchrecord">
+						
+					</div>
 
-            $('.autoSearch').css('display','block');
+					<div class="autoSearch">
+						<c:forEach var="list" items="${ list }">
+			<div class="content">
+			<div class="feed">
+				<div class="post">
+					<div class="post-header">
+						<div class="post-info">
+							<br>
+							<h3>${ list.userId }</h3>
+							<span class="post-time">${ list.postingTime }</span>
+						</div>
+						<img src="${ list.userPfImg }"
+							onerror="src='/wonpick/resources/img/logo.jpg'"
+							class="post-profile-img">
+					</div>
+					<c:if test="${ not empty list.imgFile }">
+						<c:if
+							test="${ not fn:contains( list.imgFile, '.mp4') && not fn:contains( list.imgFile, '.avi')}">
+							<img src="${ list.imgFile }" alt="삭제된 파일입니다" class="post-image">
+						</c:if>
+						<c:if
+							test="${ fn:contains( list.imgFile, '.mp4') || fn:contains( list.imgFile, '.avi')}">
+							<video src="${ list.imgFile }" class="post-image" controls
+								autoplay loop muted></video>
+						</c:if>
+					</c:if>
+					<img src="/wonpick/resources/img/sizing_space.jpg" alt="공백"
+						class="post-image">
+					<div class="post-content">
+						<button type="button" id="detailPost" data-toggle="modal"
+							data-target="#detailPostModal"
+							onclick="getDetailPost(${ list.postId });">
+							<p>
+								<strong>${ list.postTitle }</strong>
+							</p>
+						</button>
+					</div>
+					<div class="post-comments">
+						<button type="button" id="detailPost" data-toggle="modal"
+							data-target="#detailPostModal"
+							onclick="getDetailPost(${ list.postId });">
+							<p>&nbsp; ${ list.postContent }</p>
+						</button>
+						<div class="post-actions">
+							<button id="detailPost" onclick="postPick(${ list.postId })"><img src="/wonpick/resources/img/logo.jpg" id="likeimg${ list.postId }" alt="WonPick 로고" class="heart"></button>
+							<button id="detailPost" onclick="confirmPostPick(${list.postId})"><ion-icon name="bookmark-outline"></ion-icon></button>
+						</div>
+						<button type="button" id="detailPost" data-toggle="modal"
+							data-target="#detailPostModal"
+							onclick="getDetailPost(${ list.postId });">
+							<p class="view-comments"><span id="postLike${ list.postId }">댓글보기</span> &nbsp;<span id="commentCount${ list.postId }">댓글보기</span></p>
+							<script>
+							
+							function confirmPostPick(postId) {
+							    // confirm 창을 띄워 사용자가 저장할지 결정하게 함
+							    if (confirm("저장하시겠습니까?\n(이미 저장된 게시물의 경우 저장목록에서 삭제됩니다)")) {
+							        // 사용자가 '예'를 선택한 경우
+							        postSave(postId);
+							    } else {
+							        // 사용자가 '아니오'를 선택한 경우
+							        console.log('저장 취소됨');
+							    }
+							}
+							function postSave(postId ) {
+							    $.ajax({
+							        url: '/wonpick/saveList/insertSaveList', // 서버 URL 지정
+							        type: 'POST',               // HTTP 메소드
+							        data: {
+							            postId : postId  // 데이터 포함
+							        },
+							        success: function(response) {
+							            // 요청 성공 시 수행할 작업
+							            if(response == "Success"){
+							            	alert("게시물을 저장했습니다");
+							            }else if(response == "Failed"){
+							            	alert("저장목록에서 삭제 되었습니다");
+							            }
+							           	
+							        },
+							        error: function(xhr, status, error) {
+							            // 요청 실패 시 수행할 작업
+							            //alertMsg("이미 저장된 게시물이거나 저장 할 수 없는 게시물입니다.")
+							            console.error('Error:', status, error);
+							        }
+							    });
+							    
+							}
+							
+							
+							// 좋아요 추가, 삭제
+							function postPick( postId ) {
+								$.ajax({
+						            url: "/wonpick/postLike/insertPostLike",
+						            type: 'post',
+						            data: { postId: postId , userId: "${ loginUser.userId }" },
+						            success: function(result) {
+						                if(result == "Success"){
+							            	
+						                	
+						                	
+							            }else if(result == "Failed"){
+							            	
+							            }
 
-            $('.search-box').click(function(){
-                const $s = $('.searchrecord');
-                const $a = $('.autoSearch');
-                // $를 변수명 앞에 붙이게 되면 보통 jQuery방식으로 선택된 요소를 의미함!
-                // .next() : 선택된 요소의 뒤에 오는 요소(현재 코드 기준 p요소)
-                if($s.css('display') == 'none') {
+						            },
+						            error: function(err) {
+						                	
+						            }
+						        });
+								
+								const imgElement = document.getElementById("likeimg"+postId);
+							    
+							    // 현재 이미지 경로
+							    const currentSrc = imgElement.src;
+							    
+							    // 원래 이미지 경로와 변경할 이미지 경로
+							    const originalImageSrc = "/wonpick/resources/img/logo.jpg";
+							    const newImageSrc = "/wonpick/resources/img/heart.jpg";
+							    
+							    // 현재 이미지에 따라 경로를 토글
+							    if (currentSrc.includes(originalImageSrc)) {
+							      imgElement.src = newImageSrc;
+							    } else {
+							      imgElement.src = originalImageSrc;
+							    }
+							  
+								
+							}
+									
+									$(function(){
+										 
+										 
+										$.ajax({
+											url : "/wonpick/postLike/selectLike",
+											type : 'post',
+											data : {postId : ${list.postId} , userId : "${loginUser.userId}"},
+											success: function(result){
+												const imgElement = document.getElementById("likeimg"+${list.postId});
 
-                    $s.siblings('.searchrecord').slideUp();
+												if(result == "yes"){
+												
+													imgElement.src = "/wonpick/resources/img/heart.jpg";
+												
+												}else if(result == "no"){
+													
+													imgElement.src = "/wonpick/resources/img/logo.jpg";
+													
+												}
+											},
+											error: function(err){
+												
+											}
+										});
+									});
+									
+									$(function() {
+										$.ajax({
+								            url: "/wonpick/postComment/postCommentCount",
+								            type: 'post',
+								            data: { postId: ${ list.postId } },
+								            success: function(result) {
+												
+												if(result == 0) {
+												$("#commentCount${ list.postId }").text("댓글 0개")
+											}
+												else {
+								                $("#commentCount${ list.postId }").text("댓글 "+result+"개")
+											}
+								            },
+								            error: function(err) {
+								                
+								            }
+								        });
+									});
+									
+									// 좋아요 갯수 가져오기
+									$(function() {
+										$.ajax({
+								            url: "/wonpick/postLike/postLikeCount",
+								            type: 'post',
+								            data: { postId: ${ list.postId } },
+								            success: function(result) {
+												
+												if(result == 0) {
+												$("#postLike${ list.postId }").text("Pick 0개")
+											}
+												else {
+						                $("#postLike${ list.postId }").text("Pick "+result+"개")
+											}
+								            },
+								            error: function(err) {
+								                	
+								            }
+								        });
+									});
+			
+									
+								</script>
+						</button>
+					</div>
+				</div>
+			</div>
 
-                    $a.slideUp();
-                    $s.slideDown();
+			<!-- 게시물 페이지 모달 -->
+			<div class="modal fade" id="detailPostModal" tabindex="-1"
+				aria-labelledby="detailPostModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content content feed">
+						<!-- 모달 헤더 부분 -->
+						<div class="post-header">
+							<div class="post-info">
+								<br>
+								<h3 id="userId"></h3>
+								<span class="post-time" id="postingTime"></span>
+							</div>
+							<img src="" onerror="src='/wonpick/resources/img/logo.jpg'"
+								class="post-profile-img" id="userPfImg">
+						</div>
+						<img src="" alt="삭제된 파일입니다" class="post-image" id="imgFile" hidden>
 
-                } 
-            });
+						<video src="" class="post-image" controls autoplay loop muted
+							id="videoFile" hidden></video>
 
-            $('.search-button').click(function(){
-                const $s = $('.searchrecord');
-                const $a = $('.autoSearch');
+						<img src="/wonpick/resources/img/sizing_space.jpg" alt="공백"
+							class="post-image">
+						<div class="post-content">
 
-                if($s.css('display') != 'none') {
-                    $s.slideUp();
+							<p>
+								<strong id="postTitle"></strong>
+							</p>
 
-                    $a.siblings('.autoSearch').slideDown();
-                    $a.slideDown();
+						</div>
+						<div class="post-comments">
+
+							<p id="postContent"></p>
+
+							<div class="post-actions">
+								<button id="detailPost" onclick="postPick(${ list.postId })"><img  src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고"
+									class="heart"></button>
+								<button id="detailPost" onclick="confirmPostPick(${list.postId})"><ion-icon name="bookmark-outline"></ion-icon></button>
+							</div>
+
+							<!-- 여기부터 댓글 리스트 ajax사용 -->
+							<div id="postCommentList"></div>
+							<!-- 여기까지 -->
+
+							<!-- 모달 바디 부분 -->
+							<div class="modal-body">
+								<form class="post-info"
+									action="/wonpick/postComment/insertComment" method="post">
+									<h3 id="userId">${ loginUser.userId }</h3>
+									<div class="mb-3">
+										<textarea class="form-control" id="errorPostContent"
+											name="postComment" placeholder="댓글작성" required
+											style="resize: none" maxlength="100"></textarea>
+										<input type="hidden" name="userId" value="${ loginUser.userId }"> 
+										<input type="hidden" name="postId" value="">
+
+									</div>
+
+
+									<button class="btn btn-primary">댓글작성</button>
+								</form>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</c:forEach>
+					</div>
+				</div>
+			</div>
+		</header>
+
+
+	</div>
+	<script>
+		$(function() {
+
+			$('.autoSearch').css('display', 'block');
+
+			$('.search-box').click(function() {
+				const $s = $('.searchrecord');
+				const $a = $('.autoSearch');
+				// $를 변수명 앞에 붙이게 되면 보통 jQuery방식으로 선택된 요소를 의미함!
+				// .next() : 선택된 요소의 뒤에 오는 요소(현재 코드 기준 p요소)
+				if ($s.css('display') == 'none') {
+
+					$s.siblings('.searchrecord').slideUp();
+
+					$a.slideUp();
+					$s.slideDown();
+
+				}
+			});
+
+			$('.search-button').click(function() {
+				const $s = $('.searchrecord');
+				const $a = $('.autoSearch');
+
+				if ($s.css('display') != 'none') {
+					$s.slideUp();
+
+					$a.siblings('.autoSearch').slideDown();
+					$a.slideDown();
+				}
+			});
+
+		})
+		
+		function getDetailPost(postId){
+ 		$.ajax({
+            url: "/wonpick/post/postDetail",
+            type: 'post',
+            data: { postId: postId },
+            success: function(result) {
+                
+                $("#userId").text(result.userId);
+                document.getElementById("userPfImg").src = result.userPfImg;
+                $("#postTitle").text(result.postTitle);
+                $("#postContent").text(result.postContent);
+                $("input[name=postId]").val(result.postId)
+                
+                if (result.imgFile == '#') {
+                	
+                	$("#imgFile").attr("hidden", true);
+                	$("#videoFile").attr("hidden", true);
+                	
+                } else if (result.imgFile.includes(".mp4") || result.imgFile.includes(".avi")){
+                	
+                	document.getElementById("videoFile").src = result.imgFile;
+					$("#videoFile").removeAttr("hidden");
+					$("#imgFile").attr("hidden", true);
+					
+                } else {
+                	
+                	document.getElementById("imgFile").src = result.imgFile;
+					$("#imgFile").removeAttr("hidden");
+					$("#videoFile").attr("hidden", true);
                 }
-            });
+                
+            },
+            error: function(err) {
+                
+                    
+            }
+        });
+ 		
+ 		// 댓글 ajax
+ 		$.ajax({
+            url: "/wonpick/postComment/postCommentList",
+            type: 'post',
+            data: { postId: postId },
+            success: function(result) {
+            	$("#postCommentList").text("");
+                for(let item of result){
+                	$("#postCommentList").append(
+                			'<div class="post-header"><div class="post-info"><br><h3 id="commentUserId">'+item.userId+'</h3>'+
+							'<span class="post-time" id="postingTime">'+item.commentTime+'</span></div><div class="post-actions">'+
+							'<img src="'+item.userPfImg+'" onerror="src='+"'/wonpick/resources/img/logo.jpg'"+'" class="post-profile-img" id="commentUserPfImg" style="width:30px; height:30px">'+
+							'<img src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고" class="heart" style="margin:5px"></div></div>'+
+							'<div class="post-comments">'+
+							'<p id="postCommentContent">'+item.postComment+'</p></div></div>'
+                	);
+                } 
+            },
+            error: function(err) {
+                
+                    
+            }
+        });
+ 		
+ 	}
+	</script>
+</body>
 
-        })
-    </script>
-    <!-- 내 프로필 -->
-	<div class="myprofile"
-    onclick="location.href='<%=request.getContextPath()%>/myProfile.me'">
-    <h4>내 프로필</h4>
-    <div class="myprofile2">
-        <img src="src='resources/logo.jpg" onerror="src='resources/logo.jpg'">
-        <span class="myname">${ loginUser.nickName }</span>
-    </div>
-    <script>
-    function userLogout() {
-        location.href = "/wonPick/logout.me";
-    }
-</script>
-
-
-	<jsp:include page="../common/sideBar.jsp"/>
-
+	<jsp:include page="../common/sideBar.jsp" />
 </html>

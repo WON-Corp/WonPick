@@ -45,4 +45,10 @@ public class PostServiceImpl implements PostService {
 	}
 
 
+	@Override
+	public ArrayList<Post> searchPostList(String keyword) {
+		return pDao.searchPostList(sqlSession, keyword);
+	}
+
+
 }

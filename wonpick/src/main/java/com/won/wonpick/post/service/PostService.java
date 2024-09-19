@@ -15,4 +15,6 @@ public interface PostService {
 	int updateCount(int postId);
 	
 	ArrayList<Post> selectSaveList();
+
+	ArrayList<Post> searchPostList(String keyword);
 }

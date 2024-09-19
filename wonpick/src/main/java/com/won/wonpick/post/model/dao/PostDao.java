@@ -28,4 +28,8 @@ public class PostDao {
 	public ArrayList<Post> selectSaveList(SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("postMapper.selectSaveList");
 	}
+
+	public ArrayList<Post> searchPostList(SqlSessionTemplate sqlSession, String keyword) {
+		return (ArrayList)sqlSession.selectList("postMapper.searchPostList", keyword);
+	}
 }
