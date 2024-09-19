@@ -188,6 +188,24 @@
 							    
 							}
 							
+							// 좋아요 추가, 삭제 2
+		                     function updateLikeCount(postId) {
+		                         $.ajax({
+		                             url: "/wonpick/postLike/postLikeCount",
+		                             type: 'post',
+		                             data: { postId: postId },
+		                             success: function(result) {
+		                                 if (result == 0) {
+		                                     $("#postLike" + postId).text("Pick 0개");
+		                                 } else {
+		                                     $("#postLike" + postId).text("Pick " + result + "개");
+		                                 }
+		                             },
+		                             error: function(err) {
+		                                 console.error(err);
+		                             }
+		                         });
+		                     }
 							
 							// 좋아요 추가, 삭제
 							function postPick( postId ) {
@@ -197,11 +215,9 @@
 						            data: { postId: postId , userId: "${ loginUser.userId }" },
 						            success: function(result) {
 						                if(result == "Success"){
-							            	
-						                	
-						                	
+							            	updateLikeCount(postId);
 							            }else if(result == "Failed"){
-							            	
+							            	updateLikeCount(postId);
 							            }
 
 						            },
