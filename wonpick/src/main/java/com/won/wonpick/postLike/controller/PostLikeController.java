@@ -33,11 +33,10 @@ public class PostLikeController {
 	@ResponseBody
 	@RequestMapping("/insertPostLike")
 	public String insertPostLike(PostLike pl, HttpServletResponse response) {
-		System.out.println(pl);
+
 		int count = plService.selectUserPostLike(pl);
-		System.out.println(count);
+		
 		if(count == 0) {
-			System.out.println(plService.userPostLike(pl));
 		
 			return "Success";
 		}else {
