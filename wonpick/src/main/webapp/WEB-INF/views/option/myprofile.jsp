@@ -89,6 +89,7 @@
 
     .overview-item:hover {
         transform: translateY(-10px);
+        text-decoration: none;
 
     }
 
@@ -115,10 +116,11 @@
         transition: transform 0.3s ease;
     }
 
-    .overview-item:hover .icon-background {
+    .overview-item:hover .icon-background a:hover {
         transform: scale(1.1);
         color: rgba(0, 0, 0, 0.1);
     }
+    
 
     @media (max-width: 768px) {
         .admin-page {
@@ -141,6 +143,7 @@
             grid-template-columns: 1fr;
         }
     }
+    
 </style>
 
 </head>
