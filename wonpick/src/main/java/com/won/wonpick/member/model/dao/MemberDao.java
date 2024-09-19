@@ -35,8 +35,14 @@ public class MemberDao {
 	public int updateMember(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.update("memberMapper.updateMember", m);
 	}
+
 	public int updateProfile(SqlSessionTemplate sqlSession, Member m) {
 		System.out.println("dao 부분");
 		return sqlSession.update("memberMapper.updateProfile", m);
 	}
+
+	public Member selectMemberById(SqlSessionTemplate sqlSession, String userId) {
+		return sqlSession.selectOne("memberMapper.selectMemberById", userId);
+	}
+
 }
