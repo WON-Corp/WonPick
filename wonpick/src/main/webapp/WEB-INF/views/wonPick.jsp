@@ -144,8 +144,8 @@
 							<p>&nbsp; ${ list.postContent }</p>
 						</button>
 						<div class="post-actions">
-							<button ><img src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고" class="heart"></button>
-							<button onclick="confirmPostPick(${list.postId})"><ion-icon name="bookmark-outline"></ion-icon></button>
+							<button id="detailPost"><img src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고" class="heart"></button>
+							<button id="detailPost" onclick="confirmPostPick(${list.postId})"><ion-icon name="bookmark-outline"></ion-icon></button>
 						</div>
 						<button type="button" id="detailPost" data-toggle="modal"
 							data-target="#detailPostModal"
