@@ -512,161 +512,13 @@ body {
 </head>
 
 <body>
-	<% if (session.getAttribute("loginUser") == null) {%>
-	<script>
-			onload() = function() {
-				location.href = "/wonPick/views/wonPickLogin.jsp"
-			}
-		</script>
-	<% } %>
 
-	<%
-	String contextPath = request.getContextPath();		// => /jsp
-	
-	String alertMsg = (String)session.getAttribute("alertMsg");
-    %>
-
-	<% if (alertMsg != null) {%>
-	<script>
-			alert("<%= alertMsg%>");
-		</script>
-	<% session.removeAttribute("alertMsg"); %>
-	<% } %>
-
-	<div class="navigation">
-		<div class="menuToggle"></div>
-
-		<!-- navigation 아이콘은 https://ionic.io/ionicons 사이트 접속 후 사용함!! -->
-		<ul>
-			<!--  로고 및 텍스트 -->
-			<li class="list"><a href="Main.html">
-					<div class="logo-container">
-						<img src="resources/logo.jpg" alt="WonPick 로고" class="logo">
-						<p class="logo-text">WonPick</p>
-					</div>
-			</a> <!-- list 로고 끝 --></li>
-			<li class="list"><a href="Main.html"> <span class="icon">
-						<ion-icon name="home-outline"></ion-icon>
-				</span> <span class="text">홈</span>
-			</a></li>
-			<li class="list"><a href="#"> <span class="icon"> <ion-icon
-							name="search-outline"></ion-icon>
-				</span> <span class="text">검색</span>
-			</a></li>
-			<li class="list"><a href="#"> <span class="icon"> <ion-icon
-							name="caret-forward-circle-outline"></ion-icon>
-				</span> <span class="text">릴스</span>
-			</a></li>
-			<li class="list">
-			<li class="list"><a
-				href="<%= request.getContextPath() %>/message.me"> <span
-					class="icon"> <ion-icon name="chatbubble-outline"></ion-icon>
-				</span> <span class="text">메시지</span>
-			</a></li>
-			</li>
-			<li class="list"><a href="#"> <span class="icon"> <ion-icon
-							name="heart-outline"></ion-icon>
-				</span> <span class="text">알림</span>
-			</a></li>
-			<li class="list"><a href="#"> <span class="icon"> <ion-icon
-							name="color-wand-outline"></ion-icon>
-				</span> <span class="text">만들기</span>
-			</a></li>
-
-			<li class="list"><a href="#" id="more-btn"> <span
-					class="icon"> <ion-icon name="add-circle-outline"></ion-icon>
-				</span> <span class="text">더보기</span>
-			</a></li>
-		</ul>
-
-		<div class="footer">
-			<p>© 2024 WonPick. All Rights Reserved.</p>
-		</div>
-	</div>
-
-	<div class="more-popup" id="more-popup">
-		<ul>
-			<li><ion-icon name="settings-outline"></ion-icon> 설정</li>
-			<li><ion-icon name="images-outline"></ion-icon> 내 활동</li>
-			<li><ion-icon name="moon-outline"></ion-icon> 모드 전환</li>
-			<button type="button" id="errorPost" data-toggle="modal"
-				data-target="#errorPostModal">
-				<li><ion-icon name="warning-outline"></ion-icon>문제 신고</li>
-			</button>
-			<button type="button" onclick="userLogout()">
-				<li><ion-icon name="log-out-outline"></ion-icon> 로그아웃</li>
-			</button>
-		</ul>
-	</div>
-	<!-- 문제신고 페이지 모달 -->
-	<div class="modal fade" id="errorPostModal" tabindex="-1"
-		aria-labelledby="errorPostModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<!-- 모달 헤더 부분 -->
-				<div class="modal-header">
-					<img src="../resources/logo.jpg" alt=""
-						style="border-radius: 15px; width: 45px;">
-					<h2 class="modal-title fs-5" id="errorPostModalLabel">&nbsp;문제신고</h2>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">&times;</button>
-				</div>
-				<!-- 모달 바디 부분 -->
-				<div class="modal-body">
-					<form action="errorPost" method="post">
-						<!-- 폼태그 액션속성 수정 필요-->
-						<div class="mb-3">
-							<label for="errorPostContent" class="col-form-label">내용 </label>
-							<textarea type="password" class="form-control"
-								id="errorPostContent" name="errorPostContent"
-								placeholder="최대한 자세히 입력해주세요..." required></textarea>
-							<input type="hidden" name="userId" value="${ loginUser.userId }">
-						</div>
-
-						<button class="btn btn-danger">신고 보내기</button>
-						<button type="button" class="btn btn-primary">파일 추가</button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	<!-- .navigation script 시작 -->
-	<script>
-        //  토글메뉴 클릭할 때 
-        const menuToggle = document.querySelector('.menuToggle');
-        const navigation = document.querySelector('.navigation');
-        const moreBtn = document.getElementById('more-btn');
-        const morePopup = document.getElementById('more-popup');
-
-        menuToggle.onclick = function () {
-            navigation.classList.toggle('open');
-        }
-
-        moreBtn.onclick = function (e) {
-            e.preventDefault();
-            morePopup.classList.toggle('active');
-        }
-
-        // 페이지 외부 클릭 시 팝업 닫기
-        window.onclick = function (event) {
-            if (!event.target.matches('#more-btn, #more-btn *')) {
-                if (morePopup.classList.contains('active')) {
-                    morePopup.classList.remove('active');
-                }
-            }
-        }
-        // <!-- .navigation script 끝~~ -->
-
-        function errorPost() {
-            return false;
-        }
-    </script>
+	<%@ include file="/WEB-INF/views/common/menuBar.jsp"%>
 
     <!-- 기다운 : 검색창 기능 추가 -->
     <div class="content">
-
+	
+	<%@ include file="/WEB-INF/views/common/storyBar.jsp"%>
         <header>
             
             <div class="search" >
@@ -746,29 +598,6 @@ body {
 </script>
 
 
-    <div class="sidebar-message">
-        <h3>메시지</h3>
-        <ul class="message-list">
-            <li><img src="resources/profile01.png"
-                onerror="src='resources/logo.jpg'">
-                <div class="message-info">
-                    <span class="name">이지은</span> <span class="message-text">얏호</span>
-                    <span class="time">1분</span>
-                </div></li>
-            <li><img src="resources/profile02.jpg"
-                onerror="src='resources/logo.jpg'">
-                <div class="message-info">
-                    <span class="name">유지민</span> <span class="message-text">저녁
-                        뭐먹지?</span> <span class="time">20분</span>
-                </div></li>
-            <li><img src="resources/profile03.jpg"
-                onerror="src='resources/logo.jpg'">
-                <div class="message-info">
-                    <span class="name">김민정</span> <span class="message-text">3분
-                        전에 활동</span> <span class="time"></span>
-                </div></li>
-            <!-- 메시지 목록 표시됨 -->
-    </div>
-</body>
+	<jsp:include page="../common/sideBar.jsp"/>
 
 </html>

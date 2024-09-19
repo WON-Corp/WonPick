@@ -134,4 +134,9 @@ public class PostController {
 		return "option/profileInfo";
 	}
 	
+	@RequestMapping("/searchPage")
+	public String searchPage() {
+		return "search/search";
+	}
+	
 }

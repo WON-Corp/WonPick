@@ -449,7 +449,7 @@ body {
 						<ion-icon name="home-outline"></ion-icon>
 				</span> <span class="text">홈</span>
 			</a></li>
-			<li class="list"><a href="#"> <span class="icon"> <ion-icon
+			<li class="list"><a href="/wonpick/post/searchPage"> <span class="icon"> <ion-icon
 							name="search-outline"></ion-icon>
 				</span> <span class="text">검색</span>
 			</a></li>
