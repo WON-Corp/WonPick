@@ -193,11 +193,11 @@
 						            type: 'post',
 						            data: { postId: postId , userId: "${ loginUser.userId }" },
 						            success: function(result) {
-						                if(response == "Success"){
+						                if(result == "Success"){
 							            	
 						                	
 						                	
-							            }else if(response == "Failed"){
+							            }else if(result == "Failed"){
 							            	
 							            }
 
@@ -243,7 +243,7 @@
 												$("#postLike${ list.postId }").text("Pick 0개")
 											}
 												else {
-								                $("#postLike${ list.postId }").text("Pick "+result+"개")
+						                $("#postLike${ list.postId }").text("Pick "+result+"개")
 											}
 								            },
 								            error: function(err) {

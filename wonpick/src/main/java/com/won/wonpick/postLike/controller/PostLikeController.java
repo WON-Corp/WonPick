@@ -20,19 +20,14 @@ import lombok.RequiredArgsConstructor;
 public class PostLikeController {
 
 	private final PostLikeService plService;
-
+	@ResponseBody
 	@RequestMapping("/postLikeCount")
-	public void postLikeCount(int postId, HttpServletResponse response) {
+	public int postLikeCount(int postId, HttpServletResponse response) {
 
 		int result = plService.postLikeCount(postId);
-
-		if (result > 0) {
-			try {
-				response.getWriter().print(result);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+		
+		return result;
+		
 	}
 	
 	@ResponseBody
