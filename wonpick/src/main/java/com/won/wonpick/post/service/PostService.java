@@ -13,4 +13,6 @@ public interface PostService {
 	Post postDetail(int postId);
 
 	int updateCount(int postId);
+	
+	ArrayList<Post> selectSaveList();
 }

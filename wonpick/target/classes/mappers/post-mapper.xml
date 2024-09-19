@@ -25,7 +25,7 @@
 	
 	<insert id="insertBoard">
 		INSERT INTO POST
-			VALUES (SEQ_POST_NO.NEXTVAL, #{userId}, #{postTitle}, #{postContent}, SYSDATE, DEFAULT, #{imgFile}, DEFAULT)
+			VALUES (SEQ_POST_NO.NEXTVAL, #{userId}, #{userPfImg}, #{postTitle}, #{postContent}, SYSDATE, DEFAULT, #{imgFile}, DEFAULT)
 	</insert>
 	
 	<select id="postDetail" resultMap="postResultSet">
@@ -37,6 +37,15 @@
 	<update id="updateCount">
 		UPDATE POST SET COUNT = COUNT + 1 WHERE POST_ID = #{postId} AND STATUS = 'Y'
 	</update>
+	
+	
+	<!-- 저장한 게시물 목록만 불러오는 sql문 -->
+	<select id="selectSaveList" resultMap="postResultSet">
+	SELECT *
+	From POST P
+	JOIN SAVE_LIST S ON P.POST_ID = S.SAVED_POST_ID
+	WHERE S.user_id=#{userId}
+	</select>
 
 	
 </mapper>

@@ -32,8 +32,25 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public Member updateMember(Member m) {
-		// TODO Auto-generated method stub
-		return null;
+		int result = mDao.updateMember(sqlSession, m);
+		if(result>0) {
+			System.out.println("service부분");
+			return mDao.loginMember(sqlSession, m);
+		}else {
+			return null;
+		}
+		
+	}
+	@Override
+	public Member updateProfile(Member m) {
+		int result = mDao.updateProfile(sqlSession, m);
+		if(result>0) {
+			System.out.println("service부분");
+			return mDao.loginMember(sqlSession, m);
+		}else {
+			return null;
+		}
+		
 	}
 
 	@Override

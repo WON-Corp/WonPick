@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="saveListMapper">
+
+<resultMap id="saveListResultSet"  type="saveList">
+		<result column="save_list_id" property="saveListId"/>
+		<result column="user_id" property="userId"/>
+		<result column="save_post_id" property="savePostId"/>
+	</resultMap>
+	<insert id="insertSaveList">
+		INSERT INTO SAVE_LIST VALUES(SEQ_SAVE_POST_NO.NEXTVAL , #{userId}, #{savePostId})
+	</insert>
+
+</mapper>

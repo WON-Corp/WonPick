@@ -1,6 +1,9 @@
 package com.won.wonpick.member.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.won.wonpick.member.model.vo.Member;
 import com.won.wonpick.member.service.MemberService;
@@ -154,16 +158,68 @@ public class MemberController {
 	         return "member/changePasswordResult";
 	     }
 	}
-
 	@RequestMapping("/editprofile")
-	   public String myprofile() {
-	      return "option/editProfile";
-	   }
-	   
-	   @RequestMapping("/profileInfo")
-	   public String showProfileInfo() {
-	       return "option/profileInfo";
-	   }
+	public String myprofile() {
+		//프로필 편집 페이지로 이동
+		return "option/editProfile";
+	}
+	@RequestMapping("/editinfo")
+	public String info() {
+		//정보 수정 페이지로 이동
+		return "option/information";
+	}
+	@RequestMapping("/updateMember")
+	public String updateMember(Member m, HttpSession session) {
+		
+		
+		Member updateMem = mService.updateMember(m);
+		
+		if (updateMem != null) {
+			session.setAttribute("loginUser", updateMem);
+			session.setAttribute("alertMsg", "정보 수정에 성공하였습니다.");
+			return "option/myprofile";
+		} else {
+			session.setAttribute("alertMsg", "정보 수정에 실패하였습니다.");
+			return "redirect:/";
+		}
+	}
+	
+	@RequestMapping("/editpf")
+    public String editpfImg(Member m, MultipartFile uploadImg, HttpSession session) {
 
+            if (uploadImg != null && !uploadImg.isEmpty()) {
+                    // 기존 파일 업로드 로직 유지
+                    String site = "wonpick-";
+                    String currTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+                    int random = (int)(Math.random() * 999 - 100 + 1) + 100;
+                    String ext = uploadImg.getOriginalFilename().substring(uploadImg.getOriginalFilename().lastIndexOf("."));
+
+                    String imgFileName = site + currTime + random + ext;
+                    String path = session.getServletContext().getRealPath("/resources/profileImgs/");
+
+                    try {
+                        uploadImg.transferTo(new File(path + imgFileName));
+                    } catch (IllegalStateException | IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    m.setPfImg("/wonpick/resources/profileImgs/" + imgFileName);
+                } else {
+                        // 파일을 업로드하지 않은 경우, 기존 프로필 이미지 유지
+                	Member currentMember = (Member) session.getAttribute("loginUser");
+                    m.setPfImg(currentMember.getPfImg());
+                }
+
+                Member updateMem = mService.updateProfile(m);
+
+                if (updateMem != null) {
+                        session.setAttribute("alertMsg", "정보 변경 성공");
+                        session.setAttribute("loginUser", updateMem);
+                        return "option/myprofile";
+                } else {
+                    session.setAttribute("alertMsg", "정보 변경 실패");
+                    return "redirect:/";
+                }
+        }
 
 }

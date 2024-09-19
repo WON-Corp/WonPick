@@ -144,14 +144,46 @@
 							<p>&nbsp; ${ list.postContent }</p>
 						</button>
 						<div class="post-actions">
-							<button onclick="postPick(${ list.postId })"><img src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고" class="heart"></button>
-							<ion-icon name="bookmark-outline"></ion-icon>
+							<button ><img src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고" class="heart"></button>
+							<button onclick="confirmPostPick(${list.postId})"><ion-icon name="bookmark-outline"></ion-icon></button>
 						</div>
 						<button type="button" id="detailPost" data-toggle="modal"
 							data-target="#detailPostModal"
 							onclick="getDetailPost(${ list.postId });">
 							<p class="view-comments"><span id="postLike${ list.postId }">댓글보기</span> &nbsp;<span id="commentCount${ list.postId }">댓글보기</span></p>
 							<script>
+							
+							function confirmPostPick(postId) {
+							    // confirm 창을 띄워 사용자가 저장할지 결정하게 함
+							    if (confirm("저장하시겠습니까?")) {
+							        // 사용자가 '예'를 선택한 경우
+							        postSave(postId);
+							    } else {
+							        // 사용자가 '아니오'를 선택한 경우
+							        console.log('저장 취소됨');
+							    }
+							}
+							function postSave(postId ) {
+							    $.ajax({
+							        url: '/wonpick/saveList/insertSaveList', // 서버 URL 지정
+							        type: 'POST',               // HTTP 메소드
+							        data: {
+							            postId : postId  // 데이터 포함
+							        },
+							        success: function(response) {
+							            // 요청 성공 시 수행할 작업
+							            console.log('Success:', response);
+							        },
+							        error: function(xhr, status, error) {
+							            // 요청 실패 시 수행할 작업
+							            console.error('Error:', status, error);
+							        }
+							    });
+							}		
+							
+							
+							
+							
 									$(function() {
 										$.ajax({
 								            url: "/wonpick/postComment/postCommentCount",

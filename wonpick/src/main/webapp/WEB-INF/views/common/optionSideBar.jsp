@@ -65,11 +65,11 @@
 			<span class="text">내 정보</span></a></li>
 			<li><a  type="button" href="<%= contextPath %>/member/editprofile"><ion-icon name="person-outline"></ion-icon>
 			<span class="text">프로필 편집</span></a></li>
-			<li><a type="button" href="<%= contextPath %>/#/#"><ion-icon name="notifications-outline"></ion-icon>
+			<li><a type="button" href="<%= contextPath %>/myprofile/saveList"><ion-icon name="notifications-outline"></ion-icon>
 			<span class="text">저장 목록</span></a></li>
 			<li><a type="button" href="<%= contextPath %>/#/#"><ion-icon name="bookmark-outline"></ion-icon>
 			<span class="text">알림 설정</span></a></li>
-			<li><a type="button" href="<%= contextPath %>/#/#"><ion-icon name="lock-closed-outline"></ion-icon>
+			<li><a type="button" href="<%= contextPath %>/member/editinfo"><ion-icon name="lock-closed-outline"></ion-icon>
 			<span class="text">정보 수정</span></a></li>
 		</ul>
 </div>
