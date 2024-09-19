@@ -144,7 +144,7 @@
 							<p>&nbsp; ${ list.postContent }</p>
 						</button>
 						<div class="post-actions">
-							<button id="detailPost"><img src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고" class="heart"></button>
+							<button id="detailPost" onclick="postPick(${ list.postId })"><img src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고" class="heart"></button>
 							<button id="detailPost" onclick="confirmPostPick(${list.postId})"><ion-icon name="bookmark-outline"></ion-icon></button>
 						</div>
 						<button type="button" id="detailPost" data-toggle="modal"
@@ -186,7 +186,28 @@
 							        }
 							    });
 							}
-							
+							// 좋아요 추가, 삭제
+							function postPick( postId ) {
+								$.ajax({
+						            url: "/wonpick/postLike/insertPostLike",
+						            type: 'post',
+						            data: { postId: postId , userId: "${ loginUser.userId }" },
+						            success: function(result) {
+						                if(response == "Success"){
+							            	
+						                	
+						                	
+							            }else if(response == "Failed"){
+							            	
+							            }
+
+						            },
+						            error: function(err) {
+						                	
+						            }
+						        });
+								
+							}
 							
 							
 							
@@ -230,7 +251,7 @@
 								            }
 								        });
 									});
-
+			
 									
 								</script>
 						</button>
@@ -272,9 +293,9 @@
 							<p id="postContent"></p>
 
 							<div class="post-actions">
-								<img src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고"
-									class="heart">
-								<ion-icon name="bookmark-outline"></ion-icon>
+								<button  onclick="postPick(${ list.postId })"><img  src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고"
+									class="heart"></button>
+								<button  onclick="confirmPostPick(${list.postId})"><ion-icon name="bookmark-outline"></ion-icon></button>
 							</div>
 
 							<!-- 여기부터 댓글 리스트 ajax사용 -->
@@ -383,21 +404,7 @@
  		
  	}
  	
- 	// 좋아요 추가, 삭제
-	function postPick( postId ) {
-		$.ajax({
-            url: "/wonpick/postLike/insertPostLike",
-            type: 'post',
-            data: { postId: postId , userId: "${ loginUser.userId }" },
-            success: function(result) {
-            	console.log("되냐");
-            },
-            error: function(err) {
-                	
-            }
-        });
-		
-	}
+ 
 </script>
 
 </html>

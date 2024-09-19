@@ -8,4 +8,10 @@ public interface PostLikeService {
 
 	int userPostLike(PostLike pl);
 
+	int selectUserPostLike(PostLike pl);
+
+	int deletePostLike(PostLike pl);
+
+	
+
 }
