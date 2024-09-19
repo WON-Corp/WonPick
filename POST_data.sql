@@ -38,7 +38,7 @@ VALUES (SEQ_POST_NO.NEXTVAL, '05popo', '힘내다들', '출처: 페이스북 어딘가', SYSD
 INSERT INTO POST
 VALUES (SEQ_POST_NO.NEXTVAL, 'whdrns456', '조건웅인데 여자친구 사귀고 싶어요', '', SYSDATE, 0, '/wonpick/resources/uploadImgs/wonpick-20240913160420813.jpg', DEFAULT);
 INSERT INTO POST
-VALUES (SEQ_POST_NO.NEXTVAL, 'jgw990928', '안녕하세요! 최종군 입니다', '시원하네요 ㅎㅎ', SYSDATE, 0, '/wonpick/resources/uploadImgs/wonpick-20240913160619264.jpg', DEFAULT);
+VALUES (SEQ_POST_NO.NEXTVAL, 'jgw990928', '안녕하세요! 최종군 입니다', '시원하네요 ㅎㅎ', SYSDATE, 0, '', DEFAULT);
 INSERT INTO POST
 VALUES (SEQ_POST_NO.NEXTVAL, '05popo', '스누피 @@@@@@@@@', '인터넷어딘가에서퍼옴ㅋ', SYSDATE, 0, '/wonpick/resources/uploadImgs/wonpick-20240913155732222.mp4', DEFAULT);
 INSERT INTO POST
