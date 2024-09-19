@@ -144,7 +144,7 @@
 							<p>&nbsp; ${ list.postContent }</p>
 						</button>
 						<div class="post-actions">
-							<button id="detailPost" onclick="postPick(${ list.postId })"><img src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고" class="heart"></button>
+							<button id="detailPost" onclick="postPick(${ list.postId })"><img src="/wonpick/resources/img/logo.jpg" id="likeimg${ list.postId }" alt="WonPick 로고" class="heart"></button>
 							<button id="detailPost" onclick="confirmPostPick(${list.postId})"><ion-icon name="bookmark-outline"></ion-icon></button>
 						</div>
 						<button type="button" id="detailPost" data-toggle="modal"
@@ -185,7 +185,10 @@
 							            console.error('Error:', status, error);
 							        }
 							    });
+							    
 							}
+							
+							
 							// 좋아요 추가, 삭제
 							function postPick( postId ) {
 								$.ajax({
@@ -207,10 +210,51 @@
 						            }
 						        });
 								
+								const imgElement = document.getElementById("likeimg"+postId);
+							    
+							    // 현재 이미지 경로
+							    const currentSrc = imgElement.src;
+							    
+							    // 원래 이미지 경로와 변경할 이미지 경로
+							    const originalImageSrc = "/wonpick/resources/img/logo.jpg";
+							    const newImageSrc = "/wonpick/resources/img/heart.jpg";
+							    
+							    // 현재 이미지에 따라 경로를 토글
+							    if (currentSrc.includes(originalImageSrc)) {
+							      imgElement.src = newImageSrc;
+							    } else {
+							      imgElement.src = originalImageSrc;
+							    }
+							  
+								
 							}
-							
-							
-							
+									
+									$(function(){
+										 
+										 
+										$.ajax({
+											url : "/wonpick/postLike/selectLike",
+											type : 'post',
+											data : {postId : ${list.postId} , userId : "${loginUser.userId}"},
+											success: function(result){
+												const imgElement = document.getElementById("likeimg"+${list.postId});
+												console.log(result)
+												if(result == "yes"){
+												
+													imgElement.src = "/wonpick/resources/img/heart.jpg";
+													
+												}else if(result == "no"){
+													
+													imgElement.src = "/wonpick/resources/img/logo.jpg";
+													
+												}
+											},
+											error: function(err){
+												
+											}
+										});
+									});
+									
 									$(function() {
 										$.ajax({
 								            url: "/wonpick/postComment/postCommentCount",
