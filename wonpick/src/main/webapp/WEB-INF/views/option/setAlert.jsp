@@ -180,7 +180,7 @@ input[type='radio']:checked {
 	}
 	%>
 
-	<%@ include file="../common/menuBar.jsp" %>
+	<%@ include file="/WEB-INF/views/common/menuBar.jsp" %>
 
 	<div class="content">
 		<div class="alram">
