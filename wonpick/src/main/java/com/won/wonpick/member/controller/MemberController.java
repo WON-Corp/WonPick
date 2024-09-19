@@ -171,7 +171,6 @@ public class MemberController {
 	@RequestMapping("/updateMember")
 	public String updateMember(Member m, HttpSession session) {
 		
-		
 		Member updateMem = mService.updateMember(m);
 		
 		if (updateMem != null) {

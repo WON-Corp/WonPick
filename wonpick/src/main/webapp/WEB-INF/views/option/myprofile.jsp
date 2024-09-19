@@ -38,169 +38,115 @@
 
 <title>WonPick</title>
 <style>
+    body {
+        background: linear-gradient(to right, #f8f9fa, #e0e0e0);
+        background: #fff;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
 
-@media all and (min-width:0px) and (max-width:1100px) {
+    .admin-page {
+        text-align: center;
+        padding: 50px;
+      	background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        max-width: 900px;
+        margin: 50px auto;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
 
+    .admin-page h1 {
+        margin-bottom: 40px;
+        font-size: 2.5rem;
+        color: #000;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-family: 'Poppins', sans-serif;
+        
+    }
 
-	
-	
-	/* 내 프로필 수정 스타일 */
-}
+    .dashboard-overview {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
 
-.profile-header {
-   width: 115%;
-   min-width:300px;
-   height: 850px;
-   margin: auto;
-   background-color: #ffffff;
-   padding: 0 10%;
-   border: none;
-   border-radius: 10px;
-   transition: ease-in-out 0.4s;
-   margin-left:90px;
-   
-}
+    .overview-item {
+        background: rgba(255, 255, 255, 0.2);
+        color: #000;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(8px);
+    }
 
+    .overview-item:hover {
+        transform: translateY(-10px);
 
-.profile-edit {
-   width: 70px;
-   height: 70px;
-   border: 1px solid #ddd;
-   border-radius: 50%;
-   margin-left: 40px;
-   margin-right: 20px;
-   transition: ease-in-out 0.4s;
-}
+    }
 
-.profile-body {
-   background-color: #f0f0f0;
-   display: flex;
-   height: 110px;
-   border-radius: 50px;
-   min-width:300px;
-   align-items: center;
-   transition: ease-in-out 0.4s;
-}
-.profile-info {
-   background-color: #f0f0f0;
-   height: 200px;
-   border-radius: 20px;
-   min-width:300px;
-   padding : 20px;
-   transition: ease-in-out 0.4s;
-}
-.profile-info ul li {
-	margin-top : 10px;
-	list-style : none;
-	font-size : large;
+    .overview-item h2 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+        color: #333;
+        z-index: 1;
+    }
 
-}
+    .overview-item p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+        z-index: 1;
+        font-family: "Nanum Gothic", sans-serif;
+    }
 
-.profile-body b {
-   display:flex;
-   justify-content:center;
-}
+    .icon-background {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 5rem;
+        color: rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease;
+    }
 
-.profile-middle {
-   padding: 10px;
-   line-height: 35px;
-   min-width:300px;
-}
+    .overview-item:hover .icon-background {
+        transform: scale(1.1);
+        color: rgba(0, 0, 0, 0.1);
+    }
 
-.chage-img {
-   margin-left: auto;
-   margin-right:40px;
-   background-color: black;
-   color: white;
-   border-radius: 30px;
-   height:40px;
-   text-align:center;
-   width: 100px;
-}
+    @media (max-width: 768px) {
+        .admin-page {
+            padding: 30px;
+        }
 
-.chage-img:active {
-   box-shadow: inset -.3rem -.1rem 1.4rem #8888, inset .3rem .4rem .8rem
-      #8888;
-   cursor: pointer;
-}
+        .admin-page h1 {
+            font-size: 2rem;
+        }
 
-.soge-field {
-   height: 100px;
-   margin-top: 30px;
-   border-radius: 30px;
-}
+        .overview-item {
+            padding: 20px;
+        }
 
-.soge {
-   margin-top: 30px;
-}
+        .overview-item h2 {
+            font-size: 1.5rem;
+        }
 
-.strong {
-   font-size: x-large;
-   margin: 30px 0px;
-}
-
-.upload-img {
-   height: 100%;
-}
-
-.profile-middle {
-   width: 100%;
-   height: 100%;
-   padding-top: 45px;
-}
-
-.comment-content {
-   width: 100%;
-   height: 180px;
-   border-radius: 20px;
-   background-color: #f0f0f0;
-   border: 0px;
-   padding: 30px;
-   border: none;
-   resize: none;
-   font-size: 17px;
-}
-
-.comment_length {
-   margin-left: calc(100% - 80px);
-}
-
-.save-info {
-   margin-top: 30px;
-   float: right;
-   background-color: black;
-   color: #fff;
-   border: none;
-   border-radius: 10px;
-   padding: 15px;
-   min-height: 30px;
-   min-width: 120px;
-   cursor: pointer;
-}
-
-.save-info:active {
-   box-shadow: inset -.3rem -.1rem 1.4rem #8888, inset .3rem .4rem .8rem
-      #8888;
-   cursor: pointer;
-}
-.profile-body button img{
-	     	width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background-color: #ddd;
-            object-fit: cover;
-}
-.nameId b,p {
-			margin : 5px;
-}
-
-.navigation.open ~.container-fluid {
-			margin-left: 250px;
-}
+        .dashboard-overview {
+            grid-template-columns: 1fr;
+        }
+    }
 </style>
+
 </head>
 <body>
-	<% if (session.getAttribute("loginUser") == null) {%>
+
+<% if (session.getAttribute("loginUser") == null) {%>
 	<script>
 			onload() = function() {
 				location.href = "/wonPick/views/wonPickLogin.jsp"
@@ -209,51 +155,30 @@
 	<% } %>
 
 	<%@ include file="/WEB-INF/views/common/menuBar.jsp"  %>
-
-   <div class="content">
-      <div class="profile-header">
-         <div class="strong">
-            <strong>내 정보</strong>
-         </div>
-         <div class="profile-body">
-
-               <button type="button" class="profile-edit" disabled>
-                  <img src="${ loginUser.pfImg }" 
-                      onerror="src='/wonpick/resources/img/logo.jpg'" class="chat-profile">
-               </button>
-               <div class="nameId">
-              <b>${loginUser.nickName}</b>
-               <p>${loginUser.userId }</p>
-               </div>
-         </div>
-         <div class="strong">
-            <strong>소개</strong>
-         </div>
-         <div class="soge-field">
-
-            <textarea name="introduce" id="introduce" maxlength="200" class="comment-content" disabled>${loginUser.introduce }</textarea>
-            
-         <div class="strong">
-            <strong>정보</strong>
-         </div>   
-           	<div class="profile-info">
-           		<ul>
-	           		<li>이름 : ${loginUser.userName }</li>
-	           		<li>e-메일 : ${loginUser.email }</li>
-	           		<li>생년월일 : ${loginUser.birth }</li>
-	           		<li>성별 : ${loginUser.gender }</li>
-           		</ul>
-           	</div>
-            
-            
-         </div>
-      </div>
-   </div>
-	<%--<%@ include file="../common/optionSideBar.jsp" %> --%>
-	<jsp:include page="../common/optionSideBar.jsp"/>
-
-
-
+<div class="content">
+    <div class="admin-page">
+        <h1>내 정보 확인</h1>
+        <div class="dashboard-overview">
+            <a href="<%= contextPath %>/member/editprofile" class="overview-item">
+                <ion-icon class="icon-background" name="person-circle-outline"></ion-icon>
+                <h2>프로필 편집</h2>
+            </a>
+            <a href="<%= contextPath %>/myprofile/saveList" class="overview-item">
+                <ion-icon class="icon-background" name="document-text-outline"></ion-icon>
+                <h2>저장목록</h2>
+            </a>
+            <a href="#" class="overview-item">
+                <ion-icon class="icon-background" name="alert-circle-outline"></ion-icon>
+                <h2>알림 설정</h2>
+            </a>
+            <a href="<%= contextPath %>/member/editinfo" class="overview-item">
+                <ion-icon class="icon-background" name="person-outline"></ion-icon>
+                <h2>정보수정</h2>
+            </a>
+        </div>
+    </div>
+</div>
+<jsp:include page="../common/optionSideBar.jsp"/>
 </body>
 
 </html>
