@@ -12,5 +12,11 @@
 	<insert id="insertSaveList">
 		INSERT INTO SAVE_LIST VALUES(SEQ_SAVE_POST_NO.NEXTVAL , #{userId}, #{savePostId})
 	</insert>
+	
+	<select id="selectSaveList" resultType="_int">
+		select count(*)
+		from save_list
+		where user_id = #{userId} and saved_post_id = #{savePostId}
+	</select>
 
 </mapper>

@@ -172,14 +172,20 @@
 							        },
 							        success: function(response) {
 							            // 요청 성공 시 수행할 작업
-							            console.log('Success:', response);
+							            if(response == "Success"){
+							            	alert("게시물을 저장했습니다");
+							            }else if(response == "Failed"){
+							            	alert("이미 저장된 게시물입니다");
+							            }
+							           	
 							        },
 							        error: function(xhr, status, error) {
 							            // 요청 실패 시 수행할 작업
+							            //alertMsg("이미 저장된 게시물이거나 저장 할 수 없는 게시물입니다.")
 							            console.error('Error:', status, error);
 							        }
 							    });
-							}		
+							}
 							
 							
 							
@@ -199,7 +205,7 @@
 											}
 								            },
 								            error: function(err) {
-								                	
+								                
 								            }
 								        });
 									});
