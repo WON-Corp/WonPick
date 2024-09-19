@@ -25,7 +25,7 @@
 	
 	<insert id="insertBoard">
 		INSERT INTO POST
-			VALUES (SEQ_POST_NO.NEXTVAL, #{userId}, #{userPfImg}, #{postTitle}, #{postContent}, SYSDATE, DEFAULT, #{imgFile}, DEFAULT)
+			VALUES (SEQ_POST_NO.NEXTVAL, #{userId}, #{postTitle}, #{postContent}, SYSDATE, DEFAULT, #{imgFile}, DEFAULT)
 	</insert>
 	
 	<select id="postDetail" resultMap="postResultSet">
