@@ -55,7 +55,7 @@
    margin: 30px auto;
    background-color: #ffffff;
    padding: 0 10%;
-   border: 1px solid #ddd;
+   border: none;
    border-radius: 10px;
    transition: ease-in-out 0.4s;
    margin-left:90px;
@@ -93,7 +93,7 @@
    min-width:300px;
 }
 
-.chage-img {
+.change-img {
    margin-left: auto;
    margin-right:40px;
    background-color: black;
@@ -103,9 +103,9 @@
    text-align:center;
    width: 100px;
 }
-.chage-info {
+.change-info {
    margin-top : 20px;
-   margin-left: 800px;
+   float:right;
    margin-right:40px;
    background-color: black;
    color: white;
@@ -115,15 +115,15 @@
    width: 100px;
 }
 
-.chage-img:active {
+.change-img:active {
    box-shadow: inset -.3rem -.1rem 1.4rem #8888, inset .3rem .4rem .8rem
       #8888;
    cursor: pointer;
 }
 
 .soge-field {
-   height: 100px;
-   margin-top: 30px;
+   height: 300px;
+   min-width:300px;
    border-radius: 30px;
 }
 
@@ -201,6 +201,13 @@ cursor: pointer;
 			margin : 5px;
 }
 
+@media all and (min-width:0px) and (max-width:1100px) {
+	.right-div {
+	display:none;
+	}
+}
+
+
 </style>
 </head>
 <body>
@@ -229,7 +236,7 @@ cursor: pointer;
                <b>${loginUser.nickName}</b><br>
                <p>${loginUser.userId }</p>
 				</div>
-               <button type="button" class="chage-img" id="changePfImg" onclick="fileinput();")>사진변경</button>
+               <button type="button" class="change-img" id="changePfImg" onclick="fileinput();")>사진변경</button>
          </div>
          <div class="strong">
             <strong>소개</strong>
@@ -237,7 +244,7 @@ cursor: pointer;
          <div class="soge-field">
 
             <textarea name="introduce" id="introduce" maxlength="200"  class="comment-content" value="${loginUser.introduce }">${loginUser.introduce }</textarea>
-           	<button type="submit" class="chage-info">변경</button>
+           	<button type="submit" class="change-info">수정</button>
           
             
             

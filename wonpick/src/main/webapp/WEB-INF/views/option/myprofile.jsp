@@ -43,21 +43,18 @@
 
 
 	
-	.content {
-		margin-right: 0px;
-	}
-
+	
 	/* 내 프로필 수정 스타일 */
 }
 
 .profile-header {
-   width: 90%;
+   width: 115%;
    min-width:300px;
    height: 850px;
-   margin: 30px auto;
+   margin: auto;
    background-color: #ffffff;
    padding: 0 10%;
-   border: 1px solid #ddd;
+   border: none;
    border-radius: 10px;
    transition: ease-in-out 0.4s;
    margin-left:90px;
@@ -196,9 +193,7 @@
 .nameId b,p {
 			margin : 5px;
 }
-.container-fluid{
-transition: margin-left 0.4s;
-}
+
 .navigation.open ~.container-fluid {
 			margin-left: 250px;
 }
@@ -215,7 +210,7 @@ transition: margin-left 0.4s;
 
 	<%@ include file="../common/menuBar.jsp"  %>
 
-   <div class="container-fluid">
+   <div class="content">
       <div class="profile-header">
          <div class="strong">
             <strong>내 정보</strong>

@@ -49,6 +49,13 @@
  text-decoration: none;
  width:100%;
  }
+ 
+ @media all and (min-width:0px) and (max-width:1100px) {
+	.right-div{
+		display:none;
+		min-width:300px;
+	}
+}
 </style>
 </head>
 <body>
@@ -58,6 +65,7 @@
 	
 	
     %>
+    
 <div class="right-div">
 
 		<ul class="right-menubar">
