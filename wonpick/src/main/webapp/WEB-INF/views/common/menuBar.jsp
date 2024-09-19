@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -488,7 +489,7 @@ body {
 			
 			<li><ion-icon name="images-outline"></ion-icon> 내 활동</li>
 			<c:choose>
-				<c:when test="${ loginUser.status == 'A'}">
+				<c:when test="${ loginUser.status eq 'A'}">
 					<button type="button" id="errorPostList" data-toggle="modal"
 						data-target="#errorPostListModal">
 						<li><ion-icon name="warning-outline"></ion-icon>문제 신고 목록</li>

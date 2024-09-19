@@ -213,7 +213,7 @@ cursor: pointer;
 <body>
 
 
-	<%@ include file="../common/menuBar.jsp" %>
+	<%@ include file="/WEB-INF/views/common/menuBar.jsp" %>
 
    <div class="container-fluid">
    	<form action="/wonpick/member/editpf" method="post" enctype="multipart/form-data">

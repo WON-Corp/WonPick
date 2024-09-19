@@ -187,7 +187,7 @@
 
 <body>
 
-   <%@ include file="../common/menuBar.jsp" %>
+   <%@ include file="/WEB-INF/views/common/menuBar.jsp" %>
     
     <%
         Member loginUser = (Member) session.getAttribute("loginUser");

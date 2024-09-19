@@ -239,7 +239,7 @@
 
 
 
-	<%@ include file="../common/menuBar.jsp" %>
+	<%@ include file="/WEB-INF/views/common/menuBar.jsp" %>
 
     <div class="main">
         <h4>정보 수정(닉네임과 주소 수정 가능)</h4>
