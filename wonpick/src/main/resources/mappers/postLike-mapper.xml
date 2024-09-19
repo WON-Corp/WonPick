@@ -25,4 +25,6 @@
 		DELETE FROM POST_LIKE WHERE POST_ID = #{postId} AND USER_ID = #{userId}
 	</delete>
 	
+	
+	
 </mapper>

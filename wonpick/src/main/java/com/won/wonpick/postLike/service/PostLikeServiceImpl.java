@@ -26,6 +26,17 @@ public class PostLikeServiceImpl implements PostLikeService {
 	public int userPostLike(PostLike pl) {
 		return plDao.userPostLike(sqlSession, pl);
 	}
+	
+	
+	@Override
+	public int selectUserPostLike(PostLike pl) {
+		return plDao.selectUserPostLike(sqlSession,pl);
+	}
+	
+	@Override
+	public int deletePostLike(PostLike pl) {
+		return plDao.deletePostLike(sqlSession, pl);
+	}
 
 
 }

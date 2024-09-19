@@ -13,16 +13,15 @@ public class PostLikeDao {
 	}
 
 	public int userPostLike(SqlSessionTemplate sqlSession, PostLike pl) {
-		
-		int result = sqlSession.selectOne("postLikeMapper.userPostLike", pl);
-		
-		if(result>0) {
-			return sqlSession.selectOne("postLikeMapper.insertPostLike", pl);
-		} else {
-			return sqlSession.selectOne("postLikeMapper.deletePostLike", pl);
-		}
-		
-		
+		return sqlSession.insert("postLikeMapper.insertPostLike", pl);
+	}
+	
+	public int deletePostLike(SqlSessionTemplate sqlSession, PostLike pl) {
+		return sqlSession.delete("postLikeMapper.deletePostLike" , pl);
+	}
+	public int selectUserPostLike(SqlSessionTemplate sqlSession, PostLike pl) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("postLikeMapper.userPostLike", pl);
 	}
 
 }
