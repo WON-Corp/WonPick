@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-   <style>
+	<style>
   /* my profile 창 */
         .myprofile {
             width: 300px;
@@ -135,21 +135,21 @@
         }
 
         /* 오른쪽 WM창 끝 */
-   </style>
+	</style>
 </head>
 <body>
  <!-- 내 프로필 -->
-   <div class="myprofile" 
-      onclick="location.href='<%= request.getContextPath() %>/member/profileInfo';" style="cursor: pointer;">
-          <h4>내 프로필</h4>
-      <div class="myprofile2">
+    <div class="myprofile">
+        <h4>내 프로필</h4>
+        <div class="myprofile2">
         <img src="${ loginUser.pfImg }" onerror="src='/wonpick/resources/img/logo.jpg'">
         <span class="myname">${ loginUser.nickName }</span>
-       </div>
-   </div>
+        </div>
+    </div>
 
 
-    <div class="sidebar-message" onclick="location.href='<%= request.getContextPath() %>/message/message';" style="cursor: pointer;">
+
+    <div class="sidebar-message">
         <h3>메시지</h3>
         <ul class="message-list">
             <li>

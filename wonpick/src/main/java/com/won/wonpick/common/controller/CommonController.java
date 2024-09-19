@@ -16,4 +16,10 @@ public class CommonController {
 	public String profile() {
 		return "option/myprofile";
 	}
+	@RequestMapping("/saveList")
+	public String saveList() {
+		
+		return "option/saveList";
+	}
+	
 }

@@ -1,3 +1,5 @@
+	
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -82,6 +84,20 @@
    align-items: center;
    transition: ease-in-out 0.4s;
 }
+.profile-info {
+   background-color: #f0f0f0;
+   height: 200px;
+   border-radius: 20px;
+   min-width:300px;
+   padding : 20px;
+   transition: ease-in-out 0.4s;
+}
+.profile-info ul li {
+	margin-top : 10px;
+	list-style : none;
+	font-size : large;
+
+}
 
 .profile-body b {
    display:flex;
@@ -142,7 +158,7 @@
    border-radius: 20px;
    background-color: #f0f0f0;
    border: 0px;
-   padding: 20px;
+   padding: 30px;
    border: none;
    resize: none;
    font-size: 17px;
@@ -177,6 +193,9 @@
             background-color: #ddd;
             object-fit: cover;
 }
+.nameId b,p {
+			margin : 5px;
+}
 .container-fluid{
 transition: margin-left 0.4s;
 }
@@ -189,7 +208,7 @@ transition: margin-left 0.4s;
 	<% if (session.getAttribute("loginUser") == null) {%>
 	<script>
 			onload() = function() {
-				location.href = "/wonpick/views/wonPickLogin.jsp"
+				location.href = "/wonPick/views/wonPickLogin.jsp"
 			}
 		</script>
 	<% } %>
@@ -198,40 +217,38 @@ transition: margin-left 0.4s;
 
    <div class="container-fluid">
       <div class="profile-header">
-         <div class="strong"
-            onclick="location.href='<%=request.getContextPath()%>/myProfile.me'">
+         <div class="strong">
             <strong>내 정보</strong>
          </div>
          <div class="profile-body">
 
-               <button type="button" class="profile-edit">
+               <button type="button" class="profile-edit" disabled>
                   <img src="${ loginUser.pfImg }" 
                       onerror="src='/wonpick/resources/img/logo.jpg'" class="chat-profile">
                </button>
-            
-               <c:if test="${loginUser.nickName == null }">
-               <c:when>
-               <b></b><br>
-               </c:when>
-               <c:otherwise>
-               <b>${loginUser.nickName}</b><br>
-               </c:otherwise>
-               </c:if>
-               <p>${longinUser.userid }</p>
-
-               <button type="button" class="chage-img">사진변경</button>
+               <div class="nameId">
+              <b>${loginUser.nickName}</b>
+               <p>${loginUser.userId }</p>
+               </div>
          </div>
          <div class="strong">
             <strong>소개</strong>
          </div>
          <div class="soge-field">
 
-            <textarea name="소개" id="소개" maxlength="200" class="comment-content" readonly>${longinUser.introduce }</textarea>
+            <textarea name="introduce" id="introduce" maxlength="200" class="comment-content" disabled>${loginUser.introduce }</textarea>
             
          <div class="strong">
             <strong>정보</strong>
          </div>   
-            <textarea name="소개" id="소개" maxlength="200" class="comment-content" disabled></textarea>
+           	<div class="profile-info">
+           		<ul>
+	           		<li>이름 : ${loginUser.userName }</li>
+	           		<li>e-메일 : ${loginUser.email }</li>
+	           		<li>생년월일 : ${loginUser.birth }</li>
+	           		<li>성별 : ${loginUser.gender }</li>
+           		</ul>
+           	</div>
             
             
          </div>

@@ -113,14 +113,19 @@ public class PostController {
 
 	}
 
-	   @RequestMapping("/videoPostList")
-	   public String videoPostList() {
-	      return "board/videoList";
-	   }
-
-	   @RequestMapping("/profileInfo")
-	   public String showProfileInfo() {
-	       return "option/profileInfo";
-	   }
+	@RequestMapping("/videoPostList")
+	public String videoPostList() {
+		return "board/videoList";
 	}
+	
+	@RequestMapping("/saveList")
+	public String SaveList(HttpSession session) {
+		
+		ArrayList<Post> saveList = pService.selectSaveList();
+		// 데이터베이스 들어가서 각 포스팅의 id값 출력 --> 그 아이디에 따른 img파일 출력
+		System.out.println(saveList);
+		session.setAttribute("saveList", saveList);
 
+		return "redirect:/";
+	}
+}
