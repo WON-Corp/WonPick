@@ -113,8 +113,14 @@ public class PostController {
 
 	}
 
-	@RequestMapping("/videoPostList")
-	public String videoPostList() {
-		return "board/videoList";
+	   @RequestMapping("/videoPostList")
+	   public String videoPostList() {
+	      return "board/videoList";
+	   }
+
+	   @RequestMapping("/profileInfo")
+	   public String showProfileInfo() {
+	       return "option/profileInfo";
+	   }
 	}
-}
+
