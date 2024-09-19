@@ -32,6 +32,7 @@ public class SaveListController {
 			int result = sService.insertSaveList(sList);
 			return "Success";
 		}else {
+			int result = sService.deleteSaveList(sList);
 			return "Failed";
 		}
 		

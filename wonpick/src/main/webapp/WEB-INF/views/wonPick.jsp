@@ -155,7 +155,7 @@
 							
 							function confirmPostPick(postId) {
 							    // confirm 창을 띄워 사용자가 저장할지 결정하게 함
-							    if (confirm("저장하시겠습니까?")) {
+							    if (confirm("저장하시겠습니까?\n(이미 저장된 게시물의 경우 저장목록에서 삭제됩니다)")) {
 							        // 사용자가 '예'를 선택한 경우
 							        postSave(postId);
 							    } else {
@@ -175,7 +175,7 @@
 							            if(response == "Success"){
 							            	alert("게시물을 저장했습니다");
 							            }else if(response == "Failed"){
-							            	alert("이미 저장된 게시물입니다");
+							            	alert("저장목록에서 삭제 되었습니다");
 							            }
 							           	
 							        },

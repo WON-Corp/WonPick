@@ -20,4 +20,9 @@ public class SaveListDao {
 		return sqlSession.selectOne("saveListMapper.selectSaveList", s);
 	}
 
+	public int deleteSaveList(SqlSessionTemplate sqlSession, SaveList s) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("saveListMapper.deleteSaveList", s);
+	}
+
 }

@@ -55,7 +55,7 @@
 body {
        
         height: 100vh;
-        margin: 0;
+        margin-left : 200px;
         font-family: Arial, sans-serif;
     }
     .slider-container{
@@ -69,18 +69,30 @@ body {
         grid-gap: 10px;
         width: 80%;
         padding: 20px;
+        
     }
     .grid-item {
-        background-color: #f0f0f0;
-        padding: 20px;
-        text-align: center;
+        background-color: white;
+  		border : 1px solid black;
+        text-align : center;
         font-size: 20px;
         margin : 30px;
+        width: 240px;
+        height : 370px;
+        border-radius : 10px;
+    }
+     .grid-item img{
+        margin-top : 10px;
         width: 200px;
         height : 350px;
         
     }
-
+	.content {
+		
+		border-radius : 20px;
+		background-color: #f0f0f0;
+		
+	}
 
 
 
@@ -109,7 +121,7 @@ body {
 			<div class="title">저장 목록</div>
 			<div class="slider-container photos" id="slider-container">
 				<div class="grid-container">
-				<c:foreach var="list" items="${saveList}" >
+				<c:foreach var="list" items="${saveList}">
 				    <div class="grid-item">
 				    <img src="${ list.userPfImg }"
 							onerror="src='/wonpick/resources/img/logo.jpg'"
