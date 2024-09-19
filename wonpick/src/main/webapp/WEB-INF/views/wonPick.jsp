@@ -293,9 +293,9 @@
 							<p id="postContent"></p>
 
 							<div class="post-actions">
-								<button  onclick="postPick(${ list.postId })"><img  src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고"
+								<button id="detailPost" onclick="postPick(${ list.postId })"><img  src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고"
 									class="heart"></button>
-								<button  onclick="confirmPostPick(${list.postId})"><ion-icon name="bookmark-outline"></ion-icon></button>
+								<button id="detailPost" onclick="confirmPostPick(${list.postId})"><ion-icon name="bookmark-outline"></ion-icon></button>
 							</div>
 
 							<!-- 여기부터 댓글 리스트 ajax사용 -->
