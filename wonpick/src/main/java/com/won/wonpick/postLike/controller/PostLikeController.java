@@ -44,8 +44,20 @@ public class PostLikeController {
 			
 			return "Failed";
 		}
+	
+	}
+	@ResponseBody
+	@RequestMapping("/selectLike")
+	public String selectPostLike(PostLike pl) {
+		System.out.println(pl);
+		int count = plService.selectUserPostLike(pl);
 		
-		
+		System.out.println(count);
+		if(count == 0) {
+			return "no";
+		}else {
+			return "yes";
+		}
 		
 	}
 }
