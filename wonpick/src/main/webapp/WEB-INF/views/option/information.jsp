@@ -36,38 +36,88 @@
 
 <title>WonPick</title>
 <style>
-       body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f0f0f0;
-            margin: 50px 0;
-            padding: 0;
-            color: #333;
-            align-items: center;
-            height: auto;
-        }
+@media all and (min-width:0px) and (max-width:1100px) {
+	.content {
+		margin-right: 0px;
+	}
 
-        .main {
-        	margin-left:400px;
-        	margin-top:100px;
-            margin-right:400px;
-            width: 100%;
-            max-width: 700px;
-            background-color: #ffffff;
-            padding: 30px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
+	/* 내 프로필 수정 스타일 */
+}
 
-        .main h4 {
-            margin-bottom: 30px;
-            text-align: center;
-            font-size: 1.5em;
-            color: #333;
-            border-bottom: 2px solid #333;
-            padding-bottom: 10px;
-        }
+.profile-header {
+	width: 90%;
+	min-width: 300px;
+	height: 850px;
+	margin: 30px auto;
+	background-color: #ffffff;
+	padding: 0 10%;
+	border: none;
+	border-radius: 10px;
+}
 
-        fieldset {
+.profile-edit {
+	width: 70px;
+	height: 70px;
+	border: 1px solid #ddd;
+	border-radius: 50%;
+	margin-left: 40px;
+	margin-right: 20px;
+	transition: ease-in-out 0.4s;
+}
+
+.profile-body {
+	background-color: #f0f0f0;
+	display: flex;
+	height: 110px;
+	border-radius: 50px;
+	min-width: 300px;
+	align-items: center;
+	transition: ease-in-out 0.4s;
+}
+
+.strong {
+	font-size: x-large;
+	margin: 30px 0px;
+}
+
+.comment-content {
+	width: 100%;
+	height: 180px;
+	border-radius: 20px;
+	background-color: #f0f0f0;
+	border: 0px;
+	padding: 30px;
+	border: none;
+	resize: none;
+	font-size: 17px;
+}
+
+#profileImagePreview {
+	margin-top: 30px;
+	margin: 20px;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	background-color: #ddd;
+	object-fit: cover;
+}
+
+.nameId {
+	margin-top: 30px;
+}
+
+.nameId p {
+	font-size: 80%;
+}
+
+@media all and (min-width:0px) and (max-width:1100px) {
+	.right-div {
+		display: none;
+	}
+}
+
+<!-- 정보수정 -->
+fieldset {
             border: none;
             padding: 0;
             margin: 0;
@@ -149,11 +199,11 @@
             position: relative;
         }
 
-        .address-input img {
+        .input-group img {
             position: absolute;
-            width: 20px;
+            width: 30px;
             right: 10px;
-            top: 50%;
+            top: 65%;
             transform: translateY(-50%);
             cursor: pointer;
         }
@@ -227,76 +277,97 @@
         	
             margin-bottom: 8px;
         }
-
-
-
-
 </style>
 </head>
-
 <body>
 
 
+	<%@ include file="/WEB-INF/views/common/menuBar.jsp"%>
+
+	<div class="content">
+		<div class="profile-header">
+			<div class="strong">
+				<strong>정보 수정</strong>
+			</div>
+			<div class="profile-body">
+
+				<img id="profileImagePreview" src="${loginUser.pfImg }"
+					onerror="src='/wonpick/resources/img/logo.jpg'"
+					class="chat-profile">
 
 
-	<%@ include file="/WEB-INF/views/common/menuBar.jsp" %>
 
-    <div class="main">
-        <h4>정보 수정(닉네임과 주소 수정 가능)</h4>
-        <form action="/wonpick/member/updateMember" method="post">
-            <fieldset>
-                <div class="input-group" id="userId-group">
-                    <div class="phone-input">
-                        <input type="text" id="userId" name="userId" value="${loginUser.userId}" placeholder="${loginUser.userId }(변경 불가)" readonly onkeyup="ck_id()">
-                       
-                    </div>
-                    <span id="msgUserId"></span>
-                </div>
-                <div class="input-group">
-                    <input type="email" id="email" name="email" value="${loginUser.email}" placeholder="${loginUser.email }(변경 불가)" readonly onkeyup="ck_email()">
-                    <span id="msgId"></span>
-                </div>
-                <div class="input-group">
-                    <input type="hidden" id="pwd" name="password" value="${loginUser.password}" placeholder="로그인 페이지의 비밀번호 변경을 이용해 주세요." readonly onkeyup="ck_pwd()">
-                    <span id="msgPw"></span>
-                </div>  
-               
-                <div class="input-group">
-                    <input type="text" id="userName" name="userName" value="${loginUser.userName}" placeholder="${loginUser.userName}(변경불가)" readonly onkeyup="ck_name()"> 
-                    <span id="msgName"></span>
-                </div>
-                <div class="input-group">
-                    <input type="text" id="nickName" name="nickName" value="${loginUser.nickName}" placeholder="닉네임 변경(현재 닉네임:${loginUser.nickName })" onkeyup="ck_nickName()" > 
-                    <span id="msgNickName"></span>
-                </div>
-               
-                <div class="input-group">
-                    <div class="phone-input">
-                        <input type="tel" id="phone" name="phone" value="${loginUser.phone}" readonly placeholder="현재 번호:${loginUser.phone } (변경 불가)" onkeyup="ck_phone();">
-                       
-                    </div>
-                </div>
-                
-                <div class="input-group">
-                    <div class="address-input">
-                        <input type="text" id="address" name="address" value="${loginUser.address}" placeholder="주소 변경(현재 주소:${ loginUser.address})" required onclick="searchAddress()" />
-                        <img src="https://i.imgur.com/Cs7Y9G0.png" onclick="searchAddress()" />
-                    </div>
-                </div>
-                <div class="input-group">
-                    <div class="phone-input">
-                        <input type="text" id="birth" name="birth" value="${loginUser.birth}" placeholder="생년월일 : ${loginUser.birth } (변경 불가)" onkeyup="ck_phone();">
-                       
-                    </div>
-                </div>
-                
-                <input type="submit" value="변경 하기" >
-            </fieldset>
-        </form>
-    </div>
+				<div class="nameId">
+					<b>${loginUser.nickName}</b><br>
+					<p>${loginUser.userId }</p>
+				</div>
 
-    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script>
+			</div>
+			<div class="strong">
+				<strong>소개</strong>
+			</div>
+			<div class="soge-field">
+
+				<textarea name="introduce" id="introduce" maxlength="200"
+					class="comment-content" value="${loginUser.introduce }" disabled>${loginUser.introduce }</textarea>
+
+			</div>
+			
+			<div class="strong">
+				<strong>정보</strong>
+			</div>
+			<form action="/wonpick/member/updateMember" method="post">
+				<fieldset>
+					<div class="input-group">이름
+						<input type="text" id="userName" name="userName" value="${loginUser.userName}" placeholder="${loginUser.userName}(변경불가)" readonly	onkeyup="ck_name()"> <span id="msgName"></span>
+					</div>
+					<div class="input-group">닉네임
+						<input type="text" id="nickName" name="nickName" value="${loginUser.nickName}" placeholder="닉네임 변경(현재 닉네임:${loginUser.nickName })"	onkeyup="ck_nickName()"> <span id="msgNickName"></span>
+					</div>
+					
+					<div class="input-group">전화번호
+							<input type="tel" id="phone" name="phone" value="${loginUser.phone}" readonly placeholder="현재 번호:${loginUser.phone } (변경 불가)" onkeyup="ck_phone();">
+
+					</div>
+					
+					<div class="input-group">이메일
+						<input type="email" id="email" name="email"
+							value="${loginUser.email}"
+							placeholder="${loginUser.email }(변경 불가)" readonly
+							onkeyup="ck_email()"> <span id="msgId"></span>
+					</div>
+
+					<div class="input-group">주소
+							<input type="text" id="address" name="address"
+								value="${loginUser.address}"
+								placeholder="주소 변경(현재 주소:${ loginUser.address})" required
+								onclick="searchAddress()" /> <img
+								src="https://i.imgur.com/Cs7Y9G0.png" onclick="searchAddress()" />
+					</div>
+					<div class="input-group">생년월일
+							<input type="text" id="birth" name="birth"
+								value="${loginUser.birth}"
+								placeholder="생년월일 : ${loginUser.birth } (변경 불가)"
+								onkeyup="ck_phone();" readonly>
+					</div>
+					<input type="hidden" name="userId" value="${ loginUser.userId }">
+					<input type="submit" value="변경 하기">
+				</fieldset>
+			</form>
+		</div>
+
+
+
+
+
+
+
+
+
+	</div>
+	<jsp:include page="../common/optionSideBar.jsp" />
+
+<script>
         function ck_id() {
             const userId = document.getElementById("userId");
             const msgUserId = document.getElementById("msgUserId");
@@ -411,45 +482,7 @@
                 msgNickName.innerHTML = "ok";
                 msgNickName.style.display = "block";
             }   
-        }
-
-        function ck_phone() {
-            if($("#phone").val() == ''){
-                $("#checkPhone").attr("disabled", true);
-                $("#checkPhone").css('backgroundColor', '#888');
-                $("#checkPhone").hover(function(){
-                    $("#checkPhone").css('backgroundColor', '#888');
-                }, function(){
-                    $("#checkPhone").css('backgroundColor', '#888');
-                });
-            } else {
-                $("#checkPhone").removeAttr("disabled");
-                $("#checkPhone").css('backgroundColor', '#333');
-                $("#checkPhone").hover(function(){
-                    $("#checkPhone").css('backgroundColor', '#000');
-                }, function(){
-                    $("#checkPhone").css('backgroundColor', '#333');
-                });
-            }
-        }
-
-        function selectGender(gender) {
-        	// 0901 Gender 속성 수정
-            document.getElementById("wrap_man").classList.remove("active");
-            document.getElementById("wrap_woman").classList.remove("active");
-            document.getElementById("wrap_" + gender).classList.add("active");
-
-            document.getElementById("man").checked = false;
-            document.getElementById("woman").checked = false;
-            document.getElementById(gender).checked = true;
-        }
-        
-        function sendVerificationCode() {
-            alert("휴대전화 인증번호를 전송했습니다.");
-            $("#phone").attr("readonly", true);
-            $("#verificationCodeInput").prop("disabled", false);
-            // TODO:: 실제 인증번호 전송 로직 구현 예정
-        }
+        }   
 
         function searchAddress() {
             new daum.Postcode({
@@ -459,93 +492,9 @@
             }).open();
         }
 
-        $(document).ready(function(){            
-            let now = new Date();
-            let year = now.getFullYear();
-            let mon = (now.getMonth() + 1) > 9 ? ''+(now.getMonth() + 1) : '0'+(now.getMonth() + 1); 
-            let day = (now.getDate()) > 9 ? ''+(now.getDate()) : '0'+(now.getDate());           
-            
-            //년도 selectbox만들기               
-            for(let i = 1900 ; i <= year ; i++) {
-                $('#year').append('<option value="' + i + '">' + i + '</option>');    
-            }
+       
 
-            // 월별 selectbox 만들기            
-            for(let i=1; i <= 12; i++) {
-                let mm = i > 9 ? i : "0"+i ;            
-                $('#month').append('<option value="' + mm + '">' + mm + '</option>');    
-            }
-            
-            // 일별 selectbox 만들기
-            for(let i=1; i <= 31; i++) {
-                let dd = i > 9 ? i : "0"+i ;            
-                $('#day').append('<option value="' + dd + '">' + dd+ '</option>');    
-            }
-
-            $("#year  > option[value="+year+"]").attr("selected", "true");        
-            $("#month  > option[value="+mon+"]").attr("selected", "true");    
-            $("#day  > option[value="+day+"]").attr("selected", "true");       
-        });
-
-        // 전체 선택/해제
-        document.getElementById("check_all").addEventListener("click", function () {
-            const checkboxes = document.querySelectorAll('.agree .normal');
-            checkboxes.forEach(function (checkbox) {
-                checkbox.checked = document.getElementById("check_all").checked;
-            });
-        });
-
-        // 개별 체크박스 해제 시 전체 동의 체크박스 해제
-        const normalCheckboxes = document.querySelectorAll('.agree .normal');
-        normalCheckboxes.forEach(function (checkbox) {
-            checkbox.addEventListener('change', function () {
-                if (!this.checked) {
-                    document.getElementById("check_all").checked = false;
-                }
-            });
-        });
-
-        // 아이디 중복체크
-        function idCheck() {
-            const userId = $("#userId").val();
-
-            $.ajax({
-                url:'/wonpick/member/idCheck',
-                type: 'get',
-                data: { userId: userId },
-                success: function(result) {
-                    if(userId === "") {
-                        alert("아이디를 입력하세요!")
-                    } else {
-                        const userIdForm = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
-                        if (!userIdForm.test(userId)) {
-                            alert("아이디 형식이 부적합합니다")
-                        } else { 
-                            if(result == 'NNN'){
-                                alert("사용중인 아이디입니다.");
-                                $("#userId").val("");
-                                $("#userId").focus();
-                            } else if(result == 'NNY') {
-                                const yn = confirm("사용 가능합니다. 사용하시겠습니까?");
-                                if(yn){
-                                    $("#checkId").attr("disabled",true);
-                                    $("#checkId").hover(function(){
-                                        $("#checkId").css('backgroundColor', '#888');
-                                    }, function(){
-                                        $("#checkId").css('backgroundColor', '#888');
-                                    });
-                                } else {
-                                    $("#enroll-form input[name=userId]").focus();
-                                };
-                            };
-                        };
-                    };
-                },
-                error: function(err) {
-                    console.log(err);
-                }
-            });	
-        }
+       
 
         function joinCheck() {
             const userId = document.getElementById("userId");
@@ -614,15 +563,9 @@
                 alert("주소를 입력하세요.");
                 return false;
             }
-            
-       
-
-            
-            
+ 
         }
     </script>
-	<jsp:include page="../common/optionSideBar.jsp"/>
-
 </body>
 
 </html>

@@ -34,7 +34,6 @@ public class MemberServiceImpl implements MemberService{
 	public Member updateMember(Member m) {
 		int result = mDao.updateMember(sqlSession, m);
 		if(result>0) {
-			System.out.println("service부분");
 			return mDao.loginMember(sqlSession, m);
 		}else {
 			return null;
