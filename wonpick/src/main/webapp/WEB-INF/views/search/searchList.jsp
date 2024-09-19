@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,20 +87,7 @@
 <body>
 
 
-	<c:if test="${ empty list }">
-		<script>
-			location.href = "errorPost/selectErrorList";
-		</script>
-	</c:if>
 
-
-
-	<%@ include file="common/menuBar.jsp"%>
-
-
-	<div class="content">
-
-		<%@ include file="common/storyBar.jsp"%>
 
 		<!-- 게시물 -->
 		<c:forEach var="list" items="${ list }">
@@ -188,24 +176,6 @@
 							    
 							}
 							
-							// 좋아요 추가, 삭제 2
-		                     function updateLikeCount(postId) {
-		                         $.ajax({
-		                             url: "/wonpick/postLike/postLikeCount",
-		                             type: 'post',
-		                             data: { postId: postId },
-		                             success: function(result) {
-		                                 if (result == 0) {
-		                                     $("#postLike" + postId).text("Pick 0개");
-		                                 } else {
-		                                     $("#postLike" + postId).text("Pick " + result + "개");
-		                                 }
-		                             },
-		                             error: function(err) {
-		                                 console.error(err);
-		                             }
-		                         });
-		                     }
 							
 							// 좋아요 추가, 삭제
 							function postPick( postId ) {
@@ -215,9 +185,11 @@
 						            data: { postId: postId , userId: "${ loginUser.userId }" },
 						            success: function(result) {
 						                if(result == "Success"){
-							            	updateLikeCount(postId);
+							            	
+						                	
+						                	
 							            }else if(result == "Failed"){
-							            	updateLikeCount(postId);
+							            	
 							            }
 
 						            },
@@ -387,11 +359,8 @@
 			</div>
 		</c:forEach>
 
-	</div>
 
 
-
-	<%@ include file="common/sideBar.jsp"%>
 
 
 	<%
