@@ -238,11 +238,11 @@
 											data : {postId : ${list.postId} , userId : "${loginUser.userId}"},
 											success: function(result){
 												const imgElement = document.getElementById("likeimg"+${list.postId});
-												console.log(result)
+
 												if(result == "yes"){
 												
 													imgElement.src = "/wonpick/resources/img/heart.jpg";
-													
+												
 												}else if(result == "no"){
 													
 													imgElement.src = "/wonpick/resources/img/logo.jpg";

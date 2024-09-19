@@ -46,6 +46,10 @@
 	JOIN SAVE_LIST S ON P.POST_ID = S.SAVED_POST_ID
 	WHERE S.user_id=#{userId}
 	</select>
+	
+	<select id="searchPostList" resultMap="postResultSet">
+		SELECT * FROM POST WHERE (USER_ID LIKE #{keyword} OR POST_TITLE LIKE #{keyword} OR POST_CONTENT LIKE #{keyword}) AND STATUS = 'Y'
+	</select>
 
 	
 </mapper>
