@@ -139,7 +139,8 @@
 </head>
 <body>
  <!-- 내 프로필 -->
-    <div class="myprofile">
+    <div class="myprofile" 
+      onclick="location.href='<%= request.getContextPath() %>/post/profileInfo';" style="cursor: pointer;">
         <h4>내 프로필</h4>
         <div class="myprofile2">
         <img src="${ loginUser.pfImg }" onerror="src='/wonpick/resources/img/logo.jpg'">
@@ -149,7 +150,7 @@
 
 
 
-    <div class="sidebar-message">
+    <div class="sidebar-message" onclick="location.href='<%= request.getContextPath() %>/message/message';" style="cursor: pointer;">
         <h3>메시지</h3>
         <ul class="message-list">
             <li>

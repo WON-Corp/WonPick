@@ -456,7 +456,7 @@ body {
 							name="caret-forward-circle-outline"></ion-icon>
 				</span> <span class="text">영상</span>
 			</a></li>
-			<li class="list"><a href="#"> <span class="icon"> <ion-icon
+			<li class="list"><a href="/wonpick/message/message"> <span class="icon"> <ion-icon
 							name="chatbubble-outline"></ion-icon>
 				</span> <span class="text">메시지</span>
 			</a></li>
@@ -493,7 +493,7 @@ body {
 						data-target="#errorPostListModal">
 						<li><ion-icon name="warning-outline"></ion-icon>문제 신고 목록</li>
 					</button>
-					<button type="button" id="#" data-toggle="modal" data-target="#">
+					<button type="button" id="#" data-toggle="modal" data-target="#" onclick="moveAdminPage()">
 						<li><ion-icon name="warning-outline"></ion-icon>관리자 페이지</li>
 					</button>
 				</c:when>
@@ -514,6 +514,10 @@ body {
 	<script>
         function userLogout() {
             location.href = "<%= contextPath %>/member/logout";
+        }
+        
+        function moveAdminPage() {
+            location.href = "<%= contextPath %>/admin/adminMain";
         }
      
     </script>
