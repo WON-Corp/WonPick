@@ -622,7 +622,7 @@ body {
 				<!-- 모달 바디 부분 -->
 				<div class="modal-body">
 					<form enctype="multipart/form-data" class="upload-content"
-						action="post/insert" method="post">
+						action="<%= contextPath %>/post/insert" method="post">
 
 						<div class="image-preview" id="image-preview"
 							onclick="document.getElementById('file-input').click()">
