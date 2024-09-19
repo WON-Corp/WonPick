@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.won.wonpick.member.model.vo.Member;
 import com.won.wonpick.savelist.model.vo.SaveList;
@@ -19,18 +20,25 @@ public class SaveListController {
 		this.sService = sService;
 	}
 	
+	@ResponseBody
 	@RequestMapping("/insertSaveList")
 	public String insertSaveList(SaveList sList, int postId, HttpSession session) {
 		
 		Member currentMember = (Member) session.getAttribute("loginUser");
-		
 		sList.setUserId(currentMember.getUserId());
 		sList.setSavePostId(postId);
-		System.out.println(sList);
-		int result = sService.insertSaveList(sList);
-		System.out.println(result);
+		int count = sService.selectSaveList(sList);
+		if(count == 0) {
+			int result = sService.insertSaveList(sList);
+			return "Success";
+		}else {
+			return "Failed";
+		}
 		
-		return "redirect:/";
+		
+	
+		
+		
 	}
 	
 }

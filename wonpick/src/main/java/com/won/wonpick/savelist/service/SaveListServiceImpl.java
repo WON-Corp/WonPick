@@ -25,5 +25,8 @@ public class SaveListServiceImpl implements SaveListService{
 		System.out.println("service부분");
 		return sDao.insertSaveList(sqlSession,s);
 	}
+	public int selectSaveList(SaveList s) {
+		return sDao.selectSaveList(sqlSession,s);
+	}
 	
 }

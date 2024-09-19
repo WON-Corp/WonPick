@@ -15,4 +15,9 @@ public class SaveListDao {
 		return result;
 	}
 
+	public int selectSaveList(SqlSessionTemplate sqlSession, SaveList s) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("saveListMapper.selectSaveList", s);
+	}
+
 }
