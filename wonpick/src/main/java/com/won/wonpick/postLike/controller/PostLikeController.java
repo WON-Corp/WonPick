@@ -37,10 +37,10 @@ public class PostLikeController {
 		int count = plService.selectUserPostLike(pl);
 		
 		if(count == 0) {
-		
+             plService.userPostLike(pl);
 			return "Success";
 		}else {
-			System.out.println(plService.deletePostLike(pl));
+			plService.deletePostLike(pl);
 			
 			return "Failed";
 		}
