@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.won.wonpick.member.model.vo.Member;
@@ -168,6 +169,33 @@ public class MemberController {
 		//정보 수정 페이지로 이동
 		return "option/information";
 	}
+	
+	@RequestMapping("/profileInfo")
+	   public String showProfileInfo(@RequestParam(value = "userId", required = false) String userId, HttpSession session, Model model) {
+
+	       if (userId == null) {
+	           Member loginUser = (Member) session.getAttribute("loginUser");
+	           if (loginUser != null) {
+	               userId = loginUser.getUserId();
+	           } else {
+	               model.addAttribute("errorMsg", "로그인 정보가 없습니다.");
+	               return "common/errorPage";
+	           }
+	       }
+
+	       Member foundMem = mService.getMemberById(userId);
+
+	       if (foundMem != null) {
+	           model.addAttribute("member", foundMem);
+	           return "option/profileInfo"; 
+	       } else {
+	           model.addAttribute("errorMsg", "사용자를 찾을 수 없습니다.");
+	           return "common/errorPage";
+	       }
+	   }
+
+
+	
 	@RequestMapping("/updateMember")
 	public String updateMember(Member m, HttpSession session) {
 		

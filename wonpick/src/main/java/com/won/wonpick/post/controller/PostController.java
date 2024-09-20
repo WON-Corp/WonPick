@@ -128,11 +128,6 @@ public class PostController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping("/profileInfo")
-	public String showProfileInfo() {
-		return "option/profileInfo";
-	}
-	
 	@RequestMapping("/searchPage")
 	public String searchPage() {
 		return "search/search";

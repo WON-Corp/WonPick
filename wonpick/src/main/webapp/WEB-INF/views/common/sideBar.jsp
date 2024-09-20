@@ -140,7 +140,7 @@
 <body>
  <!-- 내 프로필 -->
     <div class="myprofile" 
-      onclick="location.href='<%= request.getContextPath() %>/post/profileInfo';" style="cursor: pointer;">
+      onclick="location.href='<%= request.getContextPath() %>/member/profileInfo';" style="cursor: pointer;">
         <h4>내 프로필</h4>
         <div class="myprofile2">
         <img src="${ loginUser.pfImg }" onerror="src='/wonpick/resources/img/logo.jpg'">

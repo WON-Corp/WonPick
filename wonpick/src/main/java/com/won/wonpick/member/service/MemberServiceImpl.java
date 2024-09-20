@@ -73,4 +73,9 @@ public class MemberServiceImpl implements MemberService{
 		return mDao.changePassword(sqlSession, m);
 	}
 
+	@Override
+	public Member getMemberById(String userId) {
+		return mDao.selectMemberById(sqlSession, userId);
+	}
+
 }
