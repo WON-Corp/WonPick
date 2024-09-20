@@ -30,6 +30,10 @@
 	object-fit: cover;
 }
 
+.post-info, .post-profile-img {
+	cursor: pointer;
+}
+
 .post-info h3 {
 	margin: 0;
 	font-size: 14px;
