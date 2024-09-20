@@ -305,7 +305,11 @@ body {
 	.myprofile {
 		display: none;
 	}
+	.content {
+		margin-right: 30px;
+	}
 }
+
 
 <!--
 문제 신고 페이지 모달 속성-->.upload-container {
