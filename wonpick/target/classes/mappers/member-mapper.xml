@@ -45,18 +45,23 @@
   	<update id="changePassword">
   		UPDATE MEMBER SET PASSWORD = #{password} WHERE USER_ID = #{userId} AND STATUS IN('Y','A')
   	</update>
-  	<update id="updateMember">
+	<update id="updateMember">
 		UPDATE MEMBER
-		   SET NICK_NAME = #{nickName}
-		     , ADDRESS = #{address}
-		 WHERE USER_ID = #{userId} AND STATUS IN ('Y','A')
+		SET NICK_NAME = #{nickName}
+		, ADDRESS = #{address}
+		WHERE USER_ID = #{userId} AND STATUS IN ('Y','A')
 	</update>
 	<update id="updateProfile">
 		UPDATE MEMBER
-		   SET  p_IMG = #{pfImg}
-		     , introduce = #{introduce}
-		 WHERE USER_ID = #{userId} AND STATUS IN ('Y','A')
+		SET p_IMG = #{pfImg}
+		, introduce = #{introduce}
+		WHERE USER_ID = #{userId} AND STATUS IN ('Y','A')
 	</update>
+
+	<select id="selectMemberById" parameterType="string"
+		resultMap="memberResultMap">
+		SELECT * FROM MEMBER WHERE USER_ID = #{userId} AND STATUS IN ('Y', 'A')
+	</select>
   	
 		
   
