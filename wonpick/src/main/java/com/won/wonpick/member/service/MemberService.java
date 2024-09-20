@@ -26,4 +26,6 @@ public interface MemberService {
 	int changePwdUser(Member m);
 
 	int changePassword(Member m);
+	
+	Member getMemberById(String userId);
 }
