@@ -105,7 +105,7 @@
 		<c:forEach var="list" items="${ list }">
 			<div class="feed">
 				<div class="post">
-					<div class="post-header">
+					<div class="post-header" data-user-id="${list.userId}" onclick="goToProfile('${list.userId}')">
 						<div class="post-info">
 							<br>
 							<h3>${ list.userId }</h3>
@@ -152,6 +152,12 @@
 							onclick="getDetailPost(${ list.postId });">
 							<p class="view-comments"><span id="postLike${ list.postId }">댓글보기</span> &nbsp;<span id="commentCount${ list.postId }">댓글보기</span></p>
 							<script>
+							
+							 function goToProfile(userId) {
+								// 상대방의 userId를  파라미터로 전달
+		                          window.location.href = '/wonpick/member/profileInfo?userId=' + userId;
+		                      }
+
 							
 							function confirmPostPick(postId) {
 							    // confirm 창을 띄워 사용자가 저장할지 결정하게 함
@@ -325,7 +331,7 @@
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content post">
 						<!-- 모달 헤더 부분 -->
-						<div class="post-header">
+						<div class="post-header" data-user-id="${list.userId}" onclick="goToProfile('${list.userId}')">
 							<div class="post-info">
 								<br>
 								<h3 id="userId"></h3>
