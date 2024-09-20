@@ -145,7 +145,7 @@
             <div class="overview-item">
                 <ion-icon class="icon-background" name="person-remove-outline"></ion-icon>
                 <h2>탈퇴 회원 관리</h2>
-                <p>이번 달 탈퇴 회원: 1명</p>
+                <p>총 탈퇴 회원: 1명</p>
             </div>
         </div>
     </div>
