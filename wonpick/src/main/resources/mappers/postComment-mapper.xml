@@ -29,4 +29,18 @@
 		INSERT INTO POST_COMMENT VALUES (SEQ_POST_COMMENT_NO.NEXTVAL, #{userId}, #{postId}, #{postComment}, SYSDATE, DEFAULT) 
 	</insert>
 	
+	<select id="selectCommentPick" resultType="_int">
+		select count(*)
+		from POST_COMMENTS_LIKE
+		where comment_id = #{postCommentId} and user_id = #{userId}
+	</select>
+	
+	<insert id="insertCommentPick">
+		insert into POST_COMMENTS_LIKE VALUES(#{postCommentId},#{userId})
+	</insert>
+	
+	<delete id="deleteCommentPick">
+		delete POST_COMMENTS_LIKE
+		WHERE comment_id = #{postCommentId} and user_id = #{userId}
+	</delete>
 </mapper>

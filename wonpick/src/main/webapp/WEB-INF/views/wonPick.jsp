@@ -67,17 +67,11 @@
 }
 
 .heart {
-	width: 17px;
-	height: 16px;
+	width: 21px;
+	height: 22px;
+	margin-right: 10px;
 	cursor: pointer;
 	margin-bottom: 11px;
-}
-
-.bookmark {
-	width: 23px;
-	height:21px;
-	margin-bottom:10px;
-
 }
 
 .view-comments {
@@ -155,7 +149,7 @@
 						</button>
 						<div class="post-actions">
 							<button id="detailPost" onclick="postPick(${ list.postId })"><img src="/wonpick/resources/img/logo.jpg" id="likeimg${ list.postId }" alt="WonPick 로고" class="heart"></button>
-							<button id="detailPost" onclick="confirmPostPick(${list.postId})"><img src="/wonpick/resources/img/bookmark-off.jpg" id="bookmark${ list.postId }" alt="WonPick 북마크" class="bookmark"></button>
+							<button id="detailPost" onclick="confirmPostPick(${list.postId})"><img src="/wonpick/resources/img/bookmark-off.jpg" id="bookmark${ list.postId }" alt="WonPick 로고" class="heart"></button>
 						</div>
 						<button type="button" id="detailPost" data-toggle="modal"
 							data-target="#detailPostModal"
@@ -393,6 +387,7 @@
 								<h3 id="userId"></h3>
 								<span class="post-time" id="postingTime"></span>
 							</div>
+							<!-- 댓글에 유저 프로필 띄우기 -->
 							<img src="" onerror="src='/wonpick/resources/img/logo.jpg'"
 								class="post-profile-img" id="userPfImg">
 						</div>
@@ -417,9 +412,8 @@
 							<div class="post-actions">
 								<button id="detailPost" onclick="postPick(${ list.postId })"><img  src="/wonpick/resources/img/logo.jpg" id="likeimg${ list.postId }" alt="WonPick 로고"
 									class="heart"></button>
-								 <button id="detailPost" onclick="confirmPostPick(${list.postId})">
-							        <img src="/wonpick/resources/img/bookmark-off.jpg" id="bookmark${ list.postId }" alt="WonPick 로고" class="heart">
-							    </button>
+								<button id="detailPost" onclick="confirmPostPick(${list.postId})"><img src="/wonpick/resources/img/bookmark-off.jpg" id="bookmark${ list.postId }" alt="WonPick 로고" 
+									class="heart"></button>
 							</div>
 
 							<!-- 여기부터 댓글 리스트 ajax사용 -->
@@ -510,14 +504,16 @@
             success: function(result) {
             	$("#postCommentList").text("");
                 for(let item of result){
+                	
                 	$("#postCommentList").append(
                 			'<div class="post-header"><div class="post-info"><br><h3 id="commentUserId">'+item.userId+'</h3>'+
 							'<span class="post-time" id="postingTime">'+item.commentTime+'</span></div><div class="post-actions">'+
 							'<img src="'+item.userPfImg+'" onerror="src='+"'/wonpick/resources/img/logo.jpg'"+'" class="post-profile-img" id="commentUserPfImg" style="width:30px; height:30px">'+
-							'<img src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고" class="heart" style="margin:5px"></div></div>'+
+							'<button type="button" id="detailPost" onclick="postComment(\''+item.postCommentId+'\')"><img src="/wonpick/resources/img/logo.jpg" id="commentPick'+item.postCommentId+'" alt="WonPick 로고" class="heart" style="margin:5px"></button></div></div>'+
 							'<div class="post-comments">'+
 							'<p id="postCommentContent">'+item.postComment+'</p></div></div>'
                 	);
+                	checkLikeStatus(item.postCommentId);
                 } 
             },
             error: function(err) {
@@ -528,6 +524,53 @@
  		
  	}
  	
+ 	function checkLikeStatus(postCommentId) {
+ 	    $.ajax({
+ 	        url: "/wonpick/postComment/checkCommentPick",
+ 	        type: 'post',
+ 	        data: { postCommentId: postCommentId },
+ 	        success: function(result) {
+ 	            const imgElement = document.getElementById("commentPick" + postCommentId);
+ 	           if(result == "yes"){
+ 	        	   console.log(result);
+ 	        	   imgElement.src = "/wonpick/resources/img/heart.jpg";
+ 	           }else if(result == "no"){
+ 	        	  console.log(result);
+ 	        	  imgElement.src = "/wonpick/resources/img/logo.jpg";
+ 	           }
+ 	        },
+ 	        error: function(err) {
+ 	            console.log(err);
+ 	            console.log("아작스 실패")
+ 	        }
+ 	    });
+ 	}
+ 	// 댓글 좋아요 기능 us
+ 	function postComment(postCommentId){
+ 		$.ajax({
+ 					url : "/wonpick/postComment/selectCommentPick",
+ 					type : 'post',
+ 					data : {postCommentId : postCommentId
+ 							},
+ 					success : function (result){
+ 					
+ 						const imgElement = document.getElementById("commentPick"+postCommentId);
+ 						
+ 						//yes 가 좋아요 누른거
+ 						if(result == "yes"){
+ 							imgElement.src = "/wonpick/resources/img/heart.jpg";
+ 						}else if(result == "no"){
+ 							imgElement.src = "/wonpick/resources/img/logo.jpg";
+ 							
+ 							
+ 						}
+ 					},
+ 					error : function (err){
+ 						console.log(err)
+ 						console.log("ajax 실패")
+ 					}
+ 			});
+	 	}
  
 </script>
 

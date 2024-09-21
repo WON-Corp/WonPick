@@ -21,6 +21,19 @@ public class PostCommentDao {
 	public int insertComment(SqlSessionTemplate sqlSession, PostComment pc) {
 		return sqlSession.insert("postCommentMapper.insertComment", pc);
 	}
+
+	public int selectCommentPick(SqlSessionTemplate sqlSession, PostComment pc) {
+		return sqlSession.selectOne("postCommentMapper.selectCommentPick",pc);
+	}
+
+	public int insertCommentPick(SqlSessionTemplate sqlSession, PostComment pc) {
+		return sqlSession.insert("postCommentMapper.insertCommentPick",pc);
+	}
+
+	public int deleteCommentPick(SqlSessionTemplate sqlSession, PostComment pc) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("postCommentMapper.deleteCommentPick",pc);
+	}
 	
 	
 
