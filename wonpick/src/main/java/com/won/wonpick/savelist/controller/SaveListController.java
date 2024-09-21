@@ -41,5 +41,19 @@ public class SaveListController {
 		
 		
 	}
+	@ResponseBody
+	@RequestMapping("/selectSaveList")
+	public String selectSaveList(SaveList sList, int postId, HttpSession session) {
+		
+		
+		int count = sService.selectSaveList(sList);
+		if(count == 0) {
+			
+			return "no";
+		}else {
+			
+			return "yes";
+		}
+	}
 	
 }
