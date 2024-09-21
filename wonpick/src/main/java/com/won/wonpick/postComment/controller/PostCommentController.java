@@ -8,10 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
+import com.won.wonpick.member.model.vo.Member;
 import com.won.wonpick.postComment.model.vo.PostComment;
 import com.won.wonpick.postComment.service.PostCommentService;
 
@@ -69,5 +72,44 @@ public class PostCommentController {
 			return "redirect:/";
 		}
 	}
-
+	
+	@ResponseBody
+	@RequestMapping("/selectCommentPick")
+	public String selectCommentPick(PostComment pc, HttpSession session, HttpServletRequest request) {
+		
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		pc.setUserId(loginUser.getUserId());
+		
+		
+		int result = pcService.selectCommentPick(pc); 
+		if(result == 0) {
+			pcService.insertCommentPick(pc);
+			return "yes";	
+		}else {
+			pcService.deleteCommentPick(pc);
+			return "no";
+		}		
+	}
+	
+	@ResponseBody
+	@RequestMapping("/checkCommentPick")
+	public String checkCommentPick(PostComment pc, HttpSession session, HttpServletRequest request) {
+		
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		pc.setUserId(loginUser.getUserId());
+		
+	
+		int result = pcService.selectCommentPick(pc);
+		System.out.println(result);
+		
+		if(result == 0) {
+			
+			return "no";	
+		}else {
+		
+			return "yes";
+		}		
+	}
 }
+
+

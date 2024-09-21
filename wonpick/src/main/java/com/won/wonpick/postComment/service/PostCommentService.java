@@ -12,4 +12,10 @@ public interface PostCommentService {
 
 	int insertComment(PostComment pc);
 
+	int selectCommentPick(PostComment pc);
+
+	int insertCommentPick(PostComment pc);
+
+	int deleteCommentPick(PostComment pc);
+
 }

@@ -31,5 +31,19 @@ public class PostCommentServiceImpl implements PostCommentService {
 	public int insertComment(PostComment pc) {
 		return pcDao.insertComment(sqlSession, pc);
 	}
+	
+	@Override
+	public int selectCommentPick(PostComment pc) {
+		return pcDao.selectCommentPick(sqlSession,pc);
+	}
+	@Override
+	public int insertCommentPick(PostComment pc) {
+		return pcDao.insertCommentPick(sqlSession,pc);
+		
+	}
+	@Override
+	public int deleteCommentPick(PostComment pc) {
+		return pcDao.deleteCommentPick(sqlSession,pc);
+	}
 
 }
