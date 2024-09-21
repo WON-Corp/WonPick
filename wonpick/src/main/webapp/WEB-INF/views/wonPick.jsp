@@ -67,11 +67,17 @@
 }
 
 .heart {
-	width: 21px;
-	height: 22px;
-	margin-right: 10px;
+	width: 17px;
+	height: 16px;
 	cursor: pointer;
 	margin-bottom: 11px;
+}
+
+.bookmark {
+	width: 23px;
+	height:21px;
+	margin-bottom:10px;
+
 }
 
 .view-comments {
@@ -149,7 +155,7 @@
 						</button>
 						<div class="post-actions">
 							<button id="detailPost" onclick="postPick(${ list.postId })"><img src="/wonpick/resources/img/logo.jpg" id="likeimg${ list.postId }" alt="WonPick 로고" class="heart"></button>
-							<button id="detailPost" onclick="confirmPostPick(${list.postId})"><ion-icon name="bookmark-outline"></ion-icon></button>
+							<button id="detailPost" onclick="confirmPostPick(${list.postId})"><img src="/wonpick/resources/img/bookmark-off.jpg" id="bookmark${ list.postId }" alt="WonPick 북마크" class="bookmark"></button>
 						</div>
 						<button type="button" id="detailPost" data-toggle="modal"
 							data-target="#detailPostModal"
@@ -173,7 +179,11 @@
 							        console.log('저장 취소됨');
 							    }
 							}
+							
+							
+							//게시물 저장하고 저장 유무의 따라 아이콘 색 변화
 							function postSave(postId ) {
+								
 							    $.ajax({
 							        url: '/wonpick/saveList/insertSaveList', // 서버 URL 지정
 							        type: 'POST',               // HTTP 메소드
@@ -181,11 +191,14 @@
 							            postId : postId  // 데이터 포함
 							        },
 							        success: function(response) {
+							        	
 							            // 요청 성공 시 수행할 작업
 							            if(response == "Success"){
 							            	alert("게시물을 저장했습니다");
+							            	
 							            }else if(response == "Failed"){
 							            	alert("저장목록에서 삭제 되었습니다");
+							            	
 							            }
 							           	
 							        },
@@ -195,8 +208,47 @@
 							            console.error('Error:', status, error);
 							        }
 							    });
+							    const imgElement = document.getElementById("bookmark"+postId);
 							    
+							 // 현재 이미지 경로
+							    const currentSrc = imgElement.src;
+							 
+							 // 원래 이미지 경로와 변경할 이미지 경로
+							    const originalImageSrc = "/wonpick/resources/img/bookmark-off.jpg";
+							    const newImageSrc = "/wonpick/resources/img/bookmark-on.jpg";
+							    
+							    if (currentSrc.includes(originalImageSrc)) {
+								      imgElement.src = newImageSrc;
+								    } else {
+								      imgElement.src = originalImageSrc;
+								    }
 							}
+							
+							//게시물을 불러 올 때 저장 유무에 따라 아이콘 변화
+							$(function(){
+								$.ajax({
+									url : '/wonpick/saveList/selectSaveList',
+									type : 'post',
+									data : {postId : ${list.postId} , userId : "${loginUser.userId}"},
+									success: function(result){
+										const imgElement1 = document.getElementById("bookmark"+${list.postId});
+
+										if(result == "yes"){
+										
+											imgElement1.src = "/wonpick/resources/img/bookmark-on.jpg";
+										
+										}else if(result == "no"){
+											
+											imgElement1.src = "/wonpick/resources/img/bookmark-off.jpg";
+											
+										}
+									},
+									error: function(err){
+										
+									}
+								});
+							});
+							
 							
 							// 좋아요 추가, 삭제 2
 		                     function updateLikeCount(postId) {
@@ -254,7 +306,7 @@
 							  
 								
 							}
-									
+									// 페이지가 로딩될 때 아이콘 색 유무
 									$(function(){
 										 
 										 
@@ -363,9 +415,11 @@
 							<p id="postContent"></p>
 
 							<div class="post-actions">
-								<button id="detailPost" onclick="postPick(${ list.postId })"><img  src="/wonpick/resources/img/logo.jpg" alt="WonPick 로고"
+								<button id="detailPost" onclick="postPick(${ list.postId })"><img  src="/wonpick/resources/img/logo.jpg" id="likeimg${ list.postId }" alt="WonPick 로고"
 									class="heart"></button>
-								<button id="detailPost" onclick="confirmPostPick(${list.postId})"><ion-icon name="bookmark-outline"></ion-icon></button>
+								 <button id="detailPost" onclick="confirmPostPick(${list.postId})">
+							        <img src="/wonpick/resources/img/bookmark-off.jpg" id="bookmark${ list.postId }" alt="WonPick 로고" class="heart">
+							    </button>
 							</div>
 
 							<!-- 여기부터 댓글 리스트 ajax사용 -->
