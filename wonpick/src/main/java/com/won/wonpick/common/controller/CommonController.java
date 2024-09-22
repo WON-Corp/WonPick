@@ -36,6 +36,12 @@ public class CommonController {
 		
 		return "option/saveList";
 	}
+
+	@RequestMapping("/setAlert")
+	public String Alert() {
+		
+		return "option/setAlert";
+	}
 	
 	@RequestMapping("/profileInfo")
 	   public String showProfileInfo(@RequestParam(value = "userId", required = false) String userId, HttpSession session, Model model) {
