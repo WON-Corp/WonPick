@@ -554,6 +554,8 @@ body {
 							<textarea class="form-control" id="errorPostContent"
 								name="errorContent" placeholder="최대한 자세히 입력해주세요..." maxlength="200" required></textarea>
 							<input type="hidden" name="userId" value="${ loginUser.userId }">
+							<br>
+							<p style="font-size:x-small; color:#aaa;">*문제 신고에 대한 답변은 로그인시 입력한 전화번호로 전송됩니다.<br> 정확한 정보를 입력하지 않으신 경우 답변을 받기 어려울수 있습니다.</p>
 						</div>
 
 						<button class="btn btn-danger">신고 보내기</button>
