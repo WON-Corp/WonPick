@@ -1,5 +1,7 @@
 package com.won.wonpick.member.service;
 
+import java.util.ArrayList;
+
 import com.won.wonpick.member.model.vo.Member;
 
 public interface MemberService {
@@ -28,4 +30,6 @@ public interface MemberService {
 	int changePassword(Member m);
 	
 	Member getMemberById(String userId);
+
+	ArrayList<Member> recentPostMember();
 }

@@ -14,13 +14,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
 import com.won.wonpick.member.model.vo.Member;
 import com.won.wonpick.member.service.MemberService;
-import com.won.wonpick.post.model.vo.Post;
-import com.won.wonpick.post.service.PostService;
 
 @Controller
 @RequestMapping("/member")
@@ -229,5 +228,13 @@ public class MemberController {
                     return "redirect:/";
                 }
         }
+	
+	@ResponseBody
+	@RequestMapping(value="/recentPost", produces="application/json;charset=UTF-8")
+	public String recentPostMember(Model model, HttpSession session) {
+		ArrayList<Member> userlist  = mService.recentPostMember();
+		
+		return new Gson().toJson(userlist);
+	}
 
 }

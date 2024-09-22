@@ -62,6 +62,14 @@
 		resultMap="memberResultMap">
 		SELECT * FROM MEMBER WHERE USER_ID = #{userId} AND STATUS IN ('Y', 'A')
 	</select>
+	
+	<select id="selectRecentPost" resultMap="memberResultMap">
+		WITH RankedPosts AS (SELECT USER_ID, MAX(POSTING_TIME) AS LatestPost FROM POST GROUP BY USER_ID)
+			SELECT M.* FROM RankedPosts R 
+			JOIN MEMBER M ON R.USER_ID = M.USER_ID
+			WHERE STATUS IN ('Y','A')
+			ORDER BY R.LatestPost DESC
+	</select>
   	
 		
   
