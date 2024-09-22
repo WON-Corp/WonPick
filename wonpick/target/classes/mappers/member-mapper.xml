@@ -64,11 +64,16 @@
 	</select>
 	
 	<select id="selectRecentPost" resultMap="memberResultMap">
-		WITH RankedPosts AS (SELECT USER_ID, MAX(POSTING_TIME) AS LatestPost FROM POST GROUP BY USER_ID)
-			SELECT M.* FROM RankedPosts R 
-			JOIN MEMBER M ON R.USER_ID = M.USER_ID
-			WHERE STATUS IN ('Y','A')
-			ORDER BY R.LatestPost DESC
+		WITH RankedPosts AS (SELECT USER_ID, MAX(POSTING_TIME) AS LatestPost FROM POST GROUP BY USER_ID),
+		NumberedPosts AS (SELECT R.USER_ID, R.LatestPost, ROW_NUMBER() OVER (ORDER BY R.LatestPost DESC) AS rn
+    		FROM RankedPosts R
+    		JOIN MEMBER M ON R.USER_ID = M.USER_ID
+    		WHERE M.STATUS IN ('Y', 'A')
+    		)
+		SELECT M.* FROM NumberedPosts NP
+			JOIN MEMBER M ON NP.USER_ID = M.USER_ID
+			WHERE NP.rn BETWEEN 1 AND 7
+			ORDER BY NP.LatestPost DESC
 	</select>
   	
 		
