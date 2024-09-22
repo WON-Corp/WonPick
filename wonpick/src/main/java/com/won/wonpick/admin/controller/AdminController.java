@@ -91,7 +91,7 @@ public class AdminController {
     @RequestMapping("/deleteWithdrawnUser")
     public String deleteWithdrawnUser(String id) {
         int result = adminService.deleteUser(id);
-        return (result > 0) ? "redirect:/admin/manageWithdrawnUsers" : "common/errorPage";
+        return (result > 0) ? "redirect:/admin/managedrawnUsers" : "common/errorPage";
     }
 
     // 문제 신고 답변
