@@ -44,20 +44,6 @@
 	    WHERE STATUS IN ('Y', 'A')
 	</select>
 
-    <select id="getTotalPostCount" resultType="int">
-        SELECT COUNT(*) FROM POSTS
-    </select>
-
-    <select id="getUnresolvedReportCount" resultType="int">
-        SELECT COUNT(*) FROM REPORTS WHERE STATUS = 'UNRESOLVED'
-    </select>
-
-    <select id="getThisMonthWithdrawnUserCount" resultType="int">
-        SELECT COUNT(*) FROM MEMBER
-        WHERE WITHDRAWAL_STATUS = 'Y'
-        AND SIGNUP_DATE >= CURDATE() - INTERVAL 1 MONTH
-    </select>
-
     <update id="updateMember">
         UPDATE MEMBER
         SET USER_NAME = #{userName},
@@ -109,5 +95,26 @@
 	<select id="getPhoneNumber" resultType="String">
 		SELECT PHONE FROM MEMBER WHERE USER_ID = #{userId} AND STATUS ='Y'
 	</select>
+	
+	<!-- 기존 회원 수 쿼리 -->
+    <select id="getTotalMemberCount" resultType="_int">
+        SELECT COUNT(*) FROM Member WHERE status = 'Y'
+    </select>
+
+    <!-- 총 게시글 수 쿼리 -->
+    <select id="getTotalPostCount" resultType="_int">
+        SELECT COUNT(*) FROM Post
+    </select>
+
+    <!-- 미처리 신고 수 쿼리 -->
+    <select id="getUnresolvedReportCount" resultType="_int">
+        SELECT COUNT(*) FROM ERROR_POST WHERE RESPONSED = 'N'
+    </select>
+
+    <!-- 탈퇴 회원 수 쿼리 -->
+    <select id="getThisMonthWithdrawnUserCount" resultType="_int">
+        SELECT COUNT(*) FROM Member 
+        WHERE status = 'N'
+    </select>
 
 </mapper>

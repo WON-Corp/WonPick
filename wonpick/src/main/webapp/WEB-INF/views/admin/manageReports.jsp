@@ -49,6 +49,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+<%@ include file="../common/adminSideBar.jsp" %>
+<div class="content">
     <h1>문제 신고 관리</h1>
 	
 <table id="reportTable">
@@ -86,6 +88,7 @@
         </c:forEach>
     </tbody>
 </table>
+</div>
 
     <script>
     function respondReport(errorPostId, userId) {

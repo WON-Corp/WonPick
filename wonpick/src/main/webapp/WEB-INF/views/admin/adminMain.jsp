@@ -14,7 +14,7 @@
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
 <style>
-    body {
+ body {
         background: linear-gradient(to right, #f8f9fa, #e0e0e0);
         background: #fff;
         color: #333;
@@ -48,7 +48,6 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 30px;
-        cursor: pointer;
     }
 
     .overview-item {
@@ -57,6 +56,7 @@
         padding: 30px;
         border-radius: 15px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
         position: relative;
         overflow: hidden;
         border: 1px solid rgba(255, 255, 255, 0.4);
@@ -117,7 +117,7 @@
     <div class="admin-page">
         <h1>WonPick</h1>
         <div class="dashboard-overview">
-            <div class="overview-item"  onclick="location.href='<%= request.getContextPath() %>/admin/manageUsers';">
+            <div class="overview-item">
                 <ion-icon class="icon-background" name="person-circle-outline"></ion-icon>
                 <h2>회원정보 관리</h2>
                 <p>현재 등록된 회원 수: <span id="allMemberCount"></span>명</p>
