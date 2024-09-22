@@ -48,6 +48,7 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 30px;
+        cursor: pointer;
     }
 
     .overview-item {
@@ -56,16 +57,10 @@
         padding: 30px;
         border-radius: 15px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
         position: relative;
         overflow: hidden;
         border: 1px solid rgba(255, 255, 255, 0.4);
         backdrop-filter: blur(8px);
-    }
-
-    .overview-item:hover {
-        transform: translateY(-10px);
-
     }
 
     .overview-item h2 {
@@ -89,11 +84,6 @@
         font-size: 5rem;
         color: rgba(0, 0, 0, 0.05);
         transition: transform 0.3s ease;
-    }
-
-    .overview-item:hover .icon-background {
-        transform: scale(1.1);
-        color: rgba(0, 0, 0, 0.1);
     }
 
     @media (max-width: 768px) {
@@ -127,29 +117,78 @@
     <div class="admin-page">
         <h1>WonPick</h1>
         <div class="dashboard-overview">
-            <div class="overview-item">
+            <div class="overview-item"  onclick="location.href='<%= request.getContextPath() %>/admin/manageUsers';">
                 <ion-icon class="icon-background" name="person-circle-outline"></ion-icon>
                 <h2>회원정보 관리</h2>
-                <p>현재 등록된 회원 수: 14명</p>
+                <p>현재 등록된 회원 수: <span id="allMemberCount"></span>명</p>
             </div>
             <div class="overview-item">
                 <ion-icon class="icon-background" name="document-text-outline"></ion-icon>
                 <h2>게시글 관리</h2>
-                <p>총 게시글 수: 21개</p>
+                <p>총 게시글 수: <span id="allPostCounts"></span>개</p>
             </div>
             <div class="overview-item">
                 <ion-icon class="icon-background" name="alert-circle-outline"></ion-icon>
                 <h2>문제 신고 관리</h2>
-                <p>미처리 신고: 2건</p>
+                <p>미처리 신고: <span id="allErrorPostCounts"></span>건</p>
             </div>
             <div class="overview-item">
                 <ion-icon class="icon-background" name="person-remove-outline"></ion-icon>
                 <h2>탈퇴 회원 관리</h2>
-                <p>총 탈퇴 회원: 1명</p>
+                <p>이번 달 탈퇴 회원: <span id="allDrawMemberCounts"></span>명</p>
             </div>
         </div>
     </div>
 </div>
+<script>
+
+	$(function(){
+		
+	 	$.ajax({
+	 		url: "/wonpick/admin/manageUserCounts",
+	 		type: "post",
+	 		success: function(result){
+	 			$("#allMemberCount").text(result);
+	 		},
+	 		error: function(err){
+	 			console.log(err);
+	 		}
+	 	});
+	 	
+	 	 $.ajax({
+	         url: "/wonpick/admin/managePostCounts",
+	         type: "post",
+	         success: function(result){
+	             $("#allPostCounts").text(result);
+	         },
+	         error: function(err){
+	             console.log(err);
+	         }
+	     });
+
+	     $.ajax({
+	         url: "/wonpick/admin/manageReportCounts",
+	         type: "post",
+	         success: function(result){
+	             $("#allErrorPostCounts").text(result);
+	         },
+	         error: function(err){
+	             console.log(err);
+	         }
+	     });
+
+	     $.ajax({
+	         url: "/wonpick/admin/manageDrawnUserCounts",
+	         type: "post",
+	         success: function(result){
+	             $("#allDrawMemberCounts").text(result);
+	         },
+	         error: function(err){
+	             console.log(err);
+	         }
+	     });
+	});
+</script>
 </body>
 
 </html>

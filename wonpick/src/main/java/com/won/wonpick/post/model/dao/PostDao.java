@@ -32,8 +32,20 @@ public class PostDao {
 	public ArrayList<Post> searchPostList(SqlSessionTemplate sqlSession, String keyword) {
 		return (ArrayList)sqlSession.selectList("postMapper.searchPostList", keyword);
 	}
+	
+	/* 관리자 포스트 수정/삭제 기능 */
 
+	public int deletePost(SqlSessionTemplate sqlSession, int postId) {
+	    return sqlSession.delete("postMapper.deletePost", postId);
+	}
+	
+	public int updatePost(SqlSessionTemplate sqlSession, Post post) {
+	    return sqlSession.update("postMapper.updatePost", post);
+	}
+
+   /* 마이페이지 화면 포스트 출력 기능 */
 	public ArrayList<Post> selectProfilePostList(SqlSessionTemplate sqlSession, String userId) {
 		return (ArrayList)sqlSession.selectList("postMapper.selectProfilePostList", userId);
 	}
+
 }

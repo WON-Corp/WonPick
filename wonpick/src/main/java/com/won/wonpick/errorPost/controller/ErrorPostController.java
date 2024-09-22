@@ -1,6 +1,5 @@
 package com.won.wonpick.errorPost.controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletResponse;
@@ -9,8 +8,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonIOException;
 import com.won.wonpick.errorPost.model.vo.ErrorPost;
 import com.won.wonpick.errorPost.service.ErrorPostService;
 

@@ -1,6 +1,7 @@
 package com.won.wonpick.post.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,6 @@ public class PostServiceImpl implements PostService {
 		return pDao.selectList(sqlSession);
 	}
 
-
 	@Override
 	public int insertBoard(Post p) {
 		return pDao.insertBoard(sqlSession, p);
@@ -44,12 +44,26 @@ public class PostServiceImpl implements PostService {
 		return pDao.selectSaveList(sqlSession);
 	}
 
-
 	@Override
 	public ArrayList<Post> searchPostList(String keyword) {
 		return pDao.searchPostList(sqlSession, keyword);
 	}
+	
+   @Override
+   public List<Post> getAllPosts() {
+       return pDao.selectList(sqlSession);
+   }
 
+   @Override
+   public int updatePost(Post post) {
+       return pDao.updatePost(sqlSession, post);
+   }
+
+
+   @Override
+   public int deletePost(int postId) {
+       return pDao.deletePost(sqlSession, postId);
+   }
 
 	@Override
 	public ArrayList<Post> selectProfilePostList(String userId) {
