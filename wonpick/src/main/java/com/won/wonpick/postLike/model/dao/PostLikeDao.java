@@ -13,6 +13,7 @@ public class PostLikeDao {
 	}
 
 	public int userPostLike(SqlSessionTemplate sqlSession, PostLike pl) {
+		sqlSession.insert("postLikeMapper.insertPostLikeAlert", pl);
 		return sqlSession.insert("postLikeMapper.insertPostLike", pl);
 	}
 	

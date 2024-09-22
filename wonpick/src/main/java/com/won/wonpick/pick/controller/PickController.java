@@ -23,7 +23,7 @@ public class PickController {
 	
 	@ResponseBody
 	@RequestMapping("/pick")
-	public int pick(Pick p, HttpSession session) {		// 전달 해야함
+	public int pick(Pick p, HttpSession session) {	
 		
 		int selectMypick = pService.selectMyPick(p);
 		

@@ -34,4 +34,8 @@
 		where p.user_id = '${userId}'
   	</select>
   	
+  	<insert id="insertAlert">
+  		insert into alert values(SEQ_ALT_NO.NEXTVAL ,#{userId}, concat(#{pickedId},'님이 당신을 PICK! 했습니다!'), 'PICK')
+  	</insert>
+  	
 </mapper>

@@ -80,24 +80,38 @@
     <div class="notification-page">
         <h1>새로운 알림</h1>
         <div class="notification-list">
-            <div class="notification-item">
-                <p><strong>2week</strong>님이 댓글을 달았습니다.</p>
-            </div>
-            <div class="notification-item">
-                <p><strong>2week</strong>님이 PICK! 했습니다.</p>
-            </div>
-            <div class="notification-item">
-                <p><strong>2week</strong>님이 댓글을 달았습니다.</p>
-            </div>
-            <div class="notification-item">
-                <p><strong>2week</strong>님이 댓글을 달았습니다.</p>
-            </div>
-            <div class="notification-item">
-                <p><strong>2week</strong>님이 댓글을 달았습니다.</p>
-            </div>
+           
+            
         </div>
     </div>
 </div>
+
+<script>
+	$(function() {
+		getNoticeList('${ loginUser.userId }')
+	})
+	
+	function getNoticeList(userId){
+		$.ajax({
+            url: "/wonpick/alert/alertList",
+            type: 'post',
+            data: { userId: userId },
+            success: function(result) {
+            	console.log(result)
+            	$(".notification-list").text("");
+                for(let r of result){
+                	
+                	$(".notification-list").append(
+                			'<div class="notification-item">'
+                            +'<p>'+r.alertMessage+'</p></div>')
+                }
+            },
+            error: function(err) {
+  
+            }
+        });
+	}
+</script>
 </body>
 
 </html>
