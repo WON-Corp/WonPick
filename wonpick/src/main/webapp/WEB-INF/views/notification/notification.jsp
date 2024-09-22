@@ -49,7 +49,6 @@
 
     .notification-item:hover {
         background-color: #eeeeee;
-        cursor: pointer;
     }
 
     .notification-item p {
@@ -99,7 +98,6 @@
         </div>
     </div>
 </div>
-<%@ include file="../common/sideBar.jsp"%>
 </body>
 
 </html>
