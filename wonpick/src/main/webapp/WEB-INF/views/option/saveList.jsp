@@ -87,12 +87,6 @@ body {
         height : 350px;
         
     }
-	.content {
-		
-		border-radius : 20px;
-		background-color: #f0f0f0;
-		
-	}
 
 
 
@@ -119,21 +113,7 @@ body {
 	<div class="content">
 		
 			<div class="title">저장 목록</div>
-			<div class="slider-container photos" id="slider-container">
-				<div class="grid-container">
-				<c:foreach var="list" items="${saveList}">
-				    <div class="grid-item">
-				    <img src="${ list.userPfImg }"
-							onerror="src='/wonpick/resources/img/logo.jpg'"
-							class="post-profile-img"></div>
-				 </c:foreach>
-				</div>
-				
-			</div>
-
-	
-			
-		
+			<%@ include file="/WEB-INF/views/option/savedPostList.jsp"%>
 	</div>
 
 	
