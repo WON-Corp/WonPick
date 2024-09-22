@@ -100,7 +100,6 @@ public class PostCommentController {
 		
 	
 		int result = pcService.selectCommentPick(pc);
-		System.out.println(result);
 		
 		if(result == 0) {
 			
