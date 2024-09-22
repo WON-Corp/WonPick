@@ -1,5 +1,7 @@
 package com.won.wonpick.member.service;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
@@ -76,6 +78,11 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public Member getMemberById(String userId) {
 		return mDao.selectMemberById(sqlSession, userId);
+	}
+
+	@Override
+	public ArrayList<Member> recentPostMember() {
+		return  mDao.recentPostMember(sqlSession);
 	}
 
 }

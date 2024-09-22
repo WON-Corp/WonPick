@@ -1,5 +1,7 @@
 package com.won.wonpick.member.model.dao;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -43,6 +45,10 @@ public class MemberDao {
 
 	public Member selectMemberById(SqlSessionTemplate sqlSession, String userId) {
 		return sqlSession.selectOne("memberMapper.selectMemberById", userId);
+	}
+
+	public ArrayList<Member> recentPostMember(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("memberMapper.selectRecentPost");
 	}
 
 }

@@ -61,36 +61,37 @@
  <header>
             <!-- 프로필 스토리 섹션 -->
             <div class="stories">
-                <div class="story">
-                    <img src="/wonpick/resources/img/profile01.png" onerror="src='/wonpick/resources/img/logo.jpg'">
-                    <span>아이유</span>
-                </div>
-                <div class="story">
-                    <img src="/wonpick/resources/img/profile02.jpg" onerror="src='/wonpick/resources/img/logo.jpg'">
-                    <span>username2</span>
-                </div>
-                <div class="story">
-                    <img src="/wonpick/resources/img/profile03.jpg" onerror="src='/wonpick/resources/img/logo.jpg'">
-                    <span>username3</span>
-                </div>
-                <div class="story">
-                    <img src="#" onerror="src='/wonpick/resources/img/logo.jpg'">
-                    <span>username4</span>
-                </div>
-                <div class="story">
-                    <img src="#" onerror="src='/wonpick/resources/img/logo.jpg'">
-                    <span>username5</span>
-                </div>
-                <div class="story">
-                    <img src="#" onerror="src='/wonpick/resources/img/logo.jpg'">
-                    <span>username6</span>
-                </div>
-                <div class="story">
-                    <img src="#" onerror="src='/wonpick/resources/img/logo.jpg'">
-                    <span>username7</span>
-                </div>
-                <!-- 필요에 따라 더 많은 프로필 추가 !! -->
+                
             </div>
         </header>
+        
+        <script>
+        	$(function() {
+        		recentPostMember()
+        	});
+        	
+        	function recentPostMember() {
+        		$.ajax({
+        		    url: "/wonpick/member/recentPost",
+        		    type: 'post',
+        		    success: function(result) {
+        		    	$(".stories").text("");
+        		        for(let r of result){
+        		        	
+        		        	$(".stories").append(
+        		        			'<div class="story" onclick="goToProfile('+r.userId+')">'
+        		                    	+ '<img src="'+r.pfImg+'" onerror="src='+"'/wonpick/resources/img/logo.jpg'"+'">'
+        		                    	+ '<span>'+r.userId+'</span></div>'
+        		        	);
+        		        } 
+        		    },
+        		    error: function(err) {
+        		        
+        		            
+        		    }
+        		});
+        	}
+        	
+        </script>
 </body>
 </html>
