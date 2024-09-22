@@ -73,7 +73,7 @@
                 <td>${report.postingDate}</td>
 				<td>
 				<c:choose>
-				    <c:when test="${report.response eq 'Y'}">
+				    <c:when test="${report.responsed eq 'Y'}">
 				        답변 완료
 				    </c:when>
 				    <c:otherwise>
@@ -89,12 +89,12 @@
 
     <script>
     function respondReport(errorPostId) {
-        const answer = prompt("답변을 입력하세요:");
+        const answer = confirm("문제신고에 답변하시겠습니까?");
         if (answer) {
             const postData = {
-                errorPostId: errorPostId,
-                response: answer
+                errorPostId: errorPostId
             };
+            
 
             $.ajax({
                 url: "/wonpick/admin/respondReport",
@@ -102,7 +102,7 @@
                 data: JSON.stringify(postData),
                 contentType: "application/json",
                 success: function(response) {
-                    alert("답변이 등록되었습니다.");
+                	location.href = "sms:01085963584?body=문제신고 답변입니다!";
                     location.reload();
                 },
                 error: function(err) {

@@ -33,6 +33,7 @@
   		<mapper resource="/mappers/postComment-mapper.xml"/>
   		<mapper resource="/mappers/postLike-mapper.xml"/>
   		<mapper resource="/mappers/saveList-mapper.xml"/>
+  		<mapper resource="/mappers/admin-mapper.xml"/>
   		<mapper resource="/mappers/pick-mapper.xml"/>
 	</mappers>
 	

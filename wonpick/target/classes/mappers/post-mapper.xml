@@ -58,5 +58,14 @@
 		ORDER BY POST_ID DESC
 	</select>
 
+	<delete id="deletePost" parameterType="int">
+	    DELETE FROM POST WHERE POST_ID = #{postId}
+	</delete>
 	
+	<update id="updatePost" parameterType="Post">
+	    UPDATE POST 
+	    SET POST_CONTENT = #{postContent}
+	    WHERE POST_ID = #{postId}
+	</update>
+
 </mapper>
