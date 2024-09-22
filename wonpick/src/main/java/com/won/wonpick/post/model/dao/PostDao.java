@@ -32,4 +32,15 @@ public class PostDao {
 	public ArrayList<Post> searchPostList(SqlSessionTemplate sqlSession, String keyword) {
 		return (ArrayList)sqlSession.selectList("postMapper.searchPostList", keyword);
 	}
+	
+	/* 관리자 포스트 수정/삭제 기능 */
+
+	public int deletePost(SqlSessionTemplate sqlSession, int postId) {
+	    return sqlSession.delete("postMapper.deletePost", postId);
+	}
+	
+	public int updatePost(SqlSessionTemplate sqlSession, Post post) {
+	    return sqlSession.update("postMapper.updatePost", post);
+	}
+
 }

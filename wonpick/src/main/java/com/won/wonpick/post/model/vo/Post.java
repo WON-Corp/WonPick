@@ -22,5 +22,4 @@ public class Post {
 	private int count;
 	private String imgFile;
 	private String status;
-	
 }

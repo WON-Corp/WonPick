@@ -18,6 +18,6 @@ public class ErrorPost {
 	private String userId;
 	private String postingDate;
 	private String errorContent;
-	private String responsed;
+	 private String responsed;
 
 }

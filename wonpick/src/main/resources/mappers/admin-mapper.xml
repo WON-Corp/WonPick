@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminMapper">
+
+    <resultMap id="memberResultMap" type="com.won.wonpick.member.model.vo.Member">
+        <result column="user_id" property="userId"/>        
+        <result column="password" property="password"/> 
+        <result column="user_name" property="userName"/> 
+        <result column="nick_name" property="nickName"/> 
+        <result column="email" property="email"/>
+        <result column="phone" property="phone"/>
+        <result column="gender" property="gender"/> 
+        <result column="birth" property="birth"/> 
+        <result column="address" property="address"/>
+        <result column="introduce" property="introduce"/>
+        <result column="p_img" property="pfImg"/> 
+        <result column="status" property="status"/>
+    </resultMap>
+    <resultMap id="postResultMap" type="com.won.wonpick.post.model.vo.Post">
+	    <result column="post_id" property="postId"/>
+	    <result column="user_id" property="userId"/>
+	    <result column="post_title" property="postTitle"/>
+	    <result column="post_content" property="postContent"/>
+	    <result column="posting_time" property="postingTime"/>
+	    <result column="count" property="count"/>
+	    <result column="img_file" property="imgFile"/>
+	    <result column="status" property="status"/>
+	</resultMap>
+	
+	<resultMap id="errorPostResultMap" type="ErrorPost">
+	    <result column="error_post_id" property="errorPostId"/>
+	    <result column="error_post_title" property="errorPostTitle"/>
+	    <result column="user_id" property="userId"/>
+	    <result column="posting_date" property="postingDate"/>
+	    <result column="error_content" property="errorContent"/>
+	    <result column="responsed" property="responsed"/>
+	</resultMap>
+
+	<select id="getAllMembers" resultMap="memberResultMap">
+	    SELECT USER_ID, PASSWORD, USER_NAME, NICK_NAME, EMAIL, PHONE, GENDER, BIRTH, ADDRESS, INTRODUCE, P_IMG, STATUS
+	    FROM MEMBER
+	    WHERE STATUS IN ('Y', 'A')
+	</select>
+
+    <select id="getTotalPostCount" resultType="int">
+        SELECT COUNT(*) FROM POSTS
+    </select>
+
+    <select id="getUnresolvedReportCount" resultType="int">
+        SELECT COUNT(*) FROM REPORTS WHERE STATUS = 'UNRESOLVED'
+    </select>
+
+    <select id="getThisMonthWithdrawnUserCount" resultType="int">
+        SELECT COUNT(*) FROM MEMBER
+        WHERE WITHDRAWAL_STATUS = 'Y'
+        AND SIGNUP_DATE >= CURDATE() - INTERVAL 1 MONTH
+    </select>
+
+    <update id="updateMember">
+        UPDATE MEMBER
+        SET USER_NAME = #{userName},
+            NICK_NAME = #{nickName},
+            STATUS = #{status}
+        WHERE USER_ID = #{userId}
+    </update>
+
+    <delete id="deleteUser">
+        DELETE FROM MEMBER WHERE USER_ID = #{userId}
+    </delete>
+    
+	<select id="getAllPosts" resultType="com.won.wonpick.post.model.vo.Post">
+	    SELECT POST_ID, USER_ID, POST_CONTENT, POST_TITLE, STATUS
+	    FROM POSTS
+	</select>
+	
+	<update id="updatePost">
+	    UPDATE POSTS
+	    SET POST_CONTENT = #{postContent}, POST_TITLE = #{postTitle}
+	    WHERE POST_ID = #{postId}
+	</update>
+	
+	<delete id="deletePost">
+	    DELETE FROM POSTS WHERE post_id = #{postId}
+	</delete>
+	
+	<select id="getAllReports" resultMap="errorPostResultMap">
+	    SELECT ERROR_POST_ID, ERROR_POST_TITLE, USER_ID, POSTING_DATE, ERROR_CONTENT, RESPONSED
+	    FROM ERROR_POST
+	</select>
+
+	<update id="respondToReport" parameterType="ErrorPost">
+	    UPDATE ERROR_POST
+	    SET RESPONSED = #{responsed}
+	    WHERE ERROR_POST_ID = #{errorPostId}
+	</update>
+
+    <delete id="deleteReport" parameterType="int">
+        DELETE FROM ERROR_POST WHERE ERROR_POST_ID = #{errorPostId}
+    </delete>
+    
+    <select id="getWithdrawnMembers" resultMap="memberResultMap">
+	    SELECT USER_ID, USER_NAME, NICK_NAME, STATUS
+	    FROM MEMBER
+	    WHERE STATUS = 'N'
+	</select>
+
+</mapper>

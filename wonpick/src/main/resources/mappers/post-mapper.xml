@@ -50,6 +50,15 @@
 	<select id="searchPostList" resultMap="postResultSet">
 		SELECT * FROM POST WHERE (USER_ID LIKE #{keyword} OR POST_TITLE LIKE #{keyword} OR POST_CONTENT LIKE #{keyword}) AND STATUS = 'Y'
 	</select>
-
 	
+	<delete id="deletePost" parameterType="int">
+	    DELETE FROM POST WHERE POST_ID = #{postId}
+	</delete>
+	
+	<update id="updatePost" parameterType="Post">
+	    UPDATE POST 
+	    SET POST_CONTENT = #{postContent}
+	    WHERE POST_ID = #{postId}
+	</update>
+
 </mapper>
