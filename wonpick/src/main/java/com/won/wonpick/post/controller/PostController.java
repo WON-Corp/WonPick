@@ -121,8 +121,8 @@ public class PostController {
 	@RequestMapping("/saveList")
 	public String SaveList(HttpSession session, String userId) {
 		
-		ArrayList<Post> saveList = pService.selectSaveList();
-		session.setAttribute("saveList", saveList);
+		ArrayList<Post> saveList = pService.selectSaveList(userId);
+		session.setAttribute("list", saveList);
 
 		return "option/saveList";
 	}

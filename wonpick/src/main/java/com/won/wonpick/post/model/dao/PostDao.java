@@ -25,8 +25,8 @@ public class PostDao {
 	public int updateCount(SqlSessionTemplate sqlSession, int postId) {
 		return sqlSession.update("postMapper.updateCount", postId);
 	}
-	public ArrayList<Post> selectSaveList(SqlSessionTemplate sqlSession) {
-		return (ArrayList)sqlSession.selectList("postMapper.selectSaveList");
+	public ArrayList<Post> selectSaveList(SqlSessionTemplate sqlSession, String userId) {
+		return (ArrayList)sqlSession.selectList("postMapper.selectSaveList", userId);
 	}
 
 	public ArrayList<Post> searchPostList(SqlSessionTemplate sqlSession, String keyword) {
