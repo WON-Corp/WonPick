@@ -126,5 +126,17 @@ public class AdminController {
     public int adminPostCounts() {
         return adminService.getTotalPostCount();
     }
+    
+    @RequestMapping("/manageReportCounts")
+    @ResponseBody
+    public int adminReportCounts() {
+        return adminService.getUnresolvedReportCount();
+    }
+
+    @RequestMapping("/manageDrawnUserCounts")
+    @ResponseBody
+    public int adminDrawnUserCounts() {
+        return adminService.getThisMonthWithdrawnUserCount();
+    }
 
 }
