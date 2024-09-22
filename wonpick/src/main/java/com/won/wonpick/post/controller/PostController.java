@@ -119,13 +119,12 @@ public class PostController {
 	}
 	
 	@RequestMapping("/saveList")
-	public String SaveList(HttpSession session) {
+	public String SaveList(HttpSession session, String userId) {
 		
 		ArrayList<Post> saveList = pService.selectSaveList();
-		// 데이터베이스 들어가서 각 포스팅의 id값 출력 --> 그 아이디에 따른 img파일 출력
 		session.setAttribute("saveList", saveList);
 
-		return "redirect:/";
+		return "option/saveList";
 	}
 	
 	@RequestMapping("/searchPage")
