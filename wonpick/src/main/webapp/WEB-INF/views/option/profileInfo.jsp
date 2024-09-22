@@ -201,11 +201,13 @@
                 style="background-image: url('<%= member.getPfImg() != null ? member.getPfImg() : "/wonpick/resources/img/logo.jpg" %>');">
                 </div>
                 <div class="profile-info">
-                    <button class="pick-btn ${checkedPick ? 'picked' : ''}" data-picked-id="${member.userId}">PICK!</button>
+                	<c:if test="${ loginUser.userId ne member.userId }">
+                    <button type="button" class="pick-btn ${checkedPick ? 'picked' : ''}" data-picked-id="${member.userId}" onclick="pick(this.getAttribute('data-picked-id'))" >PICK!</button>
+                    </c:if>
                     <p class="user-id"><%= member.getUserId() %></p>
                     <div class="stats">
-                        <span>게시물 <span class="post-count">${postCount != null ? postCount : 0}</span></span> | 
-                        <span>pick <span class="pick-count">${pickCount != null ? pickCount : 0}</span></span> | 
+                        <span>게시물 <span class="post-count"></span></span> | 
+                        <span>pick <span class="pick-count"></span></span> | 
                         <span>picked <span class="picked-count">${pickedCount != null ? pickedCount : 0}</span></span>
                     </div>
                     <p class="nickname"><%= member.getNickName() %></p>
@@ -236,6 +238,57 @@
     
     
 <script>
+
+	function pick(userId){
+		$.ajax({
+			url : "/wonpick/pick/pick",
+			type : 'post',
+			data : {
+				userId: userId,
+				pickedId: "${ loginUser.userId }"
+			},
+			success : function (result){
+	                console.log(result);
+	                // pick-count 클래스를 가진 span 태그의 텍스트를 새로운 pickCount 값으로 업데이트
+	                document.querySelector('.pick-count').innerText = result;
+				},
+			error : function(err){
+				console.log(err)
+			}
+			});
+			}
+	$(function(){
+		$.ajax({
+			url : "/wonpick/pick/selectPicked",
+			type : 'post',
+			data : {userId : "${member.userId}"},
+			success : function (result){
+				console.log(result);
+				document.querySelector('.picked-count').innerText = result;
+			},
+			error : function (err){
+				console.log(err);
+				console.log("ajax실패");
+			}
+		});
+	});
+	$(function(){
+		$.ajax({
+			url : "/wonpick/pick/selectPick",
+			type : 'post',
+			data : {userId : "${member.userId}"},
+			success : function (result){
+				console.log(result);
+				document.querySelector('.pick-count').innerText = result;
+			},
+			error : function (err){
+				console.log(err);
+				console.log("ajax실패");
+			}
+		});
+	});
+
+
     // 프로필 사진 클릭 시 모달 열기
     document.getElementById('profile-pic').addEventListener('click', function() {
         const modal = document.getElementById('imageModal');
