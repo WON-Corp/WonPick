@@ -40,7 +40,7 @@
 <style>
     .profile-container {
         width: 100%;
-        height: 100vh;
+        height: 300px;
         max-width: 1000px;
         margin: 0 auto;
         background-color: #fff;
@@ -141,7 +141,10 @@
     .post:hover {
         transform: scale(1.05);
     }
-
+	
+	.myPostList {
+		margin: 0px 100px;
+	}
     @keyframes fadeIn {
         from {
             opacity: 0;
@@ -175,7 +178,7 @@
         position: relative;
     }
 
-    .modal img {
+    .modal #modal-image {
         width: 100%;
         border-radius: 10px;
     }
@@ -190,6 +193,7 @@
     Member member = (Member) request.getAttribute("member");
     if (member != null) {
 %>
+
     <div class="content">
         <div class="profile-container">
             <div class="profile-header">
@@ -197,27 +201,25 @@
                 style="background-image: url('<%= member.getPfImg() != null ? member.getPfImg() : "/wonpick/resources/img/logo.jpg" %>');">
                 </div>
                 <div class="profile-info">
-                    <button class="pick-btn ${checkedPick ? 'picked' : ''}" data-picked-id="${member.userId}">PICK!</button>
+                	<c:if test="${ loginUser.userId ne member.userId }">
+                    <button type="button" class="pick-btn ${checkedPick ? 'picked' : ''}" data-picked-id="${member.userId}" onclick="pick(this.getAttribute('data-picked-id'))" >PICK!</button>
+                    </c:if>
                     <p class="user-id"><%= member.getUserId() %></p>
                     <div class="stats">
-                        <span>게시물 <span class="post-count">${postCount != null ? postCount : 0}</span></span> | 
-                        <span>pick <span class="pick-count">${pickCount != null ? pickCount : 0}</span></span> | 
-                        <span>picked <span class="picked-count">${pickedCount != null ? pickedCount : 0}</span></span>
+                        <span>게시물 <span class="post-count"></span></span> | 
+                        <span>pick <span class="pick-count"></span></span> | 
+                        <span>collect <span class="picked-count">${pickedCount != null ? pickedCount : 0}</span></span>
                     </div>
                     <p class="nickname"><%= member.getNickName() %></p>
                     <p class="bio"><%= member.getIntroduce() != null ? member.getIntroduce() : "소개글이 없습니다." %></p>
                 </div>
             </div>
             <div class="border"></div>
-            <div class="post-grid">
-                <c:forEach var="post" items="${list}">
-                    <div class="post">
-                        <img src="<%=request.getContextPath()%>${post.imgFile}" alt="Post Image" class="post-image">
-                        <p>${post.postTitle}</p>
-                    </div>
-                </c:forEach>
-            </div>
         </div>
+		<div class="myPostList">
+			<%@ include file="/WEB-INF/views/option/profileInfoPostList.jsp"%>
+        </div>       
+        
     </div>
 <% } else { %>
     <p>사용자 정보를 찾을 수 없습니다.</p>
@@ -230,9 +232,63 @@
         </div>
     </div>
      
+     
+     
     <jsp:include page="../common/sideBar.jsp"/>
     
+    
 <script>
+
+	function pick(userId){
+		$.ajax({
+			url : "/wonpick/pick/pick",
+			type : 'post',
+			data : {
+				userId: userId,
+				pickedId: "${ loginUser.userId }"
+			},
+			success : function (result){
+	                console.log(result);
+	                // pick-count 클래스를 가진 span 태그의 텍스트를 새로운 pickCount 값으로 업데이트
+	                document.querySelector('.pick-count').innerText = result;
+				},
+			error : function(err){
+				console.log(err)
+			}
+			});
+			}
+	$(function(){
+		$.ajax({
+			url : "/wonpick/pick/selectPicked",
+			type : 'post',
+			data : {userId : "${member.userId}"},
+			success : function (result){
+				console.log(result);
+				document.querySelector('.picked-count').innerText = result;
+			},
+			error : function (err){
+				console.log(err);
+				console.log("ajax실패");
+			}
+		});
+	});
+	$(function(){
+		$.ajax({
+			url : "/wonpick/pick/selectPick",
+			type : 'post',
+			data : {userId : "${member.userId}"},
+			success : function (result){
+				console.log(result);
+				document.querySelector('.pick-count').innerText = result;
+			},
+			error : function (err){
+				console.log(err);
+				console.log("ajax실패");
+			}
+		});
+	});
+
+
     // 프로필 사진 클릭 시 모달 열기
     document.getElementById('profile-pic').addEventListener('click', function() {
         const modal = document.getElementById('imageModal');
@@ -251,6 +307,10 @@
         }
     });
 </script>
+
+  <%
+	session.removeAttribute("list");
+	%>
 </body>
 
 </html>

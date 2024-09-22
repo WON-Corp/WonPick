@@ -43,4 +43,9 @@ public class PostDao {
 	    return sqlSession.update("postMapper.updatePost", post);
 	}
 
+   /* 마이페이지 화면 포스트 출력 기능 */
+	public ArrayList<Post> selectProfilePostList(SqlSessionTemplate sqlSession, String userId) {
+		return (ArrayList)sqlSession.selectList("postMapper.selectProfilePostList", userId);
+	}
+
 }

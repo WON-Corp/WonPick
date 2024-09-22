@@ -491,7 +491,7 @@ body {
 			<li><a href="<%= contextPath %>/myprofile/profile"><ion-icon
 						name="settings-outline"></ion-icon>내 정보</a></li>
 			
-			<li><a href="<%= request.getContextPath() %>/member/profileInfo"><ion-icon name="images-outline"></ion-icon> 내 활동</a></li>
+			<li><a href="<%= request.getContextPath() %>/myprofile/profileInfo"><ion-icon name="images-outline"></ion-icon> 내 활동</a></li>
 			<c:choose>
 				<c:when test="${ loginUser.status eq 'A'}">
 					<button type="button" id="errorPostList" data-toggle="modal"

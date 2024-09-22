@@ -159,7 +159,7 @@
 							
 							 function goToProfile(userId) {
 								// 상대방의 userId를  파라미터로 전달
-		                          window.location.href = '/wonpick/member/profileInfo?userId=' + userId;
+		                          window.location.href = '/wonpick/myprofile/profileInfo?userId=' + userId;
 		                      }
 
 							

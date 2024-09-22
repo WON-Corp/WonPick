@@ -49,18 +49,26 @@ public class PostServiceImpl implements PostService {
 		return pDao.searchPostList(sqlSession, keyword);
 	}
 	
-    @Override
-    public List<Post> getAllPosts() {
-        return pDao.selectList(sqlSession);
-    }
+   @Override
+   public List<Post> getAllPosts() {
+       return pDao.selectList(sqlSession);
+   }
 
-    @Override
-    public int updatePost(Post post) {
-        return pDao.updatePost(sqlSession, post);
-    }
+   @Override
+   public int updatePost(Post post) {
+       return pDao.updatePost(sqlSession, post);
+   }
 
-    @Override
-    public int deletePost(int postId) {
-        return pDao.deletePost(sqlSession, postId);
-    }
+
+   @Override
+   public int deletePost(int postId) {
+       return pDao.deletePost(sqlSession, postId);
+   }
+
+	@Override
+	public ArrayList<Post> selectProfilePostList(String userId) {
+		return pDao.selectProfilePostList(sqlSession, userId);
+	}
+
+
 }
