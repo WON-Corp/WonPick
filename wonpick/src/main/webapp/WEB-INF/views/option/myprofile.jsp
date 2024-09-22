@@ -166,7 +166,7 @@
                 <ion-icon class="icon-background" name="person-circle-outline"></ion-icon>
                 <h2>프로필 편집</h2>
             </a>
-            <a href="<%= contextPath %>/post/saveList" class="overview-item">
+            <a href="<%= contextPath %>/post/saveList?userId=${loginUser.userId}" class="overview-item">
                 <ion-icon class="icon-background" name="document-text-outline"></ion-icon>
                 <h2>저장목록</h2>
             </a>

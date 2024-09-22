@@ -460,7 +460,7 @@
 			</c:forEach>
 		</c:if>
 		<c:if test="${ empty list }">
-			<h2 style="color: #888; margin-top: 200px">포스팅된 게시물이 없습니다.</h2>
+			<h2 style="color: #888; margin-top: 200px">저장된 게시물이 없습니다.</h2>
 		</c:if>
 	</div>
 

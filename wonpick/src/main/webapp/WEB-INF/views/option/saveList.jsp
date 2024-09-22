@@ -119,6 +119,9 @@ body {
 	
 
 <jsp:include page="../common/optionSideBar.jsp"/>
+<%
+	session.removeAttribute("list");
+	%>
 </body>
 
 </html>

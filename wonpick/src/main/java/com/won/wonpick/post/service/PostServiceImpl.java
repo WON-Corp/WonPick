@@ -40,8 +40,8 @@ public class PostServiceImpl implements PostService {
 	}
 	
 	@Override
-	public ArrayList<Post> selectSaveList() {
-		return pDao.selectSaveList(sqlSession);
+	public ArrayList<Post> selectSaveList(String userId) {
+		return pDao.selectSaveList(sqlSession, userId);
 	}
 
 	@Override
