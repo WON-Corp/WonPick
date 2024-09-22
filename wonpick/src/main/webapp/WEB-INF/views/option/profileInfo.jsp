@@ -42,6 +42,7 @@
         width: 100%;
         height: 300px;
         max-width: 1000px;
+        min-width: 550px;
         margin: 0 auto;
         background-color: #fff;
         padding: 30px;
