@@ -19,6 +19,7 @@ public class PostCommentDao {
 	}
 
 	public int insertComment(SqlSessionTemplate sqlSession, PostComment pc) {
+		sqlSession.insert("postCommentMapper.insertCommentAlert", pc);
 		return sqlSession.insert("postCommentMapper.insertComment", pc);
 	}
 
@@ -27,6 +28,7 @@ public class PostCommentDao {
 	}
 
 	public int insertCommentPick(SqlSessionTemplate sqlSession, PostComment pc) {
+		sqlSession.insert("postCommentMapper.insertCommentPickAlert", pc);
 		return sqlSession.insert("postCommentMapper.insertCommentPick",pc);
 	}
 

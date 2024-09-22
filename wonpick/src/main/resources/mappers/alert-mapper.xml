@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="alertMapper">
+
+<resultMap id="alertResultSet"  type="Alert">
+		<result column="ALERT_ID" property="alertId"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="ALERT_MESSAGE" property="alertMessage"/>
+		<result column="ALERT_TYPE" property="alertType"/>
+	</resultMap>
+	
+	
+	<select id="selectSaveList" resultMap="alertResultSet">
+		SELECT * FROM (
+			SELECT * FROM ALERT
+				WHERE USER_ID = #{userId}  
+        		ORDER BY ALERT_ID DESC
+			)
+		WHERE ROWNUM BETWEEN 1 AND 15
+	</select>
+	
+	
+</mapper>

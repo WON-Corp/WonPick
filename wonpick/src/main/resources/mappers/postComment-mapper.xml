@@ -43,4 +43,12 @@
 		delete POST_COMMENTS_LIKE
 		WHERE comment_id = #{postCommentId} and user_id = #{userId}
 	</delete>
+	
+	<insert id="insertCommentAlert">
+		insert into alert values(SEQ_ALT_NO.NEXTVAL ,(SELECT USER_ID FROM POST WHERE POST_ID = #{postId}), concat(#{userId},'님이 당신의 게시물에 댓글을 남겼습니다!'), 'POST')
+	</insert>
+	
+	<insert id="insertCommentPickAlert">
+		insert into alert values(SEQ_ALT_NO.NEXTVAL ,(SELECT USER_ID FROM POST_COMMENT WHERE POST_COMMENT_ID = #{postCommentId}), concat(#{userId},'님이 당신의 댓글을 좋아합니다!'), 'LIKE')
+	</insert>
 </mapper>

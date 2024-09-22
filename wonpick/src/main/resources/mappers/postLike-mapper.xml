@@ -25,6 +25,10 @@
 		DELETE FROM POST_LIKE WHERE POST_ID = #{postId} AND USER_ID = #{userId}
 	</delete>
 	
+	<insert id="insertPostLikeAlert">
+		insert into alert values(SEQ_ALT_NO.NEXTVAL ,(SELECT USER_ID FROM POST WHERE POST_ID = #{postId}), concat(#{userId},'님이 당신의 게시물을 좋아합니다!'), 'LIKE')
+	</insert>
+	
 	
 	
 </mapper>

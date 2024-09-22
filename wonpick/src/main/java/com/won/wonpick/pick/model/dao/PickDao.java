@@ -13,6 +13,7 @@ public class PickDao {
 	}
 
 	public int insertPick(SqlSessionTemplate sqlSession, Pick p) {
+		sqlSession.insert("pickMapper.insertAlert",p);
 		return sqlSession.insert("pickMapper.insertPick",p);
 	}
 

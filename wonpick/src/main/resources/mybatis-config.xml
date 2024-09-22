@@ -16,6 +16,7 @@
 	  <typeAlias alias="PostLike" type="com.won.wonpick.postLike.model.vo.PostLike"/>
 	  <typeAlias alias="SaveList" type="com.won.wonpick.savelist.model.vo.SaveList"/>
 	  <typeAlias alias="Pick" type="com.won.wonpick.pick.model.vo.Pick"/>
+	  <typeAlias alias="Alert" type="com.won.wonpick.alert.model.vo.Alert"/>
 	</typeAliases>
 	
 	<!-- 
@@ -35,6 +36,7 @@
   		<mapper resource="/mappers/saveList-mapper.xml"/>
   		<mapper resource="/mappers/admin-mapper.xml"/>
   		<mapper resource="/mappers/pick-mapper.xml"/>
+  		<mapper resource="/mappers/alert-mapper.xml"/>
 	</mappers>
 	
 </configuration>
