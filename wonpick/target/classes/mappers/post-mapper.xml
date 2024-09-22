@@ -50,6 +50,13 @@
 	<select id="searchPostList" resultMap="postResultSet">
 		SELECT * FROM POST WHERE (USER_ID LIKE #{keyword} OR POST_TITLE LIKE #{keyword} OR POST_CONTENT LIKE #{keyword}) AND STATUS = 'Y'
 	</select>
+	
+	<select id="selectProfilePostList" resultMap="postResultSet">
+		SELECT POST_ID, P.USER_ID USER_ID, M.P_IMG USER_P_IMG, POST_TITLE, POST_CONTENT, TO_CHAR(POSTING_TIME, 'RR/MM/DD HH24:MI') "POSTING_TIME", IMG_FILE, P.STATUS STATUS
+		FROM POST P, MEMBER M
+		WHERE P.USER_ID = M.USER_ID AND P.USER_ID = #{userId} AND P.STATUS = 'Y'
+		ORDER BY POST_ID DESC
+	</select>
 
 	
 </mapper>

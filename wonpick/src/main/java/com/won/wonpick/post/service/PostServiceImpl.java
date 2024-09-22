@@ -51,4 +51,10 @@ public class PostServiceImpl implements PostService {
 	}
 
 
+	@Override
+	public ArrayList<Post> selectProfilePostList(String userId) {
+		return pDao.selectProfilePostList(sqlSession, userId);
+	}
+
+
 }

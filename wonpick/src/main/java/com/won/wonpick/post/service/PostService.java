@@ -17,4 +17,6 @@ public interface PostService {
 	ArrayList<Post> selectSaveList();
 
 	ArrayList<Post> searchPostList(String keyword);
+
+	ArrayList<Post> selectProfilePostList(String userId);
 }

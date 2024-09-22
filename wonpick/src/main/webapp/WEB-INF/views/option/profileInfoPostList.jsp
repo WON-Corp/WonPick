@@ -9,7 +9,6 @@
 
 <title>WonPick</title>
 <style>
-
 .feed {
 	display: flex;
 	flex-direction: row;
@@ -21,7 +20,7 @@
 	background-color: #fff;
 	padding: 20px 20px;
 	margin-right: 10px;
-	margin-bottom:10px;
+	margin-bottom: 10px;
 	border-radius: 5px;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 	max-width: 250px;
@@ -108,74 +107,69 @@
 
 <body>
 
+
+
 	<!-- 게시물 -->
 	<div class="feed">
-		<c:forEach var="list" items="${ list }">
-			<div class="post-list">
-				<div class="post-header" data-user-id="${list.userId}"
-					onclick="goToProfile('${list.userId}')">
-					<div class="post-info">
-						<br>
-						<h3>${ list.userId }</h3>
-						<span class="post-time">${ list.postingTime }</span>
+		<c:if test="${ not empty list }">
+			<c:forEach var="list" items="${ list }">
+				<div class="post-list">
+					<div class="post-header" data-user-id="${list.userId}">
+						<div class="post-info">
+							<br>
+							<h3>${ list.userId }</h3>
+							<span class="post-time">${ list.postingTime }</span>
+						</div>
+						<img src="${ list.userPfImg }"
+							onerror="src='/wonpick/resources/img/logo.jpg'"
+							class="post-profile-img">
 					</div>
-					<img src="${ list.userPfImg }"
-						onerror="src='/wonpick/resources/img/logo.jpg'"
-						class="post-profile-img">
-				</div>
-				<c:if test="${ not empty list.imgFile }">
-					<c:if
-						test="${ not fn:contains( list.imgFile, '.mp4') && not fn:contains( list.imgFile, '.avi')}">
-						<img src="${ list.imgFile }" alt="삭제된 파일입니다" class="post-image">
+					<c:if test="${ not empty list.imgFile }">
+						<c:if
+							test="${ not fn:contains( list.imgFile, '.mp4') && not fn:contains( list.imgFile, '.avi')}">
+							<img src="${ list.imgFile }" alt="삭제된 파일입니다" class="post-image">
+						</c:if>
+						<c:if
+							test="${ fn:contains( list.imgFile, '.mp4') || fn:contains( list.imgFile, '.avi')}">
+							<video src="${ list.imgFile }" class="post-image" controls
+								autoplay loop muted></video>
+						</c:if>
 					</c:if>
-					<c:if
-						test="${ fn:contains( list.imgFile, '.mp4') || fn:contains( list.imgFile, '.avi')}">
-						<video src="${ list.imgFile }" class="post-image" controls
-							autoplay loop muted></video>
-					</c:if>
-				</c:if>
-				<img src="/wonpick/resources/img/sizing_space.jpg" alt="공백"
-					class="post-image">
-				<div class="post-content">
-					<button type="button" id="detailPost" data-toggle="modal"
-						data-target="#detailPostModal"
-						onclick="getDetailPost(${ list.postId });">
-						<p>
-							<strong>${ list.postTitle }</strong>
-						</p>
-					</button>
-				</div>
-				<div class="post-comments">
-					<button type="button" id="detailPost" data-toggle="modal"
-						data-target="#detailPostModal"
-						onclick="getDetailPost(${ list.postId });">
-						<p style="font-size:small; color:#888;">&nbsp; ...더보기</p>
-					</button>
-					<div class="post-actions">
-						<button id="detailPost" onclick="postPick(${ list.postId })">
-							<img src="/wonpick/resources/img/logo.jpg"
-								id="likeimg${ list.postId }" alt="WonPick 로고" class="heart">
-						</button>
-						<button id="detailPost" onclick="confirmPostPick(${list.postId})">
-							<img src="/wonpick/resources/img/bookmark-off.jpg"
-								id="bookmark${ list.postId }" alt="WonPick 로고" class="heart">
+					<img src="/wonpick/resources/img/sizing_space.jpg" alt="공백"
+						class="post-image">
+					<div class="post-content">
+						<button type="button" id="detailPost" data-toggle="modal"
+							data-target="#detailPostModal"
+							onclick="getDetailPost(${ list.postId });">
+							<p>
+								<strong>${ list.postTitle }</strong>
+							</p>
 						</button>
 					</div>
-					<button type="button" id="detailPost" data-toggle="modal"
-						data-target="#detailPostModal"
-						onclick="getDetailPost(${ list.postId });">
-						<p class="view-comments">
-							<span id="postLike${ list.postId }">댓글보기</span> &nbsp;<span
-								id="commentCount${ list.postId }">댓글보기</span>
-						</p>
-						<script>
-							
-							 function goToProfile(userId) {
-								// 상대방의 userId를  파라미터로 전달
-		                          window.location.href = '/wonpick/myprofile/profileInfo?userId=' + userId;
-		                      }
-
-							
+					<div class="post-comments">
+						<button type="button" id="detailPost" data-toggle="modal"
+							data-target="#detailPostModal"
+							onclick="getDetailPost(${ list.postId });">
+							<p style="font-size: small; color: #888;">&nbsp; ...더보기</p>
+						</button>
+						<div class="post-actions">
+							<button id="detailPost" onclick="postPick(${ list.postId })">
+								<img src="/wonpick/resources/img/logo.jpg"
+									id="likeimg${ list.postId }" alt="WonPick 로고" class="heart">
+							</button>
+							<button id="detailPost" onclick="confirmPostPick(${list.postId})">
+								<img src="/wonpick/resources/img/bookmark-off.jpg"
+									id="bookmark${ list.postId }" alt="WonPick 로고" class="heart">
+							</button>
+						</div>
+						<button type="button" id="detailPost" data-toggle="modal"
+							data-target="#detailPostModal"
+							onclick="getDetailPost(${ list.postId });">
+							<p class="view-comments">
+								<span id="postLike${ list.postId }">댓글보기</span> &nbsp;<span
+									id="commentCount${ list.postId }">댓글보기</span>
+							</p>
+							<script>
 							function confirmPostPick(postId) {
 							    // confirm 창을 띄워 사용자가 저장할지 결정하게 함
 							    if (confirm("저장하시겠습니까?\n(이미 저장된 게시물의 경우 저장목록에서 삭제됩니다)")) {
@@ -383,94 +377,96 @@
 			
 									
 								</script>
-					</button>
+						</button>
+					</div>
 				</div>
-			</div>
 
 
-			<!-- 게시물 페이지 모달 -->
-			<div class="modal fade" id="detailPostModal" tabindex="-1"
-				aria-labelledby="detailPostModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-lg">
-					<div class="modal-content post">
-						<!-- 모달 헤더 부분 -->
-						<div class="post-header" data-user-id="${list.userId}"
-							onclick="goToProfile('${list.userId}')">
-							<div class="post-info">
-								<br>
-								<h3 id="userId"></h3>
-								<span class="post-time" id="postingTime"></span>
+				<!-- 게시물 페이지 모달 -->
+				<div class="modal fade" id="detailPostModal" tabindex="-1"
+					aria-labelledby="detailPostModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content post">
+							<!-- 모달 헤더 부분 -->
+							<div class="post-header" data-user-id="${list.userId}">
+								<div class="post-info">
+									<br>
+									<h3 id="userId"></h3>
+									<span class="post-time" id="postingTime"></span>
+								</div>
+								<!-- 댓글에 유저 프로필 띄우기 -->
+								<img src="" onerror="src='/wonpick/resources/img/logo.jpg'"
+									class="post-profile-img" id="userPfImg">
 							</div>
-							<!-- 댓글에 유저 프로필 띄우기 -->
-							<img src="" onerror="src='/wonpick/resources/img/logo.jpg'"
-								class="post-profile-img" id="userPfImg">
-						</div>
-						<img src="" alt="삭제된 파일입니다" class="post-image" id="imgFile" hidden>
+							<img src="" alt="삭제된 파일입니다" class="post-image" id="imgFile"
+								hidden>
 
-						<video src="" class="post-image" controls autoplay loop muted
-							id="videoFile" hidden></video>
+							<video src="" class="post-image" controls autoplay loop muted
+								id="videoFile" hidden></video>
 
-						<img src="/wonpick/resources/img/sizing_space.jpg" alt="공백"
-							class="post-image">
-						<div class="post-content">
+							<img src="/wonpick/resources/img/sizing_space.jpg" alt="공백"
+								class="post-image">
+							<div class="post-content">
 
-							<p>
-								<strong id="postTitle"></strong>
-							</p>
+								<p>
+									<strong id="postTitle"></strong>
+								</p>
 
-						</div>
-						<div class="post-comments">
-
-							<p id="postContent"></p>
-
-							<div class="post-actions">
-								<button id="detailPost" onclick="postPick(${ list.postId })">
-									<img src="/wonpick/resources/img/logo.jpg"
-										id="likeimg${ list.postId }" alt="WonPick 로고" class="heart">
-								</button>
-								<button id="detailPost"
-									onclick="confirmPostPick(${list.postId})">
-									<img src="/wonpick/resources/img/bookmark-off.jpg"
-										id="bookmark${ list.postId }" alt="WonPick 로고" class="heart">
-								</button>
 							</div>
+							<div class="post-comments">
 
-							<!-- 여기부터 댓글 리스트 ajax사용 -->
-							<div id="postCommentList"></div>
-							<!-- 여기까지 -->
+								<p id="postContent"></p>
 
-							<!-- 모달 바디 부분 -->
-							<div class="modal-body">
-								<form class="post-info"
-									action="/wonpick/postComment/insertComment" method="post">
-									<h3 id="userId">${ loginUser.userId }</h3>
-									<div class="mb-3">
-										<textarea class="form-control" id="errorPostContent"
-											name="postComment" placeholder="댓글작성" required
-											style="resize: none" maxlength="100"></textarea>
-										<input type="hidden" name="userId"
-											value="${ loginUser.userId }"> <input type="hidden"
-											name="postId" value="">
+								<div class="post-actions">
+									<button id="detailPost" onclick="postPick(${ list.postId })">
+										<img src="/wonpick/resources/img/logo.jpg"
+											id="likeimg${ list.postId }" alt="WonPick 로고" class="heart">
+									</button>
+									<button id="detailPost"
+										onclick="confirmPostPick(${list.postId})">
+										<img src="/wonpick/resources/img/bookmark-off.jpg"
+											id="bookmark${ list.postId }" alt="WonPick 로고" class="heart">
+									</button>
+								</div>
 
-									</div>
+								<!-- 여기부터 댓글 리스트 ajax사용 -->
+								<div id="postCommentList"></div>
+								<!-- 여기까지 -->
+
+								<!-- 모달 바디 부분 -->
+								<div class="modal-body">
+									<form class="post-info"
+										action="/wonpick/postComment/insertComment" method="post">
+										<h3 id="userId">${ loginUser.userId }</h3>
+										<div class="mb-3">
+											<textarea class="form-control" id="errorPostContent"
+												name="postComment" placeholder="댓글작성" required
+												style="resize: none" maxlength="100"></textarea>
+											<input type="hidden" name="userId"
+												value="${ loginUser.userId }"> <input type="hidden"
+												name="postId" value="">
+
+										</div>
 
 
-									<button class="btn btn-primary">댓글작성</button>
-								</form>
+										<button class="btn btn-primary">댓글작성</button>
+									</form>
 
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</c:forEach>
+			</c:forEach>
+		</c:if>
+		<c:if test="${ empty list }">
+			<h2 style="color: #888; margin-top: 200px">포스팅된 게시물이 없습니다.</h2>
+		</c:if>
 	</div>
 
 
 
-	<%
-	session.removeAttribute("list");
-	%>
+
 </body>
 
 <script>

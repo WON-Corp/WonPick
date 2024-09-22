@@ -3,6 +3,7 @@ package com.won.wonpick.member.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.won.wonpick.member.model.vo.Member;
 import com.won.wonpick.member.service.MemberService;
+import com.won.wonpick.post.model.vo.Post;
+import com.won.wonpick.post.service.PostService;
 
 @Controller
 @RequestMapping("/member")
@@ -170,29 +173,7 @@ public class MemberController {
 		return "option/information";
 	}
 	
-	@RequestMapping("/profileInfo")
-	   public String showProfileInfo(@RequestParam(value = "userId", required = false) String userId, HttpSession session, Model model) {
-
-	       if (userId == null) {
-	           Member loginUser = (Member) session.getAttribute("loginUser");
-	           if (loginUser != null) {
-	               userId = loginUser.getUserId();
-	           } else {
-	               model.addAttribute("errorMsg", "로그인 정보가 없습니다.");
-	               return "common/errorPage";
-	           }
-	       }
-
-	       Member foundMem = mService.getMemberById(userId);
-
-	       if (foundMem != null) {
-	           model.addAttribute("member", foundMem);
-	           return "option/profileInfo"; 
-	       } else {
-	           model.addAttribute("errorMsg", "사용자를 찾을 수 없습니다.");
-	           return "common/errorPage";
-	       }
-	   }
+	
 
 
 	

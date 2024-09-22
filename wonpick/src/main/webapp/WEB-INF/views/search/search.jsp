@@ -50,7 +50,7 @@
 	margin-top: 40px;
 	margin-bottom: 40px;
 	margin-right: 0px;
-	margin-left: 80px;
+	margin-left: 130px;
 	position: relative;
 	background-color: #f0f0f0;
 	border-radius: 15px;
