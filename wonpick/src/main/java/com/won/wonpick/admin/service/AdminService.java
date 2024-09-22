@@ -7,7 +7,7 @@ import com.won.wonpick.member.model.vo.Member;
 
 public interface AdminService {
 	
-	 int getTotalMemberCount();
+	public int getTotalMemberCount();
 	 
 	 List<Member> getWithdrawnMembers();
 	    
@@ -26,5 +26,9 @@ public interface AdminService {
 	int deleteReport(int errorPostId);
 
 	int getTotalPostCount();
+
+	int getUnresolvedReportCount();
+
+	int getThisMonthWithdrawnUserCount();
     
 }
