@@ -303,7 +303,7 @@ header {
 			</div>
 		</div>
 	</div>
-	</div>
+
 
 <%@ include file="../common/sideBar.jsp" %>
 

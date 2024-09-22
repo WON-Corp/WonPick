@@ -55,6 +55,9 @@
             display: flex;
             justify-content: center;
         }
+        .stories a {
+        	text-decoration:none;
+        }
 	</style>
 </head>
 <body>
@@ -79,9 +82,9 @@
         		        for(let r of result){
         		        	
         		        	$(".stories").append(
-        		        			'<div class="story" onclick="goToProfile('+r.userId+')">'
+        		        			'<a class="story" href="/wonpick/myprofile/profileInfo?userId='+r.userId+'">'
         		                    	+ '<img src="'+r.pfImg+'" onerror="src='+"'/wonpick/resources/img/logo.jpg'"+'">'
-        		                    	+ '<span>'+r.userId+'</span></div>'
+        		                    	+ '<span>'+r.userId+'</span></a>'
         		        	);
         		        } 
         		    },
@@ -92,6 +95,11 @@
         		});
         	}
         	
+        	
+        	function goToProfile(userId) {
+				// 상대방의 userId를  파라미터로 전달
+                  window.location.href = '/wonpick/myprofile/profileInfo?userId=' + userId;
+              }
         </script>
 </body>
 </html>
