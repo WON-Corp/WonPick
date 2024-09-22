@@ -62,6 +62,12 @@
         th:nth-child(4), td:nth-child(4) {
             width: 15%;
         }
+
+        input[type="text"] {
+            width: 95%;
+            padding: 5px;
+            font-size: 14px;
+        }
         
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -70,7 +76,7 @@
 <%@ include file="../common/adminSideBar.jsp" %>
 
 <div class="content">
-	<h1>게시글 관리</h1>
+    <h1>게시글 관리</h1>
     <table id="postTable">
         <thead>
             <tr>
@@ -84,7 +90,7 @@
             <c:forEach var="post" items="${postList}">
                 <tr id="row-${post.postId}">
                     <td>${post.postId}</td>
-                    <td>${post.postContent}</td>
+                    <td id="content-${post.postId}">${post.postContent}</td>
                     <td>${post.userId}</td>
                     <td>
                         <button class="action-btn" onclick="editPost('${post.postId}')">수정</button>
@@ -97,41 +103,42 @@
     </table>
 </div>
 
-    <script>
-        function editPost(postId) {
-            let contentField = $("#content-" + postId);
-            contentField.html('<input type="text" value="' + contentField.text() + '" />');
-            $("#save-" + postId).show();
-        }
+<script>
+    function editPost(postId) {
+        let contentField = $("#content-" + postId);
+        contentField.html('<input type="text" value="' + contentField.text() + '" />');
+        $("#save-" + postId).show();
+    }
 
-        function savePost(postId) {
-            let postData = {
-                postId: postId,
-                postContent: $("#content-" + postId + " input").val(),
-            };
+    function savePost(postId) {
+        let postData = {
+            postId: postId,
+            postContent: $("#content-" + postId + " input").val(), // 입력된 내용 값 가져오기
+        };
 
-            $.ajax({
-                url: "/wonpick/admin/updatePost",
-                type: "POST",
-                data: JSON.stringify(postData),
-                contentType: "application/json",
-                success: function(response) {
-                    alert("게시글이 수정되었습니다.");
-                    location.reload();
-                },
-                error: function(err) {
-                    console.log(err);
-                    alert("게시글 수정에 실패했습니다.");
-                }
-            });
-        }
-
-        function confirmDelete(postId) {
-            if (confirm("정말로 이 게시글을 삭제하시겠습니까?")) {
-                window.location.href = '/wonpick/admin/deletePost?postId=' + postId;
+        $.ajax({
+            url: "/wonpick/admin/updatePost",
+            type: "POST",
+            data: JSON.stringify(postData),
+            contentType: "application/json",
+            success: function(response) {
+                alert("게시글이 수정되었습니다.");
+                $("#content-" + postId).html(postData.postContent); // 수정된 내용 업데이트
+                $("#save-" + postId).hide();
+            },
+            error: function(err) {
+                console.log(err);
+                alert("게시글 수정에 실패했습니다.");
             }
+        });
+    }
+
+    function confirmDelete(postId) {
+        if (confirm("정말로 이 게시글을 삭제하시겠습니까?")) {
+            window.location.href = '/wonpick/admin/deletePost?postId=' + postId;
         }
-    </script>
+    }
+</script>
 
 </body>
 </html>
