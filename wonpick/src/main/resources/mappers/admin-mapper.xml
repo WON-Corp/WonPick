@@ -92,7 +92,7 @@
 
 	<update id="respondToReport" parameterType="ErrorPost">
 	    UPDATE ERROR_POST
-	    SET RESPONSED = #{responsed}
+	    SET RESPONSED = 'Y'
 	    WHERE ERROR_POST_ID = #{errorPostId}
 	</update>
 
