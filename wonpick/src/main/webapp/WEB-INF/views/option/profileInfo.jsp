@@ -208,7 +208,7 @@
                     <div class="stats">
                         <span>게시물 <span class="post-count"></span></span> | 
                         <span>pick <span class="pick-count"></span></span> | 
-                        <span>picked <span class="picked-count">${pickedCount != null ? pickedCount : 0}</span></span>
+                        <span>collect <span class="picked-count">${pickedCount != null ? pickedCount : 0}</span></span>
                     </div>
                     <p class="nickname"><%= member.getNickName() %></p>
                     <p class="bio"><%= member.getIntroduce() != null ? member.getIntroduce() : "소개글이 없습니다." %></p>
