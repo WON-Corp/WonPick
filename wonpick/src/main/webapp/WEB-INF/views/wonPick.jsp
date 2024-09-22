@@ -435,7 +435,7 @@
 									</div>
 
 
-									<button class="btn btn-primary">댓글작성</button>
+									<button type="button" class="btn btn-primary" onclick="commentPost(postId);">댓글작성</button>
 								</form>
 
 							</div>
@@ -488,15 +488,39 @@
 					$("#imgFile").removeAttr("hidden");
 					$("#videoFile").attr("hidden", true);
                 }
-                
+
             },
             error: function(err) {
-                
-                    
+   
+            }
+        });
+ 		getComment(postId);
+ 	}
+ 	
+ 	function commentPost() {
+ 		$.ajax({
+            url: "/wonpick/postComment/insertComment",
+            type: 'post',
+            data: { 
+            	postId: $("input[name=postId]").val(),
+            	userId: $("input[name=userId]").val(),
+            	postComment: $("textarea[name=postComment]").val()
+            	},
+            success: function(result) {
+            	getComment($("input[name=postId]").val());
+            	$("textarea[name=postComment]").val("");
+            },
+            error: function(err) {
+  
             }
         });
  		
- 		// 댓글 ajax
+ 		
+ 		
+ 	}
+ 	
+ 	function getComment(postId){
+ 	// 댓글 ajax
  		$.ajax({
             url: "/wonpick/postComment/postCommentList",
             type: 'post',
@@ -521,7 +545,6 @@
                     
             }
         });
- 		
  	}
  	
  	function checkLikeStatus(postCommentId) {

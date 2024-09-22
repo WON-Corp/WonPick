@@ -139,10 +139,6 @@
         overflow: hidden;
     }
 
-    .post:hover {
-        transform: scale(1.05);
-    }
-	
 	.myPostList {
 		margin: 0px 100px;
 	}

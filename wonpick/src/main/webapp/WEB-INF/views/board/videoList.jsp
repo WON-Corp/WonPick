@@ -451,7 +451,7 @@
 									</div>
 
 
-									<button class="btn btn-primary">댓글작성</button>
+									<button type="button" class="btn btn-primary" onclick="commentPost(postId)";>댓글작성</button>
 								</form>
 
 							</div>
@@ -474,71 +474,94 @@
 </body>
 
 <script>
- 	function getDetailPost(postId){
- 		$.ajax({
-            url: "/wonpick/post/postDetail",
-            type: 'post',
-            data: { postId: postId },
-            success: function(result) {
-                
-                $("#userId").text(result.userId);
-                document.getElementById("userPfImg").src = result.userPfImg;
-                $("#postTitle").text(result.postTitle);
-                $("#postContent").text(result.postContent);
-                $("input[name=postId]").val(result.postId)
-                
-                if (result.imgFile == '#') {
-                	
-                	$("#imgFile").attr("hidden", true);
-                	$("#videoFile").attr("hidden", true);
-                	
-                } else if (result.imgFile.includes(".mp4") || result.imgFile.includes(".avi")){
-                	
-                	document.getElementById("videoFile").src = result.imgFile;
-					$("#videoFile").removeAttr("hidden");
-					$("#imgFile").attr("hidden", true);
-					
-                } else {
-                	
-                	document.getElementById("imgFile").src = result.imgFile;
-					$("#imgFile").removeAttr("hidden");
-					$("#videoFile").attr("hidden", true);
-                }
-                
-            },
-            error: function(err) {
-                
-                    
+function getDetailPost(postId){
+		$.ajax({
+        url: "/wonpick/post/postDetail",
+        type: 'post',
+        data: { postId: postId },
+        success: function(result) {
+            
+            $("#userId").text(result.userId);
+            document.getElementById("userPfImg").src = result.userPfImg;
+            $("#postTitle").text(result.postTitle);
+            $("#postContent").text(result.postContent);
+            $("input[name=postId]").val(result.postId)
+            
+            if (result.imgFile == '#') {
+            	
+            	$("#imgFile").attr("hidden", true);
+            	$("#videoFile").attr("hidden", true);
+            	
+            } else if (result.imgFile.includes(".mp4") || result.imgFile.includes(".avi")){
+            	
+            	document.getElementById("videoFile").src = result.imgFile;
+				$("#videoFile").removeAttr("hidden");
+				$("#imgFile").attr("hidden", true);
+				
+            } else {
+            	
+            	document.getElementById("imgFile").src = result.imgFile;
+				$("#imgFile").removeAttr("hidden");
+				$("#videoFile").attr("hidden", true);
             }
-        });
- 		
- 		// 댓글 ajax
- 		$.ajax({
-            url: "/wonpick/postComment/postCommentList",
-            type: 'post',
-            data: { postId: postId },
-            success: function(result) {
-            	$("#postCommentList").text("");
-                for(let item of result){
-                	
-                	$("#postCommentList").append(
-                			'<div class="post-header"><div class="post-info"><br><h3 id="commentUserId">'+item.userId+'</h3>'+
-							'<span class="post-time" id="postingTime">'+item.commentTime+'</span></div><div class="post-actions">'+
-							'<img src="'+item.userPfImg+'" onerror="src='+"'/wonpick/resources/img/logo.jpg'"+'" class="post-profile-img" id="commentUserPfImg" style="width:30px; height:30px">'+
-							'<button type="button" id="detailPost" onclick="postComment(\''+item.postCommentId+'\')"><img src="/wonpick/resources/img/logo.jpg" id="commentPick'+item.postCommentId+'" alt="WonPick 로고" class="heart" style="margin:5px"></button></div></div>'+
-							'<div class="post-comments">'+
-							'<p id="postCommentContent">'+item.postComment+'</p></div></div>'
-                	);
-                	checkLikeStatus(item.postCommentId);
-                } 
-            },
-            error: function(err) {
+
+        },
+        error: function(err) {
+
+        }
+    });
+		getComment(postId);
+	}
+	
+	function commentPost() {
+		$.ajax({
+        url: "/wonpick/postComment/insertComment",
+        type: 'post',
+        data: { 
+        	postId: $("input[name=postId]").val(),
+        	userId: $("input[name=userId]").val(),
+        	postComment: $("textarea[name=postComment]").val()
+        	},
+        success: function(result) {
+        	getComment($("input[name=postId]").val());
+        	$("textarea[name=postComment]").val("");
+        },
+        error: function(err) {
+
+        }
+    });
+		
+		
+		
+	}
+	
+	function getComment(postId){
+	// 댓글 ajax
+		$.ajax({
+        url: "/wonpick/postComment/postCommentList",
+        type: 'post',
+        data: { postId: postId },
+        success: function(result) {
+        	$("#postCommentList").text("");
+            for(let item of result){
+            	
+            	$("#postCommentList").append(
+            			'<div class="post-header"><div class="post-info"><br><h3 id="commentUserId">'+item.userId+'</h3>'+
+						'<span class="post-time" id="postingTime">'+item.commentTime+'</span></div><div class="post-actions">'+
+						'<img src="'+item.userPfImg+'" onerror="src='+"'/wonpick/resources/img/logo.jpg'"+'" class="post-profile-img" id="commentUserPfImg" style="width:30px; height:30px">'+
+						'<button type="button" id="detailPost" onclick="postComment(\''+item.postCommentId+'\')"><img src="/wonpick/resources/img/logo.jpg" id="commentPick'+item.postCommentId+'" alt="WonPick 로고" class="heart" style="margin:5px"></button></div></div>'+
+						'<div class="post-comments">'+
+						'<p id="postCommentContent">'+item.postComment+'</p></div></div>'
+            	);
+            	checkLikeStatus(item.postCommentId);
+            } 
+        },
+        error: function(err) {
+            
                 
-                    
-            }
-        });
- 		
- 	}
+        }
+    });
+	}
  	
  	function checkLikeStatus(postCommentId) {
  	    $.ajax({
