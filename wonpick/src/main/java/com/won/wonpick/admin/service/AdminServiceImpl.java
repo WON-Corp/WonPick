@@ -61,4 +61,8 @@ public class AdminServiceImpl implements AdminService {
         return adminDao.getWithdrawnMembers(sqlSession);
     }
 
+	public String getPhoneNumber(String userId) {
+		return adminDao.getPhoneNumber(sqlSession, userId);
+	}
+
 }

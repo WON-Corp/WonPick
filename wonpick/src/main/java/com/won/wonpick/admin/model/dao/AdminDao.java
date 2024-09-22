@@ -69,6 +69,10 @@ public class AdminDao {
 		return sqlSession.selectList("adminMapper.getWithdrawnMembers");
 	}
 
+	public String getPhoneNumber(SqlSessionTemplate sqlSession, String userId) {
+		return sqlSession.selectOne("adminMapper.getPhoneNumber", userId);
+	}
+
 
 }
 
