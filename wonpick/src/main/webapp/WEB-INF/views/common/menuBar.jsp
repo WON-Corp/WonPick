@@ -465,7 +465,7 @@ body {
 							name="chatbubble-outline"></ion-icon>
 				</span> <span class="text">메시지</span>
 			</a></li>
-			<li class="list"><a href="#"> <span class="icon"> <ion-icon
+			<li class="list"><a href="/wonpick/notification/notification"> <span class="icon"> <ion-icon
 							name="notifications-outline"></ion-icon>
 				</span> <span class="text">알림</span>
 			</a></li>
