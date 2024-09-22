@@ -21,7 +21,7 @@ import com.won.wonpick.post.service.PostService;
 public class AdminController {
 
     @Autowired
-    private AdminServiceImpl adminService;
+    private AdminService adminService;
     
     @Autowired
     private PostService postService;
@@ -99,7 +99,13 @@ public class AdminController {
     @ResponseBody
     public String respondReport(@RequestBody ErrorPost errorPost) {
         int result = adminService.respondToReport(errorPost);
-        return (result > 0) ? "success" : "fail";
+        String phone = adminService.getPhoneNumber(errorPost.getUserId());
+        
+        if(result > 0) {
+        	return phone;
+        } else {
+        	return "01074400000";
+        }
     }
 
     // 문제 신고 삭제

@@ -77,7 +77,7 @@
 				        답변 완료
 				    </c:when>
 				    <c:otherwise>
-				        <button class="action-btn" onclick="respondReport('${report.errorPostId}')">답변</button>
+				        <button class="action-btn" onclick="respondReport('${report.errorPostId}','${report.userId}')">답변</button>
 				        <button class="action-btn delete-btn" onclick="confirmDelete('${report.errorPostId}')">삭제</button>
 				    </c:otherwise>
 				</c:choose>
@@ -88,11 +88,12 @@
 </table>
 
     <script>
-    function respondReport(errorPostId) {
+    function respondReport(errorPostId, userId) {
         const answer = confirm("문제신고에 답변하시겠습니까?");
         if (answer) {
             const postData = {
-                errorPostId: errorPostId
+                errorPostId: errorPostId,
+                userId: userId
             };
             
 
@@ -102,7 +103,7 @@
                 data: JSON.stringify(postData),
                 contentType: "application/json",
                 success: function(response) {
-                	location.href = "sms:01085963584?body=문제신고 답변입니다!";
+                	location.href = "sms:"+response+"?body=문제신고 답변입니다!";
                     location.reload();
                 },
                 error: function(err) {
