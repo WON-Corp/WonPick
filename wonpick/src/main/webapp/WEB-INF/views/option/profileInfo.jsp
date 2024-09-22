@@ -40,7 +40,7 @@
 <style>
     .profile-container {
         width: 100%;
-        height: 100vh;
+        height: 300px;
         max-width: 1000px;
         margin: 0 auto;
         background-color: #fff;
@@ -141,7 +141,10 @@
     .post:hover {
         transform: scale(1.05);
     }
-
+	
+	.myPostList {
+		margin: 0px 100px;
+	}
     @keyframes fadeIn {
         from {
             opacity: 0;
@@ -175,7 +178,7 @@
         position: relative;
     }
 
-    .modal img {
+    .modal #modal-image {
         width: 100%;
         border-radius: 10px;
     }
@@ -190,6 +193,7 @@
     Member member = (Member) request.getAttribute("member");
     if (member != null) {
 %>
+
     <div class="content">
         <div class="profile-container">
             <div class="profile-header">
@@ -209,15 +213,11 @@
                 </div>
             </div>
             <div class="border"></div>
-            <div class="post-grid">
-                <c:forEach var="post" items="${list}">
-                    <div class="post">
-                        <img src="<%=request.getContextPath()%>${post.imgFile}" alt="Post Image" class="post-image">
-                        <p>${post.postTitle}</p>
-                    </div>
-                </c:forEach>
-            </div>
         </div>
+		<div class="myPostList">
+			<%@ include file="/WEB-INF/views/option/profileInfoPostList.jsp"%>
+        </div>       
+        
     </div>
 <% } else { %>
     <p>사용자 정보를 찾을 수 없습니다.</p>
@@ -230,7 +230,10 @@
         </div>
     </div>
      
+     
+     
     <jsp:include page="../common/sideBar.jsp"/>
+    
     
 <script>
     // 프로필 사진 클릭 시 모달 열기
@@ -251,6 +254,10 @@
         }
     });
 </script>
+
+  <%
+	session.removeAttribute("list");
+	%>
 </body>
 
 </html>

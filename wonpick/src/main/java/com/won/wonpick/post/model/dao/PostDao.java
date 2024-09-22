@@ -32,4 +32,8 @@ public class PostDao {
 	public ArrayList<Post> searchPostList(SqlSessionTemplate sqlSession, String keyword) {
 		return (ArrayList)sqlSession.selectList("postMapper.searchPostList", keyword);
 	}
+
+	public ArrayList<Post> selectProfilePostList(SqlSessionTemplate sqlSession, String userId) {
+		return (ArrayList)sqlSession.selectList("postMapper.selectProfilePostList", userId);
+	}
 }
