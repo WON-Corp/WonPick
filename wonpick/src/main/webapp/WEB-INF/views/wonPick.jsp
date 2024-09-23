@@ -300,6 +300,14 @@
 							  
 								
 							}
+							
+							function postPickModal() {
+								postPick($("input[name=postId]").val());
+							}
+							
+							function confirmPostPickModal() {
+								confirmPostPick($("input[name=postId]").val());
+							}
 									// 페이지가 로딩될 때 아이콘 색 유무
 									$(function(){
 										 
@@ -410,9 +418,9 @@
 							<p id="postContent"></p>
 
 							<div class="post-actions">
-								<button id="detailPost" onclick="postPick(${ list.postId })"><img  src="/wonpick/resources/img/logo.jpg" id="likeimg${ list.postId }" alt="WonPick 로고"
+								<button id="detailPost" onclick="postPickModal()"><img  src="/wonpick/resources/img/logo.jpg" id="likeimg${ list.postId }" alt="WonPick 로고"
 									class="heart"></button>
-								<button id="detailPost" onclick="confirmPostPick(${list.postId})"><img src="/wonpick/resources/img/bookmark-off.jpg" id="bookmark${ list.postId }" alt="WonPick 로고" 
+								<button id="detailPost" onclick="confirmPostPickModal()"><img src="/wonpick/resources/img/bookmark-off.jpg" id="bookmark${ list.postId }" alt="WonPick 로고" 
 									class="heart"></button>
 							</div>
 
