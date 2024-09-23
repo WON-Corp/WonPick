@@ -192,12 +192,16 @@
 							            postId : postId  // 데이터 포함
 							        },
 							        success: function(response) {
-							        	
+const updatedImgElement = document.getElementById("bookmarkImg");
+										
+										updatedImgElement.src = "";
 							            // 요청 성공 시 수행할 작업
 							            if(response == "Success"){
+							            	updatedImgElement.src = "/wonpick/resources/img/bookmark-on.jpg";
 							            	alert("게시물을 저장했습니다");
 							            	
 							            }else if(response == "Failed"){
+							            	updatedImgElement.src = "/wonpick/resources/img/bookmark-off.jpg";
 							            	alert("저장목록에서 삭제 되었습니다");
 							            	
 							            }
@@ -277,9 +281,15 @@
 						            type: 'post',
 						            data: { postId: postId , userId: "${ loginUser.userId }" },
 						            success: function(result) {
+										const updatedImgElement = document.getElementById("heartImg");
+										
+										updatedImgElement.src = "";
 						                if(result == "Success"){
+						                	updatedImgElement.src = "/wonpick/resources/img/heart.jpg";
 							            	updateLikeCount(postId);
+							            	
 							            }else if(result == "Failed"){
+							            	updatedImgElement.src = "/wonpick/resources/img/logo.jpg";
 							            	updateLikeCount(postId);
 							            }
 
@@ -428,12 +438,12 @@
 								<div class="post-actions">
 									<button id="detailPost" onclick="postPickModal()">
 										<img src="/wonpick/resources/img/logo.jpg"
-											id="likeimg${ list.postId }" alt="WonPick 로고" class="heart">
+											id="heartImg" alt="WonPick 로고" class="heart">
 									</button>
 									<button id="detailPost"
 										onclick="confirmPostPickModal()">
 										<img src="/wonpick/resources/img/bookmark-off.jpg"
-											id="bookmark${ list.postId }" alt="WonPick 로고" class="heart">
+											id="bookmarkImg" alt="WonPick 로고" class="heart">
 									</button>
 								</div>
 
@@ -479,6 +489,7 @@
 
 <script>
 function getDetailPost(postId){
+	
 	$.ajax({
     url: "/wonpick/post/postDetail",
     type: 'post',
@@ -518,6 +529,7 @@ function getDetailPost(postId){
 }
 
 function commentPost() {
+	
 	$.ajax({
     url: "/wonpick/postComment/insertComment",
     type: 'post',
@@ -540,6 +552,9 @@ function commentPost() {
 }
 
 function getComment(postId){
+	// 모달창 띄울 때 아이콘 적용상태
+		changeHeart(postId);
+		checkSvaeList(postId);
 // 댓글 ajax
 	$.ajax({
     url: "/wonpick/postComment/postCommentList",
@@ -566,7 +581,61 @@ function getComment(postId){
     }
 });
 }
- 	
+//모달창에서 좋아요 누르기
+	function changeHeart(postId){
+		
+			$.ajax({
+			url : "/wonpick/postLike/selectLike",
+			type : 'post',
+			data : {postId : postId , userId : "${loginUser.userId}"},
+			success: function(result){
+				
+				
+				const updatedImgElement = document.getElementById("heartImg");
+				
+				updatedImgElement.src = "";
+				
+				if(result == "yes"){
+					
+					updatedImgElement.src = "/wonpick/resources/img/heart.jpg";
+				
+				}else if(result == "no"){
+					
+					updatedImgElement.src = "/wonpick/resources/img/logo.jpg";
+				}
+			},
+			error: function(err){
+				
+			}
+		});
+		
+	}
+	function checkSvaeList(postId){
+		$.ajax({
+		url : '/wonpick/saveList/selectSaveList',
+		type : 'post',
+		data : {postId : postId , userId : "${loginUser.userId}"},
+		success: function(result){
+			const updatedImgElement = document.getElementById("bookmarkImg");
+			
+			updatedImgElement.src = "";
+
+			if(result == "yes"){
+			
+				updatedImgElement.src = "/wonpick/resources/img/bookmark-on.jpg";
+			
+			}else if(result == "no"){
+				
+				updatedImgElement.src = "/wonpick/resources/img/bookmark-off.jpg";
+				
+			}
+		},
+		error: function(err){
+			
+		}
+	});
+	} 
+
  	function checkLikeStatus(postCommentId) {
  	    $.ajax({
  	        url: "/wonpick/postComment/checkCommentPick",
