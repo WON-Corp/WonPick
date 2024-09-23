@@ -52,7 +52,8 @@ public class PostLikeController {
 	public String selectPostLike(PostLike pl) {
 		
 		int count = plService.selectUserPostLike(pl);
-		
+		System.out.println(pl);
+		System.out.println(count);
 		if(count == 0) {
 			return "no";
 		}else {
