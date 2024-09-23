@@ -72,6 +72,7 @@ header {
    flex-direction:column_reverse;
 }
 .message-chat {
+	padding-top:10px;
    overflow-y: auto;
 }
 .message-chat::-webkit-scrollbar {
@@ -87,6 +88,7 @@ header {
    background-color: rgb(35, 59, 59);
    color: #fff;
    margin-left: auto;
+   word-break:break-all;
 }
 
 .message-received {
@@ -99,6 +101,7 @@ header {
    color: #333;
    align-self: flex-start;
    text-align:right;
+   word-break:break-all;
 }
 
 .time-sent{
@@ -106,12 +109,16 @@ header {
 	color:#aaa;
 	font-size:xx-small;
 	padding-right:10px;
+	line-height: 0px;
+	padding-bottom:10px;
 }
 
 .time-received{
 	color:#aaa;
 	font-size:xx-small;
 	padding-left:10px;
+	line-height: 0px;
+	padding-bottom:10px;
 }
 
 .message {
@@ -286,6 +293,16 @@ header {
       width: 100%;
    }
 }
+
+	.sent-userId{
+		text-align:right;
+		padding-top:5px;
+		line-height: 0px;
+	}
+	.receive-userId{
+		padding-top:5px;
+		line-height: 0px;
+	}
 </style>
 </head>
 <script>
@@ -309,13 +326,13 @@ header {
 			var time = list.substring(list.lastIndexOf(',')+1);
 			if(msg != null && msg.trim() != ''){
 				if(userId === $("#chatUser").val()){
-					$(".message-chat").append("<div class='message-sent'>" + msg + "</div>");
+					$(".message-chat").append("<p class='sent-userId'>"+ userId +"</p><div class='message-sent'>" + msg + "</div>");
 					if(time !== $("#sent-time").val()){
 						$(".message-chat").append("<div class='time-sent'>" + time + "</div>");
 						$("#sent-time").val(time);
 					}
 				} else {
-					$(".message-chat").append("<div class='message-received'>" + msg + "</div>");
+					$(".message-chat").append("<p class='receive-userId'>"+ userId +"</p><div class='message-received'>" + msg + "</div>");
 					if(time !== $("#received-time").val()){
 						$(".message-chat").append("<div class='time-received'>" + time + "</div>");
 						$("#received-time").val(time);
@@ -356,7 +373,7 @@ header {
    <div class="content">
       <header class="chat-header">
          <img src="${message.pfImg}" onerror="this.src='<%=request.getContextPath()%>/resources/img/logo.jpg'"
-            class="chat-profile"> <span class="chat-username">test1</span>
+            class="chat-profile"> <span class="chat-username">WONCHAT</span>
       </header>
 
       <div class="feed">
@@ -381,9 +398,6 @@ header {
    </div>
    <input type="hidden" id="sent-time">
    <input type="hidden" id="received-time">
-
-
-<%@ include file="../common/sideBar.jsp" %>
 
 </body>
 
