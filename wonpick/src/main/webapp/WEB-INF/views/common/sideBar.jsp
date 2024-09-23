@@ -171,6 +171,14 @@
 .sidebar-message::-webkit-scrollbar {
     display: none;
 }
+a {
+	text-decoration: none;
+	color:#000;
+}
+a:hover {
+	text-decoration: none;
+	color:#000;
+}
 
 /* 오른쪽 WM창 끝 */
 </style>
@@ -196,13 +204,13 @@
 			var time = list.substring(list.lastIndexOf(',')+1);
 			if(msg != null && msg.trim() != ''){
 				if(userId === $("#chatUser").val()){
-					$(".sidebar-message").append("<p class='sent-userId'>"+ userId +"</p><p><div class='message-sent'>" + msg + "</div></p>");
+					$(".sidebar-message").append("<p class='sent-userId'><a href='/wonpick/myprofile/profileInfo?userId=" + userId+"'>"+ userId +"</a></p><p><div class='message-sent'>" + msg + "</div></p>");
 					if(time !== $("#sent-time").val()){
 						$(".sidebar-message").append("<div class='time-sent'>" + time + "</div>");
 						$("#sent-time").val(time);
 					}
 				} else {
-					$(".sidebar-message").append("<p class='receive-userId'>"+ userId +"</p><div class='message-received'>" + msg + "</div>");
+					$(".sidebar-message").append("<p class='receive-userId'><a href='/wonpick/myprofile/profileInfo?userId=" + userId+"'>"+ userId +"</a></p><div class='message-received'>" + msg + "</div>");
 					if(time !== $("#received-time").val()){
 						$(".sidebar-message").append("<div class='time-received'>" + time + "</div>");
 						$("#received-time").val(time);
