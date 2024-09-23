@@ -165,7 +165,7 @@
         background-color: rgba(0, 0, 0, 0.7);
     }
 
-    .modal-content {
+    .profileModal-content {
         margin: 10% auto;
         padding: 20px;
         background-color: #fff;
@@ -224,7 +224,7 @@
     
     <!-- 이미지 팝업 모달 -->
     <div id="imageModal" class="modal">
-        <div class="modal-content">
+        <div class="profileModal-content">
             <img src="" alt="Profile Picture" id="modal-image">
         </div>
     </div>
