@@ -69,10 +69,18 @@ header {
    justify-content: flex-end;
    margin-top: 10px;
    transition: 0.4s;
+   flex-direction:column_reverse;
+}
+.message-chat {
+	padding-top:10px;
+   overflow-y: auto;
+}
+.message-chat::-webkit-scrollbar {
+    display: none;
 }
 
 .message-sent {
-   max-width: 70%;
+   max-width:60%;
    margin: 10px 0;
    padding: 10px;
    border-radius: 20px;
@@ -80,10 +88,11 @@ header {
    background-color: rgb(35, 59, 59);
    color: #fff;
    margin-left: auto;
+   word-break:break-all;
 }
 
 .message-received {
-   max-width: 70%;
+   max-width:60%;
    margin: 10px 0;
    padding: 10px;
    border-radius: 20px;
@@ -91,6 +100,25 @@ header {
    background-color: #e0e0e0;
    color: #333;
    align-self: flex-start;
+   text-align:right;
+   word-break:break-all;
+}
+
+.time-sent{
+	text-align:right;
+	color:#aaa;
+	font-size:xx-small;
+	padding-right:10px;
+	line-height: 0px;
+	padding-bottom:10px;
+}
+
+.time-received{
+	color:#aaa;
+	font-size:xx-small;
+	padding-left:10px;
+	line-height: 0px;
+	padding-bottom:10px;
 }
 
 .message {
@@ -265,8 +293,86 @@ header {
       width: 100%;
    }
 }
+
+	.sent-userId{
+		text-align:right;
+		padding-top:5px;
+		line-height: 0px;
+	}
+	.receive-userId{
+		padding-top:5px;
+		line-height: 0px;
+	}
+	
+	a {
+	text-decoration: none;
+	color:#000;
+	}
+	a:hover {
+	text-decoration: none;
+	color:#000;
+	}
 </style>
 </head>
+<script>
+	var ws;
+
+	window.onload = function() {
+		ws = new WebSocket("ws://" + location.host + "<%= request.getContextPath() %>/chating");
+		wsOpen();
+	}
+	
+	function wsOpen(){
+		wsEvt();
+	}
+		
+	function wsEvt() {
+		
+		ws.onmessage = function(data) {
+			var list = data.data;
+			var userId = list.substring(0, list.indexOf(','));
+			var msg = list.substring(list.indexOf(',')+1, list.lastIndexOf(','));
+			var time = list.substring(list.lastIndexOf(',')+1);
+			if(msg != null && msg.trim() != ''){
+				if(userId === $("#chatUser").val()){
+					$(".message-chat").append("<div class='sent-userId'><a href='/wonpick/myprofile/profileInfo?userId=" + userId+"'>"+ userId +"</a></div><div class='message-sent'>" + msg + "</div>");
+					if(time !== $("#sent-time").val()){
+						$(".message-chat").append("<div class='time-sent'>" + time + "</div>");
+						$("#sent-time").val(time);
+					}
+				} else {
+					$(".message-chat").append("<p class='receive-userId'><a href='/wonpick/myprofile/profileInfo?userId=" + userId+"'>"+ userId +"</a></p><div class='message-received'>" + msg + "</div>");
+					if(time !== $("#received-time").val()){
+						$(".message-chat").append("<div class='time-received'>" + time + "</div>");
+						$("#received-time").val(time);
+					}
+				}
+			}
+			let chatUl = document.querySelector('.message-chat');
+			chatUl.scrollTop = chatUl.scrollHeight;
+		}
+
+		document.addEventListener("keypress", function(e){
+			if(e.keyCode == 13){ //enter press
+				send();
+			}
+		});
+	}
+
+	function send() {
+		var msg = $("#chatting").val();
+		var userId = $("#chatUser").val();
+		var today = new Date();
+		var hours = ('0' + today.getHours()).slice(-2); 
+		var minutes = ('0' + today.getMinutes()).slice(-2);
+		var time = hours + ':' + minutes;
+		
+		
+		ws.send([userId, msg, time]);
+
+		$('#chatting').val("");
+	}
+</script>
 
 <body>
 
@@ -276,8 +382,7 @@ header {
    <div class="content">
       <header class="chat-header">
          <img src="${message.pfImg}" onerror="this.src='<%=request.getContextPath()%>/resources/img/logo.jpg'"
-            class="chat-profile"> <span class="chat-username">@상대
-            닉네임</span>
+            class="chat-profile"> <span class="chat-username">WONCHAT</span>
       </header>
 
       <div class="feed">
@@ -286,26 +391,22 @@ header {
             <div class="chat-box">
                <!-- 대화 내용 -->
                <div class="message-chat">
-                  <div class="message-sent">
-                     <p>안녕하세요 :)</p>
-                  </div>
-                  <div class="message-received">
-                     <p>안녕하세요!!</p>
-                  </div>
+                  
+                  
                </div>
 
                <!-- 메시지 입력 창 -->
                <div class="message">
-                  <input type="text" placeholder="메시지를 입력하세요..." />
-                  <button>보내기</button>
+                  <input id="chatting" placeholder="메시지를 입력하세요..." />
+                  <button onclick="send()" id="sendBtn">보내기</button>
+                  <input type="hidden" id="chatUser" value="${loginUser.userId }">
                </div>
             </div>
          </div>
       </div>
    </div>
-
-
-<%@ include file="../common/sideBar.jsp" %>
+   <input type="hidden" id="sent-time">
+   <input type="hidden" id="received-time">
 
 </body>
 

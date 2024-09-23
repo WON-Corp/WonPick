@@ -15,16 +15,13 @@
 
         .stories {
             display: flex;
-
             gap: 15px;
-            overflow-x: auto;
             padding: 20px 0;
             padding-left: 30px;
         }
 
         .story {
             display: flex;
-
             flex-direction: column;
             align-items: center;
             width: 70px;
@@ -36,7 +33,6 @@
             height: 60px;
             border-radius: 50%;
             border: 2px solid #356060;
-            /* ToDo - 그라데이션 입혀서 새 스토리 확인 */
             object-fit: cover;
         }
 
@@ -61,7 +57,7 @@
 	</style>
 </head>
 <body>
- <header>
+ 		<header id="headere">
             <!-- 프로필 스토리 섹션 -->
             <div class="stories">
                 
