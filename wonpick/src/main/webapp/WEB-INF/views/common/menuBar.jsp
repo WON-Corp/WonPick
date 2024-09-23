@@ -461,7 +461,7 @@ body {
 							name="caret-forward-circle-outline"></ion-icon>
 				</span> <span class="text">영상</span>
 			</a></li>
-			<li class="list"><a href="/wonpick/message/message"> <span class="icon"> <ion-icon
+			<li class="list"><a href="/wonpick/wonMessage/list"> <span class="icon"> <ion-icon
 							name="chatbubble-outline"></ion-icon>
 				</span> <span class="text">메시지</span>
 			</a></li>

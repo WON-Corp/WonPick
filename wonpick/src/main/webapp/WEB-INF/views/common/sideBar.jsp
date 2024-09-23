@@ -150,7 +150,7 @@
 
 
 
-    <div class="sidebar-message" onclick="location.href='<%= request.getContextPath() %>/message/message';" style="cursor: pointer;">
+    <div class="sidebar-message" onclick="location.href='<%= request.getContextPath() %>/alert/notification';" style="cursor: pointer;">
         <h3>메시지</h3>
         <ul class="message-list">
             <li>
