@@ -46,10 +46,11 @@ public class PostLikeController {
 		}
 	
 	}
+	
 	@ResponseBody
 	@RequestMapping("/selectLike")
 	public String selectPostLike(PostLike pl) {
-
+		
 		int count = plService.selectUserPostLike(pl);
 		
 		if(count == 0) {
