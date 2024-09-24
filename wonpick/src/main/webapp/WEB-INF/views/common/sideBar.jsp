@@ -266,36 +266,11 @@ a:hover {
             
         </div>
     </div>
-</div>
 
-<script>
-	$(function() {
-		getNoticeList('${ loginUser.userId }')
-	})
-	
-	function getNoticeList(userId){
-		$.ajax({
-            url: "/wonpick/alert/alertList",
-            type: 'post',
-            data: { userId: userId },
-            success: function(result) {
-            	$(".notification-list").text("");
-                for(let r of result){
-                	
-                	$(".notification-list").append(
-                			'<div class="notification-item">'
-                            +'<p>'+r.alertMessage+'</p></div>')
-                }
-            },
-            error: function(err) {
-  
-            }
-        });
-	}
-</script>
+
 		<input type="hidden" id="chatUser" value="${loginUser.userId }">
 		<input type="hidden" id="sent-time"> <input type="hidden" id="received-time">
-	</div>
+
 
 </body>
 </html>
