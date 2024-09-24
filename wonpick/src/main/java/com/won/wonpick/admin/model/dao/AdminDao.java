@@ -37,7 +37,7 @@ public class AdminDao {
     }
 
     public int deleteUser(SqlSessionTemplate sqlSession, String id) {
-        return sqlSession.delete("adminMapper.deleteUser", id);
+        return sqlSession.update("adminMapper.deleteUser", id);
     }
     
     public List<Post> getAllPosts(SqlSessionTemplate sqlSession) {
@@ -49,7 +49,7 @@ public class AdminDao {
     }
 
     public int deletePost(SqlSessionTemplate sqlSession, int postId) {
-        return sqlSession.delete("adminMapper.deletePost", postId);
+        return sqlSession.update("adminMapper.deletePost", postId);
     }
     
     public List<ErrorPost> getAllReports(SqlSessionTemplate sqlSession) {

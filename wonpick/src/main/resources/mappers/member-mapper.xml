@@ -27,7 +27,7 @@
 	
 	<insert id="insertMember">
 		INSERT INTO MEMBER VALUES 
-		(#{userId}, #{password}, #{userName}, #{nickName}, #{email}, #{phone}, #{gender}, #{birth}, #{address}, null,null,'Y')
+		(#{userId}, #{password}, #{userName}, #{nickName}, #{email}, #{phone}, #{gender}, #{birth}, #{address}, null,'/wonpick/resources/img/logo.jpg','Y')
 	</insert>
 	
 	<select id="idCheck" resultType="_int">

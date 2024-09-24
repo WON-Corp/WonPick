@@ -27,11 +27,7 @@ public class AlertDao {
 		if(setting.getPickAlert().equals("Y")) {
 			setting.setPickAlert("PICK");
 		};
-		System.out.println(setting);
-		
-		ArrayList list = (ArrayList)sqlSession.selectList("alertMapper.selectSaveList", setting);
-		System.out.println(list);
-		return list;
+		return (ArrayList)sqlSession.selectList("alertMapper.selectSaveList", setting);
 	}
 
 }
