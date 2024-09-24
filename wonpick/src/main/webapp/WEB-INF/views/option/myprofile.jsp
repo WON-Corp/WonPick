@@ -170,7 +170,7 @@
                 <ion-icon class="icon-background" name="document-text-outline"></ion-icon>
                 <h2>저장목록</h2>
             </a>
-            <a href="#" class="overview-item">
+            <a href="<%= contextPath %>/setalert/settings" class="overview-item">
                 <ion-icon class="icon-background" name="alert-circle-outline"></ion-icon>
                 <h2>알림 설정</h2>
             </a>

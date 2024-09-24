@@ -41,7 +41,7 @@
 /* 안쪽 content 스타일 */
 .alram {
 	width: 100%;
-	height: 850px;
+	height: 870px;
 	margin: 30px auto;
 	background-color: #ffffff;
 	padding: 40px 10%;
@@ -77,91 +77,14 @@
 	font-size: 17px;
 }
 
-.radio-group {
-	flex-direction: column;
-	justify-content: flex-start;
-	/* 세로로 정렬 */
-	align-items: flex-start;
-}
-
-.radio-group label {
-	display: flex;
-	align-items: center;
-	font-size: 16px;
-	color: #555;
-	margin-bottom: 10px;
-}
-
-/* 기본스타일을 없애고, 버튼모양을 구현. */
-input[type="radio"] {
-	-webkit-appearance: none;
-	/*  웹킷 브라우저에서 기본 스타일 제거 */
-	-moz-appearance: none;
-	/* 모질라 브라우저에서 기본 스타일 제거  */
-	appearance: none;
-	/* 기본 브라우저에서 기본 스타일 제거 */
-	border: 2px solid #ccc;
-	width: 18px;
-	height: 18px;
-	border: 1px solid #f0f0f0;
-	border-radius: 50%;
-	background-color: #f0f0f0;
-	outline: none;
-	/* focus 시에 나타나는 기본 스타일 제거 */
-	cursor: pointer;
-	margin-right: 15px;
-	margin-left: 15px;
-}
-
-/* 체크될 시에, 변화되는 스타일 설정 */
-input[type='radio']:checked {
-	background-color: #3b3b3b;
-	/* 체크 시 내부 원으로 표시될 색상 */
-	border: 3px solid #f0f0f0;
-	/* 테두리가 아닌, 테두리와 원 사이의 색상 */
-	box-shadow: 0 0 0 1.6px rgb(228, 228, 228);
-	/* 얘가 테두리가 됨 */
-}
-
-#switch {
-	display: none;
-}
-
-.switch_label {
-	position: relative;
-	width: 55px;
-	height: 28px;
-	background-color: #ddd;
-	border-radius: 30px;
-	cursor: pointer;
-	transition: background-color 0.2s ease;
-}
-
-.switch_label:hover {
-	background-color: #ccc;
-}
-
-.switch_label .onf_btn {
-	position: absolute;
-	top: 3px;
-	left: 3px;
-	width: 22px;
-	height: 22px;
-	background-color: #fff;
-	border-radius: 50%;
-	transition: all 0.2s;
-}
-
-#switch:checked+.switch_label {
-	background-color: rgb(35, 59, 59);
-}
-
-#switch:checked+.switch_label .onf_btn {
-	left: 30px;
-}
 
 .section {
 	margin-bottom: 25px;
+	
+}
+
+.btn-primary {
+    float: right;
 }
 
 </style>
@@ -182,54 +105,100 @@ input[type='radio']:checked {
 
 	<%@ include file="/WEB-INF/views/common/menuBar.jsp" %>
 
-	<div class="content">
-		<div class="alram">
-			<h2>알림 설정</h2>
-			<!-- 알림 설정 제목 -->
+<div class="content">
+    <div class="alram">
+        <h2>알림 설정</h2>
 
-			<!-- Wonpick 알림 -->
-			<div class="section">
-				<h3>Wonpick 알림</h3>
-				<div class="toggle-container">
-					<p>알림 설정</p>
-					<div class="wrapper">
+        <div class="section">
+            <h3>게시물 좋아요</h3>
+            <div class="toggle-container">
+                <p>게시물 좋아요 알림</p>
+                <input type="checkbox" id="postAlert" value="Y" 
+                ${setAlert != null && setAlert.postAlert == 'Y' ? 'checked' : ''}>
+            </div>
+        </div>
 
-						<input type="checkbox" id="switch"> <label for="switch"
-							class="switch_label"> <span class="onf_btn"></span>
-						</label>
-					</div>
-				</div>
-			</div>
+        <div class="section">
+            <h3>Pick</h3>
+            <div class="toggle-container">
+                <p>Pick 알림</p>
+                <input type="checkbox" id="pickAlert" value="Y" 
+                ${setAlert != null && setAlert.pickAlert == 'Y' ? 'checked' : ''}>
+            </div>
+        </div>
 
-			<!-- PickUp 알림 -->
-			<div class="section">
-				<h3>PickUp</h3>
-				<div class="radio-group">
-					<label> <input type="radio" name="pickup" value="해제">
-						해제
-					</label> <label> <input type="radio" name="pickup" value="팔로우"
-						checked> 팔로우
-					</label> <label> <input type="radio" name="pickup" value="모든사람">
-						모든 사람
-					</label>
-				</div>
-			</div>
+        <div class="section">
+            <h3>댓글</h3>
+            <div class="toggle-container">
+                <p>댓글 알림</p>
+                <input type="checkbox" id="commentAlert" value="Y" 
+                ${setAlert != null && setAlert.commentAlert == 'Y' ? 'checked' : ''}>
+            </div>
+        </div>
 
-			<!-- 댓글 알림 -->
-			<div class="section">
-				<h3>댓글</h3>
-				<div class="radio-group">
-					<label> <input type="radio" name="comment" value="해제">
-						해제
-					</label> <label> <input type="radio" name="comment" value="팔로우"
-						checked> 팔로우
-					</label> <label> <input type="radio" name="comment" value="모든사람">
-						모든 사람
-					</label>
-				</div>
-			</div>
-		</div>
-	</div>
+        <div class="section">
+            <h3>댓글 좋아요</h3>
+            <div class="toggle-container">
+                <p>댓글 좋아요 알림</p>
+                <input type="checkbox" id="commentLikeAlert" value="Y" 
+                ${setAlert != null && setAlert.commentLikeAlert == 'Y' ? 'checked' : ''}>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>메시지</h3>
+            <div class="toggle-container">
+                <p>메시지 알림</p>
+                <input type="checkbox" id="messageAlert" value="Y" 
+                ${setAlert != null && setAlert.messageAlert == 'Y' ? 'checked' : ''}>
+            </div>
+        </div>
+
+        <!-- 저장 버튼 -->
+        <div class="section">
+            <button type="button" class="btn btn-primary" onclick="updateAlertSettings()">저장</button>
+        </div>
+
+    </div>
+</div>
+
+	<jsp:include page="../common/optionSideBar.jsp"/>
+
+	<script>
+	function updateAlertSettings() {
+	    const userId = "${loginUser.userId}";
+
+
+	    const postAlert = document.getElementById('postAlert').checked ? 'Y' : 'N';
+	    const pickAlert = document.getElementById('pickAlert').checked ? 'Y' : 'N';
+	    const commentAlert = document.getElementById('commentAlert').checked ? 'Y' : 'N';
+	    const commentLikeAlert = document.getElementById('commentLikeAlert').checked ? 'Y' : 'N';
+	    const messageAlert = document.getElementById('messageAlert').checked ? 'Y' : 'N';
+
+	    $.ajax({
+	        url: '/wonpick/setalert/update',
+	        type: 'POST',
+	        contentType: 'application/json; charset=utf-8',
+	        data: JSON.stringify({
+	            userId: userId,
+	            postAlert: postAlert,
+	            pickAlert: pickAlert,
+	            commentAlert: commentAlert,
+	            commentLikeAlert: commentLikeAlert,
+	            messageAlert: messageAlert
+	        }),
+	        success: function(response) {
+	            alert('알림 설정이 저장되었습니다.');
+	        },
+	        error: function(error) {
+	            console.log(error);
+	            alert('알림 설정 저장에 실패했습니다.');
+	        }
+	    });
+	}
+
+	</script>
+
 	<jsp:include page="../common/optionSideBar.jsp"/>
 </body>
 
