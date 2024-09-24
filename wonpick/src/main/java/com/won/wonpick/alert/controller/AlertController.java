@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.won.wonpick.alert.model.vo.Alert;
 import com.won.wonpick.alert.service.AlertService;
+import com.won.wonpick.setalert.model.vo.SetAlert;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,8 +28,9 @@ public class AlertController {
 	@ResponseBody
 	@RequestMapping(value="/alertList", produces="application/json;charset=UTF-8")
 	public String selectAlertList(String userId) {
-		ArrayList<Alert> list = aService.selectAlertList(userId);
 		
+		ArrayList<Alert> list = aService.selectAlertList(userId);
+	
 		return new Gson().toJson(list);
 	}
 	

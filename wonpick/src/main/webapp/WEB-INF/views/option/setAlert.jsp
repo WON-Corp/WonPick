@@ -145,14 +145,6 @@
             </div>
         </div>
 
-        <div class="section">
-            <h3>메시지</h3>
-            <div class="toggle-container">
-                <p>메시지 알림</p>
-                <input type="checkbox" id="messageAlert" value="Y" 
-                ${setAlert != null && setAlert.messageAlert == 'Y' ? 'checked' : ''}>
-            </div>
-        </div>
 
         <!-- 저장 버튼 -->
         <div class="section">
@@ -173,20 +165,18 @@
 	    const pickAlert = document.getElementById('pickAlert').checked ? 'Y' : 'N';
 	    const commentAlert = document.getElementById('commentAlert').checked ? 'Y' : 'N';
 	    const commentLikeAlert = document.getElementById('commentLikeAlert').checked ? 'Y' : 'N';
-	    const messageAlert = document.getElementById('messageAlert').checked ? 'Y' : 'N';
+
 
 	    $.ajax({
 	        url: '/wonpick/setalert/update',
-	        type: 'POST',
-	        contentType: 'application/json; charset=utf-8',
-	        data: JSON.stringify({
+	        type: 'post',
+	        data:{
 	            userId: userId,
 	            postAlert: postAlert,
 	            pickAlert: pickAlert,
 	            commentAlert: commentAlert,
 	            commentLikeAlert: commentLikeAlert,
-	            messageAlert: messageAlert
-	        }),
+	        },
 	        success: function(response) {
 	            alert('알림 설정이 저장되었습니다.');
 	        },

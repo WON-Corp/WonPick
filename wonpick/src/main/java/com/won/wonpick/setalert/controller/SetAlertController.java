@@ -51,9 +51,8 @@ public class SetAlertController {
     @RequestMapping("/update")
     public String updateAlertSettings(SetAlert setAlert, HttpSession session) {
     	Member currentMember = (Member) session.getAttribute("loginUser");
-
         if (currentMember == null) {
-            return "redirect:/";
+            return "Failed";
         }
 
         setAlert.setUserId(currentMember.getUserId());

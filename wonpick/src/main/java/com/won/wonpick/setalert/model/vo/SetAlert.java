@@ -18,5 +18,4 @@ public class SetAlert {
     private String pickAlert;
     private String commentAlert;
     private String commentLikeAlert;
-    private String messageAlert;
 }

@@ -11,6 +11,15 @@
 		<result column="ALERT_TYPE" property="alertType"/>
 	</resultMap>
 	
+		<!-- SetAlert Map -->
+	<resultMap id="setAlertResultSet" type="SetAlert">
+        <result column="USER_ID" property="userId"/>
+        <result column="POST_ALERT" property="postAlert"/>
+        <result column="PICK_ALERT" property="pickAlert"/>
+        <result column="COMMENT_ALERT" property="commentAlert"/>
+        <result column="COMMENT_LIKE_ALERT" property="commentLikeAlert"/>
+    </resultMap>
+	
 	
 	<select id="selectSaveList" resultMap="alertResultSet">
 		SELECT * FROM (
@@ -18,8 +27,10 @@
 				WHERE USER_ID = #{userId}  
         		ORDER BY ALERT_ID DESC
 			)
-		WHERE ROWNUM BETWEEN 1 AND 15
+		WHERE (ROWNUM BETWEEN 1 AND 15) AND ALERT_TYPE IN (#{postAlert},#{pickAlert},#{commentAlert},#{commentLikeAlert})
 	</select>
+	
+
 	
 	
 </mapper>
