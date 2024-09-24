@@ -20,10 +20,8 @@ public interface PostService {
 
 	List<Post> getAllPosts();
 	
-  int updatePost(Post post);
-    
-  //int deletePost(int postId);
-	
+ 	int updatePost(Post post);
+  
 	int updateCount(int postId);
 
 	ArrayList<Post> selectProfilePostList(String userId);

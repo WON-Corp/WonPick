@@ -660,7 +660,6 @@
  	        	  
  	        	   imgElement.src = "/wonpick/resources/img/heart.jpg";
  	           }else if(result == "no"){
- 	        	  console.log(result);
  	        	  imgElement.src = "/wonpick/resources/img/logo.jpg";
  	           }
  	        },

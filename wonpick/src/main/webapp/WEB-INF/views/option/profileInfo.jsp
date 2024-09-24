@@ -245,7 +245,6 @@
 				pickedId: "${ loginUser.userId }"
 			},
 			success : function (result){
-	                console.log(result);
 	                // pick-count 클래스를 가진 span 태그의 텍스트를 새로운 pickCount 값으로 업데이트
 	                document.querySelector('.pick-count').innerText = result;
 				},
@@ -260,7 +259,6 @@
 			type : 'post',
 			data : {userId : "${member.userId}"},
 			success : function (result){
-				console.log(result);
 				document.querySelector('.picked-count').innerText = result;
 			},
 			error : function (err){
@@ -275,7 +273,6 @@
 			type : 'post',
 			data : {userId : "${member.userId}"},
 			success : function (result){
-				console.log(result);
 				document.querySelector('.pick-count').innerText = result;
 			},
 			error : function (err){

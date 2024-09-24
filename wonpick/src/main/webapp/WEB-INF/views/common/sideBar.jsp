@@ -279,7 +279,6 @@ a:hover {
             type: 'post',
             data: { userId: userId },
             success: function(result) {
-            	console.log(result)
             	$(".notification-list").text("");
                 for(let r of result){
                 	
