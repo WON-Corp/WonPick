@@ -62,7 +62,7 @@
                     <th>이름</th>
                     <th>닉네임</th>
                     <th>상태</th>
-                    <th>관리 기능</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -72,9 +72,7 @@
 				        <td>${user.userName}</td>
 				        <td>${user.nickName}</td>
 				        <td>${user.status}</td>
-                        <td>
-                            <button class="action-btn delete-btn" onclick="confirmDelete('${user.userId}')">삭제</button>
-                        </td>
+
                     </tr>
                 </c:forEach>
             </tbody>
@@ -82,13 +80,6 @@
     </div>
 </div>
 
-<script>
-    function confirmDelete(userId) {
-        if (confirm("이 탈퇴 회원을 삭제하시겠습니까?")) {
-            window.location.href = '/wonpick/admin/deleteWithdrawnUser?id=' + userId;
-        }
-    }
-</script>
 
 </body>
 </html>

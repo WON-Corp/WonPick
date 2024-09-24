@@ -333,22 +333,6 @@ body {
             navigation.classList.toggle('open');
         }
 
-        moreBtn.onclick = function (e) {
-            e.preventDefault();
-            morePopup.classList.toggle('active');
-        }
-
-        // 페이지 외부 클릭 시 팝업 닫기
-        window.onclick = function (event) {
-            if (!event.target.matches('#more-btn, #more-btn *')) {
-                if (morePopup.classList.contains('active')) {
-                    morePopup.classList.remove('active');
-                }
-            }
-        }
-        // <!-- .navigation script 끝~~ -->
-        
-           
     </script>
 </body>
 </html>

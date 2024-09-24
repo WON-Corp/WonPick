@@ -47,17 +47,67 @@
 }
 /* my profile 창 끝 */
 
+/* 오른쪽 알림창 */
+	.sidebar-alert {
+		width: 300px;
+		background-color: #fff;
+		max-height: 220px;
+		padding: 10px 15px;
+		box-sizing: border-box;
+		position: fixed;
+		right: 0;
+		/* Todo --수정 */
+		top: 129px;
+		bottom: 0;
+		border-left: 1px solid #ddd;
+		overflow-y: auto;
+		border-bottom: 1px solid #ddd;
+	}
+	.sidebar-alert::-webkit-scrollbar {
+		display:none;
+	}
+	.sidebar-alert h3 {
+		margin-bottom: 15px;
+		font-size: 16px;
+		font-weight: bold;
+		color: #333;
+	}
+	.notification-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+	
+	
+    .notification-item {
+        background-color: #ffffff;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease, background-color 0.4s;
+    }
+
+    .notification-item:hover {
+        background-color: #eeeeee;
+    }
+
+    .notification-item p {
+        font-size: 0.7rem;
+        margin: 0;
+        color: #555;
+    }
+
 /* 오른쪽 WM창 */
 .sidebar-message {
 	width: 300px;
 	background-color: #fff;
-	max-height: 1000px;
+	max-height: 700px;
 	padding: 10px 15px;
 	box-sizing: border-box;
 	position: fixed;
 	right: 0;
 	/* Todo --수정 */
-	top: 130px;
+	top: 350px;
 	bottom: 0;
 	border-left: 1px solid #ddd;
 	overflow-y: auto;
@@ -70,62 +120,11 @@
 	color: #333;
 }
 
-.message-list {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-}
-
-.message-list li {
-	display: flex;
-	align-items: center;
-	padding: 8px 5px;
-	border-bottom: 1px solid #ddd;
-	cursor: pointer;
-}
-
-.message-list li:hover {
-	background-color: #f0f0f0;
-	transition: 0.4s ease-in-out;
-}
-
-.message-list img {
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	margin-right: 10px;
-	object-fit: cover;
-}
-
-.message-list .message-info {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-
-.message-list .message-info .name {
-	font-weight: bold;
-	color: #333;
-}
-
-.message-list .message-info .message-text {
-	font-size: 14px;
-	color: #888;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-.message-list .message-info .time {
-	font-size: 11px;
-	color: #aaa;
-	margin-top: 2px;
-}
 .message-sent {
    margin: 10px 0;
    padding: 10px;
    border-radius: 20px;
-   font-size: 14px;
+   font-size: 10px;
    background-color: rgb(35, 59, 59);
    color: #fff;
    margin-left: auto;
@@ -136,7 +135,7 @@
    margin: 10px 0;
    padding: 10px;
    border-radius: 20px;
-   font-size: 14px;
+   font-size: 10px;
    background-color: #e0e0e0;
    color: #333;
    align-self: flex-start;
@@ -159,14 +158,16 @@
 	line-height: 0px;
 	padding-bottom:10px;
 }
-.sent-userId{
+	.sent-userId{
 		text-align:right;
 		padding-top:5px;
 		line-height: 0px;
+		font-size: 12px;
 	}
 	.receive-userId{
 		padding-top:5px;
 		line-height: 0px;
+		font-size: 12px;
 	}
 .sidebar-message::-webkit-scrollbar {
     display: none;
@@ -179,8 +180,8 @@ a:hover {
 	text-decoration: none;
 	color:#000;
 }
-
 /* 오른쪽 WM창 끝 */
+
 </style>
 </head>
 <script>
@@ -254,19 +255,29 @@ a:hover {
 				class="myname">${ loginUser.nickName }</span>
 		</div>
 	</div>
-
-
-
-	<div class="sidebar-message"
+	
+	<div class="sidebar-alert"
 		onclick="location.href='<%=request.getContextPath()%>/alert/notification';"
 		style="cursor: pointer;">
-		<h3>메시지</h3>
+		<h3>알림</h3>
 		<div class="notification-list">
            
             
         </div>
     </div>
-</div>
+
+
+	<div class="sidebar-message"
+		onclick="location.href='<%=request.getContextPath()%>/wonMessage/chat';"
+		style="cursor: pointer;">
+		<h3>메시지</h3>
+		<div class="chat-list">
+           
+            
+        </div>
+    </div>
+		<input type="hidden" id="chatUser" value="${loginUser.userId }">
+		<input type="hidden" id="sent-time"> <input type="hidden" id="received-time">
 
 <script>
 	$(function() {
@@ -293,9 +304,6 @@ a:hover {
         });
 	}
 </script>
-		<input type="hidden" id="chatUser" value="${loginUser.userId }">
-		<input type="hidden" id="sent-time"> <input type="hidden" id="received-time">
-	</div>
 
 </body>
 </html>
