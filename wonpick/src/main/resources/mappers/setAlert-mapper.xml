@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="setAlertMapper">
+
+    <!-- SetAlert 매핑 설정 -->
+    <resultMap id="setAlertResultSet" type="SetAlert">
+        <result column="USER_ID" property="userId"/>
+        <result column="POST_ALERT" property="postAlert"/>
+        <result column="PICK_ALERT" property="pickAlert"/>
+        <result column="COMMENT_ALERT" property="commentAlert"/>
+        <result column="COMMENT_LIKE_ALERT" property="commentLikeAlert"/>
+        <result column="MESSAGE_ALERT" property="messageAlert"/>
+    </resultMap>
+
+
+    <select id="selectAlertList" resultMap="setAlertResultSet">
+        SELECT * FROM SET_ALERT
+        WHERE USER_ID = #{userId}
+    </select>
+
+
+	<update id="updateAlertSettings">
+	    UPDATE SET_ALERT
+	    SET 
+	        POST_ALERT = #{postAlert},
+	        PICK_ALERT = #{pickAlert},
+	        COMMENT_ALERT = #{commentAlert},
+	        COMMENT_LIKE_ALERT = #{commentLikeAlert},
+	        MESSAGE_ALERT = #{messageAlert}
+	    WHERE USER_ID = #{userId}
+	</update>
+
+    
+
+    <select id="getAlertSettings" resultMap="setAlertResultSet">
+        SELECT * FROM SET_ALERT
+        WHERE USER_ID = #{userId}
+    </select>
+
+</mapper>
