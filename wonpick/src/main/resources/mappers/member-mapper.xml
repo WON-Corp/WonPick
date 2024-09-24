@@ -30,6 +30,10 @@
 		(#{userId}, #{password}, #{userName}, #{nickName}, #{email}, #{phone}, #{gender}, #{birth}, #{address}, null,'/wonpick/resources/img/logo.jpg','Y')
 	</insert>
 	
+	<insert id="insertSetAlert">
+		INSERT INTO SET_ALERT VALUES (#{userId}, 'Y','Y','Y','Y')
+	</insert>
+	
 	<select id="idCheck" resultType="_int">
     	SELECT COUNT(*) FROM MEMBER WHERE USER_ID = #{userId} AND STATUS IN('Y','A')
   	</select>

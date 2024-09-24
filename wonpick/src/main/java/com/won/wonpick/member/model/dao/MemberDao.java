@@ -15,7 +15,9 @@ public class MemberDao {
 	}
 
 	public int insertMember(SqlSessionTemplate sqlSession, Member m) {
-		return sqlSession.insert("memberMapper.insertMember", m);
+		int result = sqlSession.insert("memberMapper.insertMember", m);
+		sqlSession.insert("memberMapper.insertSetAlert", m);
+		return result;
 	}
 
 	public int idCheck(SqlSessionTemplate sqlSession, String id) {
