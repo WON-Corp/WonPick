@@ -101,7 +101,7 @@
 .sidebar-message {
 	width: 300px;
 	background-color: #fff;
-	max-height: 700px;
+	height: 100%;
 	padding: 10px 15px;
 	box-sizing: border-box;
 	position: fixed;
