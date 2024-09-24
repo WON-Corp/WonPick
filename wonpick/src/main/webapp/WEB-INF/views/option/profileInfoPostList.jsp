@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<!-- 아이콘 링크 -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <title>WonPick</title>
 <style>
 .feed {
@@ -102,7 +104,17 @@
 	background-color: #fff;
 	border: none;
 }
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24;
+  cursor : pointer;
+}
 </style>
+
 </head>
 
 <body>
@@ -120,9 +132,18 @@
 							<h3>${ list.userId }</h3>
 							<span class="post-time">${ list.postingTime }</span>
 						</div>
+						<c:choose >
+						<c:when test="${list.userId == loginUser.userId}">
+						<a onclick="postDelet('${list.userId }')"><span class="material-symbols-outlined">
+close
+</span></a>
+						</c:when>
+						<c:otherwise>
 						<img src="${ list.userPfImg }"
 							onerror="src='/wonpick/resources/img/logo.jpg'"
 							class="post-profile-img">
+						</c:otherwise>
+						</c:choose>
 					</div>
 					<c:if test="${ not empty list.imgFile }">
 						<c:if
@@ -170,6 +191,34 @@
 									id="commentCount${ list.postId }">댓글보기</span>
 							</p>
 							<script>
+							function postDelet(userId){
+								if (confirm("삭제하시겠습니까?")) {
+							        // 사용자가 '예'를 선택한 경우
+							        postDelete(userId);
+							    } else {
+							        // 사용자가 '아니오'를 선택한 경우
+							        console.log('저장 취소됨');
+							    }
+							}
+							function postDelete(userId){
+								$.ajax({
+									url : "/wonpick/post/deletePost",
+									type : 'post',
+									data : {userId : userId , postId : ${list.postId}},
+									success : function (result){
+										if(result == 0){
+											alert("게시물을 삭제했습니다.")
+											location.href="/wonpick/myprofile/profileInfo?userId="+userId;
+										}else{
+											alert("게시물 삭제에 실패했습니다.")
+										}
+									},
+									error : function (err){
+										consol.log(err)
+									}
+								});
+							}
+							
 							function confirmPostPick(postId) {
 							    // confirm 창을 띄워 사용자가 저장할지 결정하게 함
 							    if (confirm("저장하시겠습니까?\n(이미 저장된 게시물의 경우 저장목록에서 삭제됩니다)")) {
@@ -183,7 +232,7 @@
 							
 							
 							//게시물 저장하고 저장 유무의 따라 아이콘 색 변화
-							function postSave(postId ) {
+							function postSave(postId) {
 								
 							    $.ajax({
 							        url: '/wonpick/saveList/insertSaveList', // 서버 URL 지정

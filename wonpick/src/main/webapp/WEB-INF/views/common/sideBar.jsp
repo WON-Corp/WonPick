@@ -261,9 +261,40 @@ a:hover {
 		onclick="location.href='<%=request.getContextPath()%>/alert/notification';"
 		style="cursor: pointer;">
 		<h3>메시지</h3>
-			
-		<input type="hidden" id="chatUser" value="${loginUser.userId }">
+		<div class="notification-list">
+           
+            
+        </div>
+    </div>
+</div>
 
+<script>
+	$(function() {
+		getNoticeList('${ loginUser.userId }')
+	})
+	
+	function getNoticeList(userId){
+		$.ajax({
+            url: "/wonpick/alert/alertList",
+            type: 'post',
+            data: { userId: userId },
+            success: function(result) {
+            	console.log(result)
+            	$(".notification-list").text("");
+                for(let r of result){
+                	
+                	$(".notification-list").append(
+                			'<div class="notification-item">'
+                            +'<p>'+r.alertMessage+'</p></div>')
+                }
+            },
+            error: function(err) {
+  
+            }
+        });
+	}
+</script>
+		<input type="hidden" id="chatUser" value="${loginUser.userId }">
 		<input type="hidden" id="sent-time"> <input type="hidden" id="received-time">
 	</div>
 

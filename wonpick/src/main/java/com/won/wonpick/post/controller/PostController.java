@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
@@ -139,6 +140,18 @@ public class PostController {
 		session.setAttribute("list", searchList);
 
 		return "redirect:/post/searchPage";
+	}
+	@ResponseBody
+	@RequestMapping("/deletePost")
+	public int deletePostList(Post p) {
+	
+		int count = pService.deletePost(p);
+		if(count == 0) {
+			return 1;
+		}else {
+			return 0;
+		}
+		
 	}
 	
 	

@@ -1,3 +1,5 @@
+<%@page import="com.won.wonpick.post.model.vo.Post"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -104,6 +106,7 @@
 	<div class="content">
 
 		<%@ include file="common/storyBar.jsp"%>
+		
 
 		<!-- 게시물 -->
 		<c:forEach var="list" items="${ list }">
@@ -452,11 +455,11 @@
 										<input type="hidden" name="postId" value="">
 
 									</div>
-
+									
 
 									<button type="button" class="btn btn-primary" onclick="commentPost(postId);">댓글작성</button>
 								</form>
-
+								 
 							</div>
 						</div>
 					</div>
@@ -476,6 +479,20 @@
 </body>
 
 <script>
+	function postSubmit(type){
+		const postForm = document.getElementById("postForm");
+		// document.querySelector("#postForm")
+		
+		
+			
+	
+			// 게시글 삭제 요청
+		postForm.action = type;
+		
+		
+		postForm.submit();
+		
+	}
 	//모달창 띄우기
  	function getDetailPost(postId){
  		

@@ -22,10 +22,12 @@ public interface PostService {
 	
   int updatePost(Post post);
     
-  int deletePost(int postId);
+  //int deletePost(int postId);
 	
 	int updateCount(int postId);
 
 	ArrayList<Post> selectProfilePostList(String userId);
+
+	int deletePost(Post p);
 
 }

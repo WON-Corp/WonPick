@@ -61,8 +61,8 @@ public class PostServiceImpl implements PostService {
 
 
    @Override
-   public int deletePost(int postId) {
-       return pDao.deletePost(sqlSession, postId);
+   public int deletePost(Post p) {
+       return pDao.deletePost(sqlSession, p);
    }
 
 	@Override

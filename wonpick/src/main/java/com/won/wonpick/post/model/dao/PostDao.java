@@ -35,8 +35,13 @@ public class PostDao {
 	
 	/* 관리자 포스트 수정/삭제 기능 */
 
-	public int deletePost(SqlSessionTemplate sqlSession, int postId) {
-	    return sqlSession.delete("postMapper.deletePost", postId);
+	public int deletePost(SqlSessionTemplate sqlSession, Post p) {
+		sqlSession.delete("postMapper.deletePostCommentLike", p);
+		sqlSession.delete("postMapper.deletePostComment", p);
+		sqlSession.delete("postMapper.deletePostLike", p);
+		sqlSession.delete("postMapper.deleteSaveList", p);
+		sqlSession.delete("postMapper.deleteAlert", p);
+		return sqlSession.delete("postMapper.deletePost", p);
 	}
 	
 	public int updatePost(SqlSessionTemplate sqlSession, Post post) {
