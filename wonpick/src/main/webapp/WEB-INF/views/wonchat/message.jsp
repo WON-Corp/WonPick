@@ -335,13 +335,13 @@ header {
 			var time = list.substring(list.lastIndexOf(',')+1);
 			if(msg != null && msg.trim() != ''){
 				if(userId === $("#chatUser").val()){
-					$(".message-chat").append("<div class='sent-userId'><a href='/wonpick/myprofile/profileInfo?userId=" + userId+"'>"+ userId +"</a></div><div class='message-sent'>" + msg + "</div>");
+					$(".message-chat").append("<div class='sent-userId'><p style='cursor:pointer;' onclick=location.href='/wonpick/myprofile/profileInfo?userId=" + userId+"'>"+ userId +"</p></div><div class='message-sent'>" + msg + "</div>");
 					if(time !== $("#sent-time").val()){
 						$(".message-chat").append("<div class='time-sent'>" + time + "</div>");
 						$("#sent-time").val(time);
 					}
 				} else {
-					$(".message-chat").append("<p class='receive-userId'><a href='/wonpick/myprofile/profileInfo?userId=" + userId+"'>"+ userId +"</a></p><div class='message-received'>" + msg + "</div>");
+					$(".message-chat").append("<p class='receive-userId'><p style='cursor:pointer;' onclick=location.href='/wonpick/myprofile/profileInfo?userId=" + userId+"'>"+ userId +"</p></p><div class='message-received'>" + msg + "</div>");
 					if(time !== $("#received-time").val()){
 						$(".message-chat").append("<div class='time-received'>" + time + "</div>");
 						$("#received-time").val(time);
@@ -371,6 +371,10 @@ header {
 		ws.send([userId, msg, time]);
 
 		$('#chatting').val("");
+	}
+	
+	function toProfile(userId) {
+		location.href = "/wonpick/myprofile/profileInfo?userId=" + userId
 	}
 </script>
 
