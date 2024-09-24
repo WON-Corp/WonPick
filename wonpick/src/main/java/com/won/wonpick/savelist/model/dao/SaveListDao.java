@@ -11,7 +11,6 @@ public class SaveListDao {
 		// TODO Auto-generated method stub
 	
 		int result = sqlSession.insert("saveListMapper.insertSaveList", s);
-		System.out.println(result);
 		return result;
 	}
 

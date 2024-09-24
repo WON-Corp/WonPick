@@ -79,37 +79,15 @@
 	)
 	</delete>
 	
-	<!-- POST_COMMENT 테이블에서 댓글 삭제-->
-	<delete id="deletePostComment">
-	DELETE FROM POST_COMMENT
-	WHERE POST_ID = #{postId}
-	</delete>
 	
 
-	<!-- POST_LIKE 테이블에서 좋아요 삭제-->
-	<delete id="deletePostLike">
-	DELETE FROM POST_LIKE
-	WHERE POST_ID = #{postId}
-	</delete>
-	
-
-	<!-- SAVE_LIST 테이블에서 저장된 게시물 삭제-->
-	<delete id="deleteSaveList">
-	DELETE FROM SAVE_LIST
-	WHERE SAVED_POST_ID = #{postId}
-	</delete>
-
-	<!-- ALERT 테이블에서 알림 삭제-->
-	<delete id="deleteAlert">
-	DELETE FROM ALERT
-	WHERE USER_ID = (SELECT USER_ID FROM POST WHERE POST_ID = #{postId})
-	</delete>
 
 	<!-- POST 테이블에서 게시물 삭제-->
-	<delete id="deletePost">
-	DELETE FROM POST
+	<update id="deletePost">
+	UPDATE POST
+	SET STATUS = 'N'
 	WHERE POST_ID = #{postId} AND USER_ID = #{userId}
-	</delete>
+	</update>
 
 
 </mapper>

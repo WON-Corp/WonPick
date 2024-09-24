@@ -95,7 +95,7 @@
                     <td>
                         <button class="action-btn" onclick="editPost('${post.postId}')">수정</button>
                         <button class="action-btn save-btn" id="save-${post.postId}" style="display:none;" onclick="savePost('${post.postId}')">저장</button>
-                        <button class="action-btn delete-btn" onclick="confirmDelete('${post.postId}')">삭제</button>
+                        <button class="action-btn delete-btn" onclick="confirmDelete('${post.postId}','${post.userId }')">삭제</button>
                     </td>
                 </tr>
             </c:forEach>
@@ -133,10 +133,28 @@
         });
     }
 
-    function confirmDelete(postId) {
+    function confirmDelete(postId,userId) {
         if (confirm("정말로 이 게시글을 삭제하시겠습니까?")) {
-            window.location.href = '/wonpick/admin/deletePost?postId=' + postId;
+            postDelete(postId,userId);
         }
+    }
+    function postDelete(postId,userId){
+    	$.ajax({
+			url : "/wonpick/post/deletePost",
+			type : 'post',
+			data : {userId : userId , postId : postId},
+			success : function (result){
+				if(result == 0){
+					alert("게시물을 삭제했습니다.")
+					location.href = "/wonpick/admin/managePosts"
+				}else{
+					alert("게시물 삭제에 실패했습니다.")
+				}
+			},
+			error : function (err){
+				consol.log(err)
+			}
+		});
     }
 </script>
 
