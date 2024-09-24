@@ -67,11 +67,11 @@ public class AdminController {
         return (result > 0) ? "success" : "fail";
     }
 
-    @RequestMapping("/deletePost")
-    public String deletePost(int postId) {
-        int result = postService.deletePost(postId);
-        return (result > 0) ? "redirect:/admin/managePosts" : "common/errorPage";
-    }
+    //@RequestMapping("/deletePost")
+    //public String deletePost(int postId) {
+     //   int result = postService.deletePost(postId);
+     //   return (result > 0) ? "redirect:/admin/managePosts" : "common/errorPage";
+   // }
 
     @RequestMapping("/manageReports")
     public String adminReports(Model model) {
