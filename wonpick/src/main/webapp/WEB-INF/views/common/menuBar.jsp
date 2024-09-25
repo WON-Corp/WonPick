@@ -559,7 +559,6 @@ body {
 						</div>
 
 						<button class="btn btn-danger">신고 보내기</button>
-						<button type="button" class="btn btn-primary">파일 추가</button>
 					</form>
 				</div>
 			</div>
